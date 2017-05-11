@@ -58,11 +58,6 @@ int		parse_flags(int ac, char **av, char *flags)
 	i--;
 
 	i = 0;
-	while (i < NB_FLAGS)
-	{
 
-		printf("%d", flags[i]);
-		i++;
-	}
 	return (i);
 }
