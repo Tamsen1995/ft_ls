@@ -14,6 +14,9 @@ int			main(int ac, char **av)
 
 
 
+
+	// Next I will have to figure out what to do. Treat the flags or the allocation first?
+
 	//TESTING
 	t = 0;
 	while (t < NB_FLAGS)
