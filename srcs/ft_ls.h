@@ -19,12 +19,12 @@
 
 typedef enum e_flgs
 {
-	f_recur = 0,
-	f_hidden = 1,
-	f_list = 2,
-	f_rev = 3,
-	f_time = 4,
-	f_main = 5
+	f_recur = 0, // -R
+	f_hidden = 1, // 
+	f_list = 2, // -l
+	f_rev = 3, //
+	f_time = 4, // -t
+	f_main = 5 //
 }			t_flags;
 
 typedef enum e_filetype

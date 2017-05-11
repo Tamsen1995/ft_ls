@@ -3,7 +3,7 @@ FLAGS = -g -Wall -Wextra -Werror -I includes
 LIBFT = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 NAME = ft_ls
-SRC = srcs/ft_ls_main.c \
+SRC = srcs/main.c \
 	srcs/parsing_module.c \
 
 

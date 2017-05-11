@@ -11,7 +11,7 @@ int			main(int ac, char **av)
 
 	i = parse_flags(ac, av, flags);
 
-	printf("%d", i);
+	printf("%s", flags);
 
 
 	return (0);

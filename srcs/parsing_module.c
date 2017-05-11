@@ -43,7 +43,6 @@ int		parse_flags(int ac, char **av, char *flags)
 
 	int i;
 	int j;
-
 	init_flags(flags);
 	i = 1;
 	// iterate through all the given args (2D array)
@@ -54,6 +53,15 @@ int		parse_flags(int ac, char **av, char *flags)
 			return (i + 1);
 		while (av[i][++j])
 			*(flags + flag_index(av[i][j])) = 1;
+		i++;
+	}
+	i--;
+
+	i = 0;
+	while (i < NB_FLAGS)
+	{
+
+		printf("%d", flags[i]);
 		i++;
 	}
 	return (i);
