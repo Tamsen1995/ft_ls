@@ -16,12 +16,9 @@
 // stat function
 char		*make_path_fl(char *dir, char *file)
 {
-
-	
-
+	// TODO finish this function
 	ft_putendl(dir);
 	ft_putendl(file);
-
 
 	return (NULL); // returning null for now
 }
@@ -46,9 +43,9 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 
 
 	// put the file name into the list
-
-	alist->filename = ft_strdup(ent->d_name);
-
+	alist->filename = ft_strdup(ent->d_name);	
+	alist->type = ent->d_type;
+	alist->path = NULL;
 /*	alist->next = NULL;
 	alist->prev = NULL;
 	alist->mtime = fstat.st_mtime;
@@ -64,16 +61,12 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	ft_strcpy(alist->file_name, ent->d_name);
 
 
-
-
 	if (alist->ent->d_type == DT_DIR)
 	{
 		alist->dir_path = ft_memalloc(ft_strlen(nw_path) + 1);
 		ft_strcpy(alist->dir_path, nw_path);
 	}
-
 	free(nw_path);
-
 	*/
 	return (alist);
 }

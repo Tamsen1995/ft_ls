@@ -17,3 +17,15 @@ Project Journal:
     creat unnecessary noise within my project, opening up venues for memory leaks and such. I think that anything I would need the printf for could just as well be done with my libft
     which is a lot safer in terms of memory leaks and such. By removing the printf I have also simplified the archtecture of my project, making it a lot easier to hunt for bugs.
     I am no finally ready to implement the recursion part.
+
+    The recursive allocation is slowly coming together. I have solved the problem of getting the filetype into the stack elements themselves.
+    They are now saved as an unsigned char, which indicates the filetype. Since I need the path of a directory to open it, I need to figure out where
+    and how exactly I need to concatenate the filename and the current path of the current directory in order to get the new directory path for the recursion.
+
+    I have now implemented the recursive allocation of all elements. My stack now contains every subdirectory and their respective subdirectories and so on of the directory
+    in which the program is executed. 
+    I have constructed the allocation in such a way that leaves the path string in every stack element empty/pointed to NULL UNLESS it is a directory.
+    I am not sure if this is the right approach but I will leave it like this for now.
+    
+    Next I need to figure out how to get all the necessary information into the stack elements. 
+    This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)

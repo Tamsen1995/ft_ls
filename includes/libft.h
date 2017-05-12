@@ -21,7 +21,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#define bool int
+#define t_bool int
 #define TRUE 1
 #define FALSE 0
 
@@ -88,10 +88,11 @@ typedef struct		 s_stack
 {
 	char 			*path;
 	char 			*filename;
-	t_filetype 		type;
+	unsigned char	type; //testing
 	struct stat 	stats;
 	t_fields 		*fields;
 	char 			*err_msg;
+	struct s_stack	*subdir;
 	struct s_stack 	*next;
 }					t_stack;
 

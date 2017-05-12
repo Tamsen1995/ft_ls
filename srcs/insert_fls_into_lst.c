@@ -16,37 +16,57 @@ char			*make_path_dir(char *name, char *cathis)
 	return (nw_path);
 }
 
-/*
-t_files			*alloc_list(char *name)
+// This function receives a name and allocates everything in the the current directory into 
+// a nice stack. it then returns this stack
+t_stack  *register_fls_in_dir(char *name)
 {
 	DIR				*dir;
-	t_files			*fls;
+	t_stack			*fls;
 	struct dirent	*ent;
-	t_files			*tmp;//testing
+	// struct stat *file_info_buffer;
+
+	fls = NULL;
+	if (!(dir = opendir(name)))
+		return (NULL);
+	if (!(ent = readdir(dir)))
+		return (NULL);
+	if (!(fls = ft_lstnew(ent, name)))
+		return (NULL);
+
+	while ((ent = readdir(dir)))
+			ft_list_push_back(&fls, ent, name);
+	return (fls);
+}
+
+// This function simply check if the current entry's name 
+// is neither the current directory nor the previous one
+t_bool		not_curr_and_prev(t_stack *entry)
+{
+	if (ft_strcmp(entry->filename, ".") != 0 && ft_strcmp(entry->filename, "..") != 0)
+		return (TRUE);
+	return (FALSE);
+}
+
+// This function recursively allocates the entirety of the directory as well as its subdirectories
+t_stack			*alloc_list(char *dir_path)
+{
+	t_stack			*fls;
+	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
+
 
 	tmp = NULL;
 	fls = NULL;
-	if (!(dir = opendir(name))) //opening the directory with the name
+	if (!(fls = register_fls_in_dir(dir_path))) // zapping the entire entry list into a stack chain
 		return (NULL);
-	if (!(ent = readdir(dir))) //entry read from the directory itself
-		return (NULL);
-		 //making a new struct to add onto the list
-	if (!(fls = ft_lstnew(ent, name)))	//with all the info of the file
-		return (NULL);
-	while ((ent = readdir(dir)))
-	{
-		if (ft_strcmp(ent->d_name, "..") != 0 && ft_strcmp(ent->d_name, ".") != 0)
-			ft_list_push_back(&fls, ent, name);
-	}
 	tmp = fls;
 	while (tmp)
 	{
-
-		// If the current entry is a directory but not the current one (.) and neither the previous one
-		if (tmp->ent->d_type == DT_DIR && ft_strcmp(tmp->file_name, ".") != 0)// && ft_strcmp(tmp->file_name, "..") != 0))
-			tmp->subdir = alloc_list(make_path_dir(name, tmp->ent->d_name));
-		tmp = tmp->next;
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DT_DIR)
+		{
+			tmp->path = make_path_dir(dir_path, tmp->filename); //putting the directory path into the stack element
+			tmp->subdir = alloc_list(tmp->path); // recursively calling the function again with the newly made path in the stack elem
+		}
+		tmp = tmp->next; 
 	}
-	return (fls);
+	return (fls); // returnning null for now, just testing
 }
-*/
