@@ -16,9 +16,11 @@
 // stat function
 char		*make_path_fl(char *dir, char *file)
 {
+
+	
+
 	ft_putendl(dir);
 	ft_putendl(file);
-	
 
 
 	return (NULL); // returning null for now
@@ -35,12 +37,17 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 
 
 	// TODO  implement a function concatenates a path together into the nw_path
-	nw_path = make_path_fl(path, ent->d_name);
-	if (stat(nw_path, &fstat) < 0)
-		return (NULL);
+//	nw_path = make_path_fl(path, ent->d_name);
+//	if (stat(nw_path, &fstat) < 0)
+//		return (NULL);
 	if (!(alist = (t_stack *)malloc(sizeof(t_stack))))
 		return (NULL);
 
+
+
+	// put the file name into the list
+
+	alist->filename = ft_strdup(ent->d_name);
 
 /*	alist->next = NULL;
 	alist->prev = NULL;

@@ -1,3 +1,3 @@
 git add -A
-git commit -m "normal commit"
+git commit -m "Implemented the module which will allocate a complete entry list on a neat stack"
 git push
