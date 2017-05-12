@@ -21,6 +21,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#define bool int
+#define TRUE 1
+#define FALSE 0
 
 # define VALID_FLAGS	"Ralrt1"
 # define NB_FLAGS		6

@@ -3,6 +3,10 @@
 
 // This function receives a name and allocates everything in the the current directory into 
 // a nice stack. it then returns this stack
+
+
+
+
 t_stack  *register_fls_in_dir(char *name)
 {
 	DIR				*dir;
@@ -27,17 +31,35 @@ t_stack  *register_fls_in_dir(char *name)
 t_stack			*alloc_list(char *name)
 {
 	t_stack			*fls;
+	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
 
+
+	tmp = NULL;
+	fls = NULL;
 	// zapping the entire entry list into a stack chain
-	fls = register_fls_in_dir(name);
-	return (NULL); // returnning null for now, just testing
+	if (!(fls = register_fls_in_dir(name)))
+		return (NULL);
+
+
+	// TODO recursively allocate every single element 
+	// in all  subdirectories and their subdirectories and so on
+	tmp = fls;
+	while (tmp)
+	{
+		if (not_curr_and_prev(tmp) && tmp->type == DIR)
+			tmp->subdir = alloc_list(ent->filename);
+		tmp = tmp->next; 
+	}
+
+
+
+	return (fls); // returnning null for now, just testing
 }
 
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
 	int			i;
-	int t;
 	t_stack		*files;
 	//t_stack		*directories;
 	//t_stack		*new;
@@ -48,9 +70,18 @@ int			main(int ac, char **av)
 	files = alloc_list("."); // TODO treat allocation
 
 
-	//TESTING
-	t = 0;
+	////////////////////////////////////////////////////////TESTING
 
+	t_stack *tmp;
+
+	tmp = files;
+	while (tmp)
+	{
+		ft_putendl(tmp->filename);
+		tmp = tmp->next;
+	}
+	int t;
+	t = 0;
 	printf("\n\n\n");
 	printf("This is an array of integers indicating which flags are intitialized\n");
 	while (t < NB_FLAGS)
@@ -59,7 +90,7 @@ int			main(int ac, char **av)
 		t++;
 	}
 	printf("\n\n");
-	/////TESTING
+	//////////////////////////////////////////////////////////////TESTING
 
 	return (0);
 }
