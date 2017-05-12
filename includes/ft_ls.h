@@ -1,9 +1,8 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
-# include				"get_next_line.h"
-# include				"ft_printf.h"
-# include				"libft.h"
+
+# include				"../includes/libft.h"
 # include				<dirent.h>
 # include				<unistd.h>
 # include				<pwd.h>
@@ -13,23 +12,12 @@
 # include				<sys/types.h>
 # include				<errno.h>
 
-typedef	struct		s_flags
-{
-	t_bool			big_r;
-	t_bool			small_r;
-	t_bool			l;
-	t_bool			a;
-	t_bool			t;
-}					t_flags;
-
-
+int		parse_flags(int ac, char **av, char *flags);
 void		extract_proper_time(char *c_time_string, t_files *fls);
 void		print_yr_only(t_files *fls);
 void		print_time(t_files *fls);
-char		*make_path_fl(char *dir, char *file);
 void		print_perms(t_files *fls);
-char		*make_path_fl(char *dir, char *file);
-t_files		*alloc_list(char *name);
+t_stack		*alloc_list(char *name);
 t_flags		*get_flags(int argc, char **argv);
 char		*make_path_dir(char *name, char *cathis);
 void		print_all_test(t_files *files, t_flags *flags);//testing?!

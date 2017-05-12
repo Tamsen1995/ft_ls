@@ -1,0 +1,19 @@
+
+Project Journal:
+
+    Day one :
+    Thus far I have implemented the parsing of the flags. The parsing module returns to me the number of flags present
+    while simoultaneously declaring a character array which indicates the flags in the user would like to use by the position of the indexed 1.
+    in order to text this you oughta iterate through the array NB_FLAGS (6) times. 
+
+    Day Two :
+    Currently I am trying to implement the recursion in my my program. It is proving to me a lot more difficult than expected, not due to the problem itself
+    but because of some severe mistakes I have made in the archtecture of my code. Since I am duplicating knowledgde throughout my header files
+    I get confused whenever I have to change functions and their prototypes. This is incredibly frustrating and definitely teaching me a lesson.
+    I oughta stop duplicating knowledge and restructure my architecture in a way that makes header files unique. I will thus put every header file in the includes folder
+    and figure out how to make the program compile with that folder. This will prove to be a challenge since Makefiles are still somewhat of a mistery to me.
+
+    I have removed a lot of clutter within my project. I decided that I no would no longer use my printf as well as the GNL since I don't really need them and they would only 
+    creat unnecessary noise within my project, opening up venues for memory leaks and such. I think that anything I would need the printf for could just as well be done with my libft
+    which is a lot safer in terms of memory leaks and such. By removing the printf I have also simplified the archtecture of my project, making it a lot easier to hunt for bugs.
+    I am no finally ready to implement the recursion part.

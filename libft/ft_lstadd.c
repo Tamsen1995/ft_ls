@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-void	ft_list_push_back(t_files **begin_list, struct dirent *ent, char *path)
+void	ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path)
 {
-	t_files *list;
+	t_stack *list;
 
 	list = *begin_list;
 	if (!list)

@@ -1,21 +1,45 @@
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
+
+// This function recursively allocates the entirety of the directory as well as its subdirectories
+t_stack			*alloc_list(char *name)
+{
+	DIR				*dir;
+	t_stack			*fls;
+	struct dirent	*ent;
+
+	fls = NULL;
+	if (!(dir = opendir(name)))
+		return (NULL);
+	if (!(ent = readdir(dir)))
+		return (NULL);
+	if (!(fls = ft_lstnew(ent, name)))
+		return (NULL);
+	
+
+
+	return (NULL); // returnning null for now, just testing
+}
 
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
 	int			i;
 	int t; //TESTING
-	//t_stack		*files;
+	t_stack		*files;
 	//t_stack		*directories;
 	//t_stack		*new;
 
+
 	i = parse_flags(ac, av, flags);
 
+	files = alloc_list("."); // TODO treat allocation
+
+
+	// TODO print out stack attributes here for testing
 
 
 
-	// Next I will have to figure out what to do. Treat the flags or the allocation first?
 
 	//TESTING
 	t = 0;
@@ -30,6 +54,5 @@ int			main(int ac, char **av)
 
 	return (0);
 }
-// TODO find weird bug which I can start tracing in the assess_output function
 
 

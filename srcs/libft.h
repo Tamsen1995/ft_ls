@@ -21,6 +21,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+# define VALID_FLAGS	"Ralrt1"
+# define NB_FLAGS		6
+
+
+
 typedef	struct		s_files
 {
 	struct dirent	*ent;
@@ -41,7 +46,53 @@ typedef	struct		s_files
 }					t_files;
 
 
-char				*make_path_fl(char *dir, char *file);
+typedef enum e_flgs
+{
+	f_recur = 0,
+	f_hidden = 1,
+	f_list = 2,
+	f_rev = 3,
+	f_time = 4,
+	f_main = 5
+}			t_flags;
+
+typedef enum e_filetype
+{
+	BLOCK, 
+	CHAR_SP,
+	DIRECTORY,
+	SYMLINK,
+	SOCK_LINK,
+	FIFO,
+	REG,
+	INVALID
+}			t_filetype;
+
+
+typedef struct 		s_fields
+{
+	char			*mode;
+	char 			*links;
+	char			*owner;
+	char 			*group;
+	char			*major;
+	char			 *size;
+	char 			*date;
+}					t_fields;
+
+typedef struct		 s_stack
+{
+	char 			*path;
+	char 			*filename;
+	t_filetype 		type;
+	struct stat 	stats;
+	t_fields 		*fields;
+	char 			*err_msg;
+	struct s_stack 	*next;
+}					t_stack;
+
+
+
 size_t				ft_strlen(char const *s);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
 void				ft_exit(char *s);
@@ -106,6 +157,6 @@ char				*ft_itoa(int n);
 char				*ft_strctrim(const char *s, char c);
 char				*ft_split_char(char *s, int i, char c);
 char				**ft_strsplit(const char *s, char c);
-t_files				*ft_lstnew(struct dirent *ent, char *path);
-void				ft_list_push_back(t_files **alst, struct dirent *ent, char *path);
+t_stack				*ft_lstnew(struct dirent *ent, char *path);
+void				ft_list_push_back(t_stack **alst, struct dirent *ent, char *path);
 #endif

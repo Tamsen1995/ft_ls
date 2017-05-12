@@ -1,4 +1,4 @@
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
 char			*make_path_dir(char *name, char *cathis)
 {
@@ -16,6 +16,7 @@ char			*make_path_dir(char *name, char *cathis)
 	return (nw_path);
 }
 
+/*
 t_files			*alloc_list(char *name)
 {
 	DIR				*dir;
@@ -48,3 +49,4 @@ t_files			*alloc_list(char *name)
 	}
 	return (fls);
 }
+*/

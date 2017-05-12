@@ -1,7 +1,6 @@
 CC = gcc
 FLAGS = -g -Wall -Wextra -Werror -I includes
 LIBFT = libft/libft.a
-PRINTF = ft_printf/libftprintf.a
 NAME = ft_ls
 SRC = srcs/main.c \
 	srcs/parsing_module.c \
@@ -14,12 +13,9 @@ all: $(LIBFT) $(PRINTF) $(NAME)
 $(LIBFT):
 	make -C libft/
 
-$(PRINTF):
-	make -C ft_printf/
-
 $(NAME):$(LIBFT) $(PRINTF) $(NAME) $(OBJ)
 	@echo "building binary file"
-	@$(CC) $(FLAGS) $(SRC) -o $(NAME) -I -lft $(PRINTF) $(LIBFT)
+	@$(CC) $(FLAGS) $(SRC) -o $(NAME) -I -lft $(LIBFT)
 
 %.o: %.c ft_ls.h
 		clang $(FLAG) -c $< -o $@
@@ -27,13 +23,12 @@ $(NAME):$(LIBFT) $(PRINTF) $(NAME) $(OBJ)
 clean:
 	rm -f $(OBJ)
 	@make clean -C libft/
-	@make clean -C ft_printf/
 
 fclean: clean
 	@echo "delete $(NAME)"
 	@rm -f $(NAME)
 	@make fclean -C libft/
-	@make fclean -C ft_printf/
+
 re: fclean all
 
 .PHONY: re clean fclean all

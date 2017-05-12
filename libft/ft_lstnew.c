@@ -10,21 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/libft.h"
 
-t_files		*ft_lstnew(struct dirent *ent, char *path)
+// this function creates a path out of the directory name and the file name for the
+// stat function
+char		*make_path_fl(char *dir, char *file)
 {
-	t_files	*alist;
+	ft_putendl(dir);
+	ft_putendl(file);
+	
+
+
+	return (NULL); // returning null for now
+}
+
+
+// This function takes in an entry in the directory stream and the path of the directory
+// itself and then returns a stack elem which contains all its necessary information
+t_stack		*ft_lstnew(struct dirent *ent, char *path)
+{
+	t_stack	*alist;
 	struct stat fstat;
 	char *nw_path;
 
 
+	// TODO  implement a function concatenates a path together into the nw_path
 	nw_path = make_path_fl(path, ent->d_name);
 	if (stat(nw_path, &fstat) < 0)
 		return (NULL);
-	if (!(alist = (t_files *)malloc(sizeof(t_files))))
+	if (!(alist = (t_stack *)malloc(sizeof(t_stack))))
 		return (NULL);
-	alist->next = NULL;
+
+
+/*	alist->next = NULL;
 	alist->prev = NULL;
 	alist->mtime = fstat.st_mtime;
 	alist->st_mode = fstat.st_mode;
@@ -38,6 +56,9 @@ t_files		*ft_lstnew(struct dirent *ent, char *path)
 	alist->file_name = ft_memalloc(ft_strlen(ent->d_name) + 1);
 	ft_strcpy(alist->file_name, ent->d_name);
 
+
+
+
 	if (alist->ent->d_type == DT_DIR)
 	{
 		alist->dir_path = ft_memalloc(ft_strlen(nw_path) + 1);
@@ -45,5 +66,7 @@ t_files		*ft_lstnew(struct dirent *ent, char *path)
 	}
 
 	free(nw_path);
+
+	*/
 	return (alist);
 }
