@@ -41,6 +41,12 @@ t_stack			*alloc_list(char *name)
 		return (NULL);
 
 
+	// TODO figure out what exactly I need in order to allocate
+	// and entire directory. I suspect it may be the entire path
+	// if so I will have to figure out where exactly the saving of the path will take place.
+
+	/*
+
 	// TODO recursively allocate every single element 
 	// in all  subdirectories and their subdirectories and so on
 	tmp = fls;
@@ -50,8 +56,8 @@ t_stack			*alloc_list(char *name)
 			tmp->subdir = alloc_list(ent->filename);
 		tmp = tmp->next; 
 	}
-
-
+	
+	*/
 
 	return (fls); // returnning null for now, just testing
 }
