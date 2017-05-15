@@ -41,27 +41,38 @@ char                *extract_group(struct stat buf)
 // This function allocates a string which represents the permissions within 
 // stat buffer / st.mode
 // AVOID MALLOC HERE!
-void                extract_permissions_mode(struct stat fileStat, char *string)
+void                extract_permissions_mode(struct stat buf, char *string)
 {
-    string[0] = *((S_ISDIR(fileStat.st_mode)) ? "d" : "-");
-    string[1] = *((fileStat.st_mode & S_IRUSR) ? "r" : "-");
-    string[2] = *((fileStat.st_mode & S_IWUSR) ? "w" : "-");
-    string[3] = *((fileStat.st_mode & S_IXUSR) ? "x" : "-");
-    string[4] = *((fileStat.st_mode & S_IRGRP) ? "r" : "-");
-    string[5] = *((fileStat.st_mode & S_IWGRP) ? "w" : "-");
-    string[6] = *((fileStat.st_mode & S_IXGRP) ? "x" : "-");
-    string[7] = *((fileStat.st_mode & S_IROTH) ? "r" : "-");
-    string[8] = *((fileStat.st_mode & S_IWOTH) ? "w" : "-");
-    string[9] = *((fileStat.st_mode & S_IXOTH) ? "x" : "-");
+    string[0] = *((S_ISDIR(buf.st_mode)) ? "d" : "-");
+    string[1] = *((buf.st_mode & S_IRUSR) ? "r" : "-");
+    string[2] = *((buf.st_mode & S_IWUSR) ? "w" : "-");
+    string[3] = *((buf.st_mode & S_IXUSR) ? "x" : "-");
+    string[4] = *((buf.st_mode & S_IRGRP) ? "r" : "-");
+    string[5] = *((buf.st_mode & S_IWGRP) ? "w" : "-");
+    string[6] = *((buf.st_mode & S_IXGRP) ? "x" : "-");
+    string[7] = *((buf.st_mode & S_IROTH) ? "r" : "-");
+    string[8] = *((buf.st_mode & S_IWOTH) ? "w" : "-");
+    string[9] = *((buf.st_mode & S_IXOTH) ? "x" : "-");
     string[10] = '\0';
 
     // Use the S_ISLINK function later
-   // printf("The file %s a symbolic link\n", (S_ISLNK(fileStat.st_mode)) ? "is" : "is not");
+   // printf("The file %s a symbolic link\n", (S_ISLNK(buf.st_mode)) ? "is" : "is not");
 }
 
 // This function acts an extractor of information
 // It extracts all the necessary information from a file by redirecting to subfunctions which will be respoinsible
 // for extracting the specific information
+
+
+char                *extract_file_size(struct stat buf)
+{
+    char *file_size;
+
+    file_size = NULL;
+    file_size = ft_itoa(buf.st_size);
+    return (file_size);
+}
+
 t_fields			*get_file_info(t_stack *file)
 {
 
@@ -77,10 +88,6 @@ t_fields			*get_file_info(t_stack *file)
     extract_date_time(buf, tmp->fields);
     tmp->fields->owner = extract_owner(buf);
     tmp->fields->group = extract_group(buf);
-
-
-    //ft_putendl(tmp->fields->group);
-
-    // TODO get rest of info necessary
+    tmp->fields->size = extract_file_size(buf);
 	return (file->fields);
 }

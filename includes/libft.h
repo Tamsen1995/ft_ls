@@ -80,7 +80,7 @@ typedef struct 		s_fields
 	char			*owner; // done
 	char 			*group; // done
 	char			*major;
-	char			 *size;
+	char			*size; // done
 	char 			*date; // done
 }					t_fields;
 
