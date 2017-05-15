@@ -76,9 +76,9 @@ t_fields			*get_file_info(t_stack *file)
     extract_permissions_mode(buf, tmp->fields->mode);
     tmp->fields->owner = extract_owner(buf);
     tmp->fields->group = extract_group(buf);
+    tmp->fields->date = extract_date(buf);
 
-
-    // TODO get the group of the file into the stack element
+    // TODO get last modified time.
 
 
     //ft_putendl(tmp->fields->group);

@@ -14,11 +14,13 @@
 
 
 
+char                *isolate_date_from_time(char *temps);
+char                *extract_date(struct stat buf);
+char                *extract_group(struct stat buf);
 char                *extract_owner(struct stat buf);
 void                extract_permissions_mode(struct stat fileStat, char *string);
 t_fields            *alloc_fields(void);
 t_fields			*get_file_info(t_stack *file);
-
 
 
 char		*make_path_dir(char *name, char *cathis);

@@ -42,5 +42,11 @@ Project Journal:
 
     The extraction of the user of the file has been implemented. I save it as a string in the t_fields structure within the t_stack structure.
 
+    I have managed to extract and isolate the date and put it into the t_fields structure. Next up I need to get the time and put it into the structure as well.
+    I am not quite certain of difference between the time of the last modification, and the time of the last status. I oughta do some research.
+    I still haven't thought about the treatment of the flags either. My approach currently is to get all the info into the stack element, and then decide at the point 
+    of output what information to show. But this may render my program inefficient. However this point it easily modifiable as I only need to modify the control flow at the
+    extraction of the information. Depending on the complexity of the required code I will implement this most likely at the end of the project.
+
     // Next I need to figure out how to get all the necessary information into the stack elements. 
     This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)
