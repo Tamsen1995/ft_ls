@@ -55,5 +55,8 @@ Project Journal:
     during the allocation as this will make the logic more overseeable as well as the program more efficient. I also need to figure out what the criteria for sorting the files is for
     each flag and how the behavior changes with their combination of on another.
 
+    // the sorting of the files has to take place in the allocation of the stack. The push back function to be exact !
+
+
     // Next I need to figure out how to get all the necessary information into the stack elements. 
     This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)

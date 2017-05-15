@@ -9,7 +9,7 @@ char			*make_path_dir(char *name, char *cathis)
 	l = l + 1;
 	nw_path = NULL;
 	if (!(nw_path = (char *)malloc(sizeof(char) * l)))
-		return (NULL);
+		exit (-1);
 	nw_path = ft_strcpy(nw_path, name);
 	nw_path = ft_strcat(nw_path, "/");
 	nw_path = ft_strcat(nw_path, cathis);
@@ -27,14 +27,11 @@ t_stack  *register_fls_in_dir(char *name)
 
 	fls = NULL;
 	if (!(dir = opendir(name)))
-		return (NULL);
+		exit (-1);
 	if (!(ent = readdir(dir)))
-		return (NULL);
+		exit (-1);
 	if (!(fls = ft_lstnew(ent, name)))
-		return (NULL);
-
-
-
+		exit (-1);
 	while ((ent = readdir(dir)))
 			ft_list_push_back(&fls, ent, name); // TODO here is where I should implement the sorting of my stack
 	return (fls);
@@ -55,11 +52,10 @@ t_stack			*alloc_list(char *dir_path)
 	t_stack			*fls;
 	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
 
-
 	tmp = NULL;
 	fls = NULL;
 	if (!(fls = register_fls_in_dir(dir_path))) // zapping the entire entry list into a stack chain
-		return (NULL);
+		exit (-1);
 	tmp = fls;
 	while (tmp)
 	{
