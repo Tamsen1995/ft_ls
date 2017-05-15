@@ -28,6 +28,16 @@ char                 *extract_owner(struct stat buf)
 }
 
 
+char                *extract_group(struct stat buf)
+{
+    struct     group *grp;
+    gid_t      gid;
+
+    gid = buf.st_gid;
+    grp = getgrgid(gid);
+    return(grp->gr_name);
+}
+
 // This function allocates a string which represents the permissions within 
 // stat buffer / st.mode
 // AVOID MALLOC HERE!
@@ -44,7 +54,6 @@ void                extract_permissions_mode(struct stat fileStat, char *string)
     string[8] = *((fileStat.st_mode & S_IWOTH) ? "w" : "-");
     string[9] = *((fileStat.st_mode & S_IXOTH) ? "x" : "-");
     string[10] = '\0';
-
 
     // Use the S_ISLINK function later
    // printf("The file %s a symbolic link\n", (S_ISLNK(fileStat.st_mode)) ? "is" : "is not");
@@ -66,11 +75,13 @@ t_fields			*get_file_info(t_stack *file)
 		exit(-1);
     extract_permissions_mode(buf, tmp->fields->mode);
     tmp->fields->owner = extract_owner(buf);
+    tmp->fields->group = extract_group(buf);
+
 
     // TODO get the group of the file into the stack element
 
 
-    //ft_putendl(tmp->fields->owner);
+    //ft_putendl(tmp->fields->group);
 
     // TODO get rest of info necessary
 	return (file->fields);
