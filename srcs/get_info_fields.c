@@ -59,30 +59,31 @@ void                extract_permissions_mode(struct stat buf, char *string)
    // printf("The file %s a symbolic link\n", (S_ISLNK(buf.st_mode)) ? "is" : "is not");
 }
 
-// This function acts an extractor of information
-// It extracts all the necessary information from a file by redirecting to subfunctions which will be respoinsible
-// for extracting the specific information
-
-
+// gets the size of the file
 char                *extract_file_size(struct stat buf)
 {
     char *file_size;
 
     file_size = NULL;
-    file_size = ft_itoa(buf.st_size);
+    if (!(file_size = ft_itoa(buf.st_size)))
+        exit (-1);
     return (file_size);
 }
 
-
+// gets the number of hard links into a string
 char                *extract_nbr_of_links(struct stat buf)
 {
     char *nbr_links;
 
     nbr_links = NULL;
-    nbr_links = ft_itoa(buf.st_nlink);
+    if (!(nbr_links = ft_itoa(buf.st_nlink)))
+        exit (-1);
     return (nbr_links);
 }
 
+// This function acts an extractor of information
+// It extracts all the necessary information from a file by redirecting to subfunctions which will be respoinsible
+// for extracting the specific information
 t_fields			*get_file_info(t_stack *file)
 {
 

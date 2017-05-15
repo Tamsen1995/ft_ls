@@ -11,8 +11,10 @@ int			main(int ac, char **av)
 
 	i = parse_flags(ac, av, flags);
 
-	files = alloc_list("."); // TODO treat allocation
+	files = alloc_list("."); // TODO handle sorting of files
 
+	// TODO finish this
+	output_module(files, flags); //TESTING
 
 
 

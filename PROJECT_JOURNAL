@@ -51,7 +51,9 @@ Project Journal:
     It seems to me like all the information I need has been properly extracted. Now I need to take care of the output and make sure my code remains modular and easily readable.
     Figuring out how to combine the flag recognition with the output of the proper info will prove to be the greatest challenge.    
 
-
+    So turns out I have completely neglected the sorting of the files. I think I need to implement a sorting module, either after the allocation, but ideally one that happens
+    during the allocation as this will make the logic more overseeable as well as the program more efficient. I also need to figure out what the criteria for sorting the files is for
+    each flag and how the behavior changes with their combination of on another.
 
     // Next I need to figure out how to get all the necessary information into the stack elements. 
     This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)

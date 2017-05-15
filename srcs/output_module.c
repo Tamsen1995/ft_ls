@@ -13,18 +13,34 @@ typedef enum e_flgs
 */
 
 
+// this outputs the directory along with the requested flags
+void		print_dir(t_stack *files, char *flags)
+{
+	t_stack *tmp;
+
+	tmp = files;
+	flags = NULL; // TESTING 
+	while (tmp)
+	{
+		ft_putendl(tmp->filename);
+		tmp = tmp->next;
+	}
+}
+
+
+
 // This is where the entire logic of the output module will stem from
 // I have two main flows, one with handling the recursive output and the other
 // one handling the normal output
 // they will be nearlt identical.
-void output_module(t_stack *files, char *flags)
+void		output_module(t_stack *files, char *flags)
 {
     //
 
-
+	print_dir(files, flags);
 
 	// 
-	out_entire_stack(files, flags); // TESTING
+	//out_entire_stack(files, flags); // TESTING
 
 
 

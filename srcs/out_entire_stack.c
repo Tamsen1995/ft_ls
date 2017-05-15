@@ -14,12 +14,11 @@ void    out_entire_stack(t_stack *stack, char *flags)
 
 	while (tmp)
 	{
-     //   ft_putendl(tmp->filename); // This will be replaced by the making and putting out of a buffer. The buffer will contain all the information the flags given demand
+     	ft_putendl(tmp->filename); // This will be replaced by the making and putting out of a buffer. The buffer will contain all the information the flags given demand
         // If there is a subdir
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DT_DIR)
 		{
 			out_entire_stack(tmp->subdir, flags); // recursively calling the function again with the newly made path in the stack elem
-        
         }
 		tmp = tmp->next; 
 	}

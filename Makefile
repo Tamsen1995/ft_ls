@@ -8,6 +8,7 @@ SRC = srcs/main.c \
 	srcs/out_entire_stack.c \
 	srcs/get_info_fields.c \
 	srcs/extract_date_time.c \
+	srcs/output_module.c \
 
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
