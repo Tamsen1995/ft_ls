@@ -73,6 +73,16 @@ char                *extract_file_size(struct stat buf)
     return (file_size);
 }
 
+
+char                *extract_nbr_of_links(struct stat buf)
+{
+    char *nbr_links;
+
+    nbr_links = NULL;
+    nbr_links = ft_itoa(buf.st_nlink);
+    return (nbr_links);
+}
+
 t_fields			*get_file_info(t_stack *file)
 {
 
@@ -89,5 +99,6 @@ t_fields			*get_file_info(t_stack *file)
     tmp->fields->owner = extract_owner(buf);
     tmp->fields->group = extract_group(buf);
     tmp->fields->size = extract_file_size(buf);
+    tmp->fields->links = extract_nbr_of_links(buf);
 	return (file->fields);
 }
