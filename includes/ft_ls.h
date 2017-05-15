@@ -14,8 +14,8 @@
 
 
 
-char                *isolate_date_from_time(char *temps);
-char                *extract_date(struct stat buf);
+char                *isolate_date_time(char *temps);
+void                extract_date_time(struct stat buf, t_fields *fields);
 char                *extract_group(struct stat buf);
 char                *extract_owner(struct stat buf);
 void                extract_permissions_mode(struct stat fileStat, char *string);

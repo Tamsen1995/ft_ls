@@ -75,13 +75,13 @@ typedef enum e_filetype
 
 typedef struct 		s_fields
 {
-	char			mode[11];
+	char			mode[11]; // done
 	char 			*links;
-	char			*owner;
-	char 			*group;
+	char			*owner; // done
+	char 			*group; // done
 	char			*major;
 	char			 *size;
-	char 			*date;
+	char 			*date; // done
 }					t_fields;
 
 typedef struct		 s_stack

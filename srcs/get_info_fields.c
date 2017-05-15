@@ -74,11 +74,9 @@ t_fields			*get_file_info(t_stack *file)
 	if (stat(tmp->path, &buf) < 0)
 		exit(-1);
     extract_permissions_mode(buf, tmp->fields->mode);
+    extract_date_time(buf, tmp->fields);
     tmp->fields->owner = extract_owner(buf);
     tmp->fields->group = extract_group(buf);
-    tmp->fields->date = extract_date(buf);
-
-    // TODO get last modified time.
 
 
     //ft_putendl(tmp->fields->group);

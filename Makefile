@@ -7,7 +7,7 @@ SRC = srcs/main.c \
 	srcs/alloc_list.c \
 	srcs/out_entire_stack.c \
 	srcs/get_info_fields.c \
-	srcs/extract_date.c \
+	srcs/extract_date_time.c \
 
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
