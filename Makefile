@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS = -g -Wall -Wextra -Werror -I includes
+FLAGS = -Wall -Wextra -Werror -I includes
 LIBFT = libft/libft.a
 NAME = ft_ls
 SRC = srcs/main.c \
@@ -10,14 +10,14 @@ SRC = srcs/main.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 
-all: $(LIBFT) $(PRINTF) $(NAME)
+all: $(LIBFT) $(NAME)
 
 $(LIBFT):
 	make -C libft/
 
-$(NAME):$(LIBFT) $(PRINTF) $(NAME) $(OBJ)
+$(NAME):$(LIBFT) $(NAME) $(OBJ)
 	@echo "building binary file"
-	@$(CC) $(FLAGS) $(SRC) -o $(NAME) -I -lft $(LIBFT)
+	$(CC) $(FLAGS) $(SRC) -o $(NAME) -I -lft $(LIBFT)
 
 %.o: %.c ft_ls.h
 		clang $(FLAG) -c $< -o $@

@@ -13,7 +13,7 @@ int			main(int ac, char **av)
 
 	files = alloc_list("."); // TODO treat allocation
 
-	out_entire_stack(files); // TESTING
+	out_entire_stack(files, flags); // TESTING
 
 /*
 
