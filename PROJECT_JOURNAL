@@ -32,7 +32,13 @@ Project Journal:
     way to two kinds of outputs. A recursive one as well as a normal one. The treatment and formatting of flags will be quite identical in the two of them. The only difference will 
     be the recursion within onr of the output systems. I am doing this because the flow will be a lot easier to manage and it will render the code a lot more modular.
 
-    
-    
+    I have changed the logic so that now every file gets its path into the stack element since I need the exact path for the stat function.
+    I have also implemented the extraction of all the info stat() extracts.
+
+    Currently I am implementing the permissions module. The logic is simple. In the recursive allocation of the list, I 
+    simply redirect the entire stack towards the info extraction module. There the t_fiels structure is allocated, and all the 
+    info I can get is then put into the stack element.
+    I have also decided to avoid dynamic memory allocation whenever possible as this will render my code a lot cleaner.
+
     // Next I need to figure out how to get all the necessary information into the stack elements. 
     This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)

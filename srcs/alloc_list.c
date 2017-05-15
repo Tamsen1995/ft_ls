@@ -47,17 +47,6 @@ t_bool		not_curr_and_prev(t_stack *entry)
 	return (FALSE);
 }
 
-
-// This function acts an extractor of information
-// It extracts all the necessary information from a file by redirecting to subfunctions which will be respoinsible
-// for extracting the specific information
-t_stack			*get_file_info(t_stack *file)
-{
-
-	return (file);
-
-}
-
 // This function recursively allocates the entirety of the directory as well as its subdirectories
 t_stack			*alloc_list(char *dir_path)
 {
@@ -72,14 +61,10 @@ t_stack			*alloc_list(char *dir_path)
 	tmp = fls;
 	while (tmp)
 	{
-
-		// implement a function HERE which will extract information out of the file INTO the stack element
-		tmp = get_file_info(tmp);
+		tmp->path = make_path_dir(dir_path, tmp->filename); // concatenating the path into the path pointer in struct
+		tmp->fields = get_file_info(tmp); // extracting all the info
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DT_DIR)
-		{
-			tmp->path = make_path_dir(dir_path, tmp->filename); //putting the directory path into the stack element
 			tmp->subdir = alloc_list(tmp->path); // recursively calling the function again with the newly made path in the stack elem
-		}
 		tmp = tmp->next; 
 	}
 	return (fls); // returnning null for now, just testing

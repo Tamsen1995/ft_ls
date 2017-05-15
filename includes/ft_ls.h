@@ -12,6 +12,13 @@
 # include				<sys/types.h>
 # include				<errno.h>
 
+
+char                *extract_permissions_mode(struct stat filestat);
+t_fields            *alloc_fields(void);
+t_fields			*get_file_info(t_stack *file);
+
+
+
 char		*make_path_dir(char *name, char *cathis);
 t_stack     *register_fls_in_dir(char *name);
 t_bool		not_curr_and_prev(t_stack *entry);

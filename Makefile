@@ -1,11 +1,12 @@
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -I includes
+FLAGS = -g -Wall -Wextra -Werror -I includes
 LIBFT = libft/libft.a
 NAME = ft_ls
 SRC = srcs/main.c \
 	srcs/parsing_module.c \
 	srcs/alloc_list.c \
 	srcs/out_entire_stack.c \
+	srcs/get_info_fields.c \
 
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))

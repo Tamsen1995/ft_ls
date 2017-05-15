@@ -1,3 +1,3 @@
 git add -A
-git commit -m "fixing the makefile"
+git commit -m "see project journal"
 git push
