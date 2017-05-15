@@ -1,6 +1,5 @@
 #include "../includes/ft_ls.h"
 
-
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
@@ -14,6 +13,9 @@ int			main(int ac, char **av)
 
 	files = alloc_list("."); // TODO treat allocation
 
+	out_entire_stack(files); // TESTING
+
+/*
 
 	////////////////////////////////////////////////////////TESTING
 	t_stack *tmp;
@@ -35,6 +37,8 @@ int			main(int ac, char **av)
 	}
 	printf("\n\n");
 	//////////////////////////////////////////////////////////////TESTING
+
+*/
 
 	return (0);
 }

@@ -12,7 +12,11 @@
 # include				<sys/types.h>
 # include				<errno.h>
 
-int		parse_flags(int ac, char **av, char *flags);
+char		*make_path_dir(char *name, char *cathis);
+t_stack     *register_fls_in_dir(char *name);
+t_bool		not_curr_and_prev(t_stack *entry);
+void        out_entire_stack(t_stack *stack);
+int		    parse_flags(int ac, char **av, char *flags);
 void		extract_proper_time(char *c_time_string, t_files *fls);
 void		print_yr_only(t_files *fls);
 void		print_time(t_files *fls);

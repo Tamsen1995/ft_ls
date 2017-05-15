@@ -27,5 +27,12 @@ Project Journal:
     I have constructed the allocation in such a way that leaves the path string in every stack element empty/pointed to NULL UNLESS it is a directory.
     I am not sure if this is the right approach but I will leave it like this for now.
     
-    Next I need to figure out how to get all the necessary information into the stack elements. 
+    Day Three:
+    So after having implemented a prototype of the recursive output of all elements within the stack, I have decided to construct the program in such a way that gives
+    way to two kinds of outputs. A recursive one as well as a normal one. The treatment and formatting of flags will be quite identical in the two of them. The only difference will 
+    be the recursion within onr of the output systems. I am doing this because the flow will be a lot easier to manage and it will render the code a lot more modular.
+
+    // implementing the recursive ouput of all elements in the stack
+
+    // Next I need to figure out how to get all the necessary information into the stack elements. 
     This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)

@@ -4,7 +4,8 @@ LIBFT = libft/libft.a
 NAME = ft_ls
 SRC = srcs/main.c \
 	srcs/parsing_module.c \
-	srcs/insert_fls_into_lst.c \
+	srcs/alloc_list.c \
+	srcs/out_entire_stack.c \
 
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
