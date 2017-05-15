@@ -75,7 +75,7 @@ typedef enum e_filetype
 
 typedef struct 		s_fields
 {
-	char			*mode;
+	char			mode[11];
 	char 			*links;
 	char			*owner;
 	char 			*group;

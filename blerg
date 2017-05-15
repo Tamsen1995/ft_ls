@@ -1,3 +1,3 @@
 git add -A
-git commit -m "see project journal"
+git commit -m "The extraction of the user of the file has been implemented. I save it as a string in the t_fields structure within the t_stack structure."
 git push

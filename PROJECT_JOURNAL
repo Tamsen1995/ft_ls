@@ -40,5 +40,7 @@ Project Journal:
     info I can get is then put into the stack element.
     I have also decided to avoid dynamic memory allocation whenever possible as this will render my code a lot cleaner.
 
+    The extraction of the user of the file has been implemented. I save it as a string in the t_fields structure within the t_stack structure.
+
     // Next I need to figure out how to get all the necessary information into the stack elements. 
     This includes times, user group et cetera (every piece of info which the required flags for this project may invoke)
