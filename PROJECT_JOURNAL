@@ -48,7 +48,9 @@ Project Journal:
     of output what information to show. But this may render my program inefficient. However this point is easily modifiable as I only need to modify the control flow at the
     extraction of the information. Depending on the complexity of the required code I will implement this most likely at the end of the project.
 
-    
+    It seems to me like all the information I need has been properly extracted. Now I need to take care of the output and make sure my code remains modular and easily readable.
+    Figuring out how to combine the flag recognition with the output of the proper info will prove to be the greatest challenge.    
+
 
 
     // Next I need to figure out how to get all the necessary information into the stack elements. 
