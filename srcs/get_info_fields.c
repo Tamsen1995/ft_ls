@@ -81,6 +81,7 @@ char                *extract_nbr_of_links(struct stat buf)
     return (nbr_links);
 }
 
+
 // This function acts an extractor of information
 // It extracts all the necessary information from a file by redirecting to subfunctions which will be respoinsible
 // for extracting the specific information

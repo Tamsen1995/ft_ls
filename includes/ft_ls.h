@@ -16,7 +16,8 @@
 
 void output_module(t_stack *files, char *flags);
 
-
+char                *extract_nbr_of_links(struct stat buf);
+char                *extract_file_size(struct stat buf);
 char                *isolate_date_time(char *temps);
 void                extract_date_time(struct stat buf, t_fields *fields);
 char                *extract_group(struct stat buf);

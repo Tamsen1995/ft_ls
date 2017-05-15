@@ -33,8 +33,10 @@ t_stack  *register_fls_in_dir(char *name)
 	if (!(fls = ft_lstnew(ent, name)))
 		return (NULL);
 
+
+
 	while ((ent = readdir(dir)))
-			ft_list_push_back(&fls, ent, name);
+			ft_list_push_back(&fls, ent, name); // TODO here is where I should implement the sorting of my stack
 	return (fls);
 }
 

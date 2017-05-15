@@ -86,14 +86,14 @@ typedef struct 		s_fields
 
 typedef struct		 s_stack
 {
-	char 			*path;
-	char 			*filename;
-	unsigned char	type; //testing
-	struct stat 	stats;
+	char 			*path; // done
+	char 			*filename; // done
+	t_filetype		type; //done
+	struct stat 	stats; 
 	t_fields 		*fields;
 	char 			*err_msg;
-	struct s_stack	*subdir;
-	struct s_stack 	*next;
+	struct s_stack	*subdir; // done
+	struct s_stack 	*next; // need to sort first and then determine
 }					t_stack;
 
 size_t				ft_strlen(char const *s);
