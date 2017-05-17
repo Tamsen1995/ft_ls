@@ -36,6 +36,7 @@ void		print_list(t_stack *file)
 	ft_putstr(file->fields->size);
 	ft_putstr("\t");
 	ft_putstr(file->fields->date);
+	ft_putstr("\t");
 }
 
 // This function prints 
@@ -73,16 +74,37 @@ void		print_dir(t_stack *files, char *flags)
 // I have two main flows, one with handling the recursive output and the other
 // one handling the normal output
 // they will be nearlt identical.
+
+
+//This function recursively otuputs all the stack elements in the stack
+// This is the current treatment for the -R flag and -R flag only
+void    out_entire_stack(t_stack *stack, char *flags)
+{
+	
+	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
+
+    tmp = NULL;
+	tmp = stack;
+
+
+	while (is_hidden_file(tmp) && !flags[f_hidden])
+		tmp = tmp->next;
+	while (tmp)
+	{
+		print_flags(tmp, flags);
+		ft_putendl(tmp->filename);
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
+			out_entire_stack(tmp->subdir, flags); // recursively calling the function again with the newly made path in the stack elem
+		tmp = tmp->next; 
+	}
+}
+
 void		output_module(t_stack *files, char *flags)
 {
     //
-
-	print_dir(files, flags);
-
-	// 
-	//out_entire_stack(files, flags); // TESTING
-
-
-
-
+	if (flags[f_recur])
+		out_entire_stack(files, flags); // TESTING
+	else
+		print_dir(files, flags);
 }
+

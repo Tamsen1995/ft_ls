@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] implemented the output for the long listing flag"
+git commit -m "[UPD] starting to implement the recursive output"
 git push origin master
