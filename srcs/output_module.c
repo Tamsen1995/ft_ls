@@ -28,16 +28,15 @@ void		print_dir(t_stack *files, char *flags)
 	t_stack *tmp;
 
 	tmp = files;
-	flags = NULL; // TESTING 
+
+	while (is_hidden_file(tmp) && !flags[f_hidden])
+		tmp = tmp->next;
 	while (tmp)
 	{
-		if (is_hidden_file(tmp) == FALSE)
-			ft_putendl(tmp->filename);
+		ft_putendl(tmp->filename);
 		tmp = tmp->next;
 	}
 }
-
-
 
 // This is where the entire logic of the output module will stem from
 // I have two main flows, one with handling the recursive output and the other
