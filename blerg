@@ -1,3 +1,3 @@
 git add -A
-git commit -m "I need to figure out the sorting of the stack "
+git commit -m "[UPD] Fixed the problem with the allocation of the list. Turns out it wasn't in the sorting at all but rather in the concatention of the directory path"
 git push
