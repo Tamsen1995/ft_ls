@@ -22,7 +22,6 @@ t_bool		is_hidden_file(t_stack *file)
 	return (FALSE);
 }
 
-
 void		print_list(t_stack *file)
 {
 	ft_putstr(file->fields->mode);
@@ -62,9 +61,6 @@ void		print_dir(t_stack *files, char *flags)
 
 	while (is_hidden_file(tmp) && !flags[f_hidden])
 		tmp = tmp->next;
-
-	
-
 	while (tmp)
 	{
 		print_flags(tmp, flags);
@@ -73,14 +69,20 @@ void		print_dir(t_stack *files, char *flags)
 	}
 }
 
-// This is where the entire logic of the output module will stem from
-// I have two main flows, one with handling the recursive output and the other
-// one handling the normal output
-// they will be nearlt identical.
 
 
-//This function recursively otuputs all the stack elements in the stack
-// This is the current treatment for the -R flag and -R flag only
+// this function handles the output of the directory in within the recursive output
+// first it need to output the folders name itself since it is considered a file contained in the higher level directory
+// then the output of the directories path with some output
+void	print_dir_path_recur(t_stack *file)
+{
+	ft_putendl(file->filename);	
+	ft_putendl("");
+	ft_putendl("");
+	ft_putendl(file->path);	
+}
+
+// this function handles the recursive output
 void    out_entire_stack(t_stack *stack, char *flags)
 {
 	
@@ -97,12 +99,7 @@ void    out_entire_stack(t_stack *stack, char *flags)
 		print_flags(tmp, flags);
 		
 		if (tmp->type == DIRECTORY)
-		{
-			ft_putendl(tmp->filename);	
-			ft_putendl("");
-			ft_putendl("");
-			ft_putendl(tmp->path);	
-		}
+			print_dir_path_recur(tmp);
 		else
 			ft_putendl(tmp->filename);
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
@@ -111,6 +108,12 @@ void    out_entire_stack(t_stack *stack, char *flags)
 	}
 }
 
+
+
+// This is where the entire logic of the output module will stem from
+// I have two main flows, one with handling the recursive output and the other
+// one handling the normal output
+// they will be nearlt identical.
 void		output_module(t_stack *files, char *flags)
 {
     //
