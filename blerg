@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] still need to figure out the exact output and formatting of recursive in combination with long listing format"
+git commit -m "[UPD] The block count of each file is now saved into its respective stack element. Next I have to make sure the total block count for each directory is shown at the time of output for the long listing format."
 git push origin output/directories_formatting

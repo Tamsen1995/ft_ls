@@ -82,6 +82,7 @@ typedef struct 		s_fields
 	char			*major;
 	char			*size; // done
 	char 			*date; // done
+	long long int	st_blocks;
 }					t_fields;
 
 typedef struct		 s_stack

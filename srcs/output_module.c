@@ -98,6 +98,8 @@ void    out_entire_stack(t_stack *stack, char *flags)
 		
 		if (tmp->type == DIRECTORY)
 		{
+			ft_putendl(tmp->filename);	
+			ft_putendl("");
 			ft_putendl("");
 			ft_putendl(tmp->path);	
 		}
