@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] Fixed the problem with the allocation of the list. Turns out it wasn't in the sorting at all but rather in the concatention of the directory path"
-git push
+git commit -m "[UPD] implemented the sorting of the stack. Also in the output, in the case that the file is considered a hidden file it will not be sent to the output"
+git push origin master

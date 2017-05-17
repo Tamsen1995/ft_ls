@@ -12,21 +12,36 @@
 
 #include "../includes/libft.h"
 
+int			stack_sorting(t_stack *s1, t_stack *s2)
+{
+	if (s1->type == INVALID && s2->type != INVALID)
+		return (-1);
+	if (s1->type != INVALID && s2->type == INVALID)
+		return (1);
+	return (ft_strcmp(s1->filename, s2->filename));
+
+}
 
 // I need to do the sorting here 
-void	ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path)
+void		ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path)
 {
 	t_stack *cur;
 	t_stack *prev;
+	t_stack *new;
 
-	prev = NULL;
+	new = ft_lstnew(ent, path);
 	cur = *begin_list;
+	prev = NULL;
 	if (!cur)
 	{
 		cur = ft_lstnew(ent, path);
 		return ;
 	}
-	while (cur->next)
+	while (cur && stack_sorting(cur, new) <= 0)
+	{
+		prev = cur;
 		cur = cur->next;
-	cur->next = ft_lstnew(ent, path);
+	}
+	prev->next = new;
+	new->next = cur;
 }

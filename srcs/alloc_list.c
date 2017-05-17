@@ -6,7 +6,7 @@ char			*make_path_dir(char *name, char *cathis)
 	size_t l; //length for new path
 
 	l = ft_strlen(name) + ft_strlen(cathis);
-	l = l + 1;
+	l = l + 2;
 	nw_path = NULL;
 	if (!(nw_path = (char *)malloc(sizeof(char) * l + 1)))
 		exit (-1);

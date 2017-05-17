@@ -13,6 +13,15 @@ typedef enum e_flgs
 */
 
 
+t_bool		is_hidden_file(t_stack *file)
+{
+	if (!file || !file->filename || !file->filename[0])
+		exit (-1);
+	if (file->filename[0] == '.')
+		return (TRUE);
+	return (FALSE);
+}
+
 // this outputs the directory along with the requested flags
 void		print_dir(t_stack *files, char *flags)
 {
@@ -22,7 +31,8 @@ void		print_dir(t_stack *files, char *flags)
 	flags = NULL; // TESTING 
 	while (tmp)
 	{
-		ft_putendl(tmp->filename);
+		if (is_hidden_file(tmp) == FALSE)
+			ft_putendl(tmp->filename);
 		tmp = tmp->next;
 	}
 }
