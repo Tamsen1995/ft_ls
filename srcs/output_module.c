@@ -62,6 +62,9 @@ void		print_dir(t_stack *files, char *flags)
 
 	while (is_hidden_file(tmp) && !flags[f_hidden])
 		tmp = tmp->next;
+
+	
+
 	while (tmp)
 	{
 		print_flags(tmp, flags);
@@ -92,7 +95,14 @@ void    out_entire_stack(t_stack *stack, char *flags)
 	while (tmp)
 	{
 		print_flags(tmp, flags);
-		ft_putendl(tmp->filename);
+		
+		if (tmp->type == DIRECTORY)
+		{
+			ft_putendl("");
+			ft_putendl(tmp->path);	
+		}
+		else
+			ft_putendl(tmp->filename);
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			out_entire_stack(tmp->subdir, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next; 
