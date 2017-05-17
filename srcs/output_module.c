@@ -22,6 +22,36 @@ t_bool		is_hidden_file(t_stack *file)
 	return (FALSE);
 }
 
+
+void		print_list(t_stack *file)
+{
+	ft_putstr(file->fields->mode);
+	ft_putstr("\t");
+	ft_putstr(file->fields->links);
+	ft_putstr("\t");
+	ft_putstr(file->fields->owner);
+	ft_putstr("\t");
+	ft_putstr(file->fields->group);
+	ft_putstr("\t");
+	ft_putstr(file->fields->size);
+	ft_putstr("\t");
+	ft_putstr(file->fields->date);
+}
+
+// This function prints 
+void		print_flags(t_stack *file, char *flags)
+{
+	t_stack *tmp;
+
+
+	tmp  = NULL;
+	if (!file)
+		exit (-1);
+	tmp = file;
+	if (flags[f_list])
+		print_list(tmp);
+}
+
 // this outputs the directory along with the requested flags
 void		print_dir(t_stack *files, char *flags)
 {
@@ -33,6 +63,7 @@ void		print_dir(t_stack *files, char *flags)
 		tmp = tmp->next;
 	while (tmp)
 	{
+		print_flags(tmp, flags);
 		ft_putendl(tmp->filename);
 		tmp = tmp->next;
 	}

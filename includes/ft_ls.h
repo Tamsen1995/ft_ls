@@ -14,8 +14,13 @@
 
 
 
-void output_module(t_stack *files, char *flags);
 
+t_bool		is_hidden_file(t_stack *file);
+void		print_list(t_stack *file);
+void		print_flags(t_stack *file, char *flags);
+void		print_dir(t_stack *files, char *flags);
+
+void                output_module(t_stack *files, char *flags);
 char                *extract_nbr_of_links(struct stat buf);
 char                *extract_file_size(struct stat buf);
 char                *isolate_date_time(char *temps);
