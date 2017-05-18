@@ -15,9 +15,12 @@ int			main(int ac, char **av)
 	i = parse_flags(ac, av, flags);
 	// then with that the loop will iterate through the rest of the args which are a list of directories
 	// if however there are none then 
+
+	printf("%d\n", ac);
+	printf("%s\n", av[1]);
 	while (i < ac)
 	{
-		dir_path = av[i];
+		dir_path = ft_strdup(av[i]);
 		files = alloc_list(dir_path);
 		output_module(files, flags);
 		files = NULL;

@@ -28,6 +28,7 @@ t_stack  *register_fls_in_dir(char *name)
 	fls = NULL;
 	if (!(dir = opendir(name)))
 	{
+		ft_putendl(name);
 		exit (-1);
 	}
 	if (!(ent = readdir(dir)))
