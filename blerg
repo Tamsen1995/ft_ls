@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] splitting of the outpur recursion for norm done. Next I have to make sure the total block count for each directory is shown at the time of output for the long listing format."
+git commit -m "[UPD] Managed the output of the total block size and also fixed the bug which would mess up the order of files being printed within the subdirectories."
 git push origin output/directories_formatting

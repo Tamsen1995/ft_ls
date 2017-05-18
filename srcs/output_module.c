@@ -69,6 +69,22 @@ void		print_dir(t_stack *files, char *flags)
 	}
 }
 
+void print_total_blocks(t_stack *file)
+{
+	t_stack *tmp;
+	long long int total_blk_size;
+
+	total_blk_size = 0;
+	tmp = file->subdir;
+	while (tmp)
+	{
+		total_blk_size = total_blk_size + tmp->fields->st_blocks;
+		tmp = tmp->next;
+	}
+	ft_putstr("total ");
+	ft_putnbr((int)total_blk_size);
+	ft_putendl("");
+}
 
 
 // this function handles the output of the directory in within the recursive output
@@ -76,10 +92,11 @@ void		print_dir(t_stack *files, char *flags)
 // then the output of the directories path with some output
 void	print_dir_path_recur(t_stack *file)
 {
-	ft_putendl(file->filename);	
+	//ft_putendl(file->filename);	
 	ft_putendl("");
 	ft_putendl("");
 	ft_putendl(file->path);	
+	print_total_blocks(file);
 }
 
 // this function handles the recursive output
@@ -94,14 +111,14 @@ void    out_entire_stack(t_stack *stack, char *flags)
 
 	while (is_hidden_file(tmp) && !flags[f_hidden])
 		tmp = tmp->next;
+	print_dir(tmp, flags);
 	while (tmp)
 	{
-		print_flags(tmp, flags);
-		
-		if (tmp->type == DIRECTORY)
+//		print_flags(tmp, flags);
+//		ft_putendl(tmp->filename);
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY) // hacky
 			print_dir_path_recur(tmp);
-		else
-			ft_putendl(tmp->filename);
+	
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			out_entire_stack(tmp->subdir, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next; 
