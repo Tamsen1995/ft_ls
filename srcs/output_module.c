@@ -114,11 +114,8 @@ void    out_entire_stack(t_stack *stack, char *flags)
 	print_dir(tmp, flags);
 	while (tmp)
 	{
-//		print_flags(tmp, flags);
-//		ft_putendl(tmp->filename);
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY) // hacky
-			print_dir_path_recur(tmp);
-	
+			print_dir_path_recur(tmp);	
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			out_entire_stack(tmp->subdir, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next; 
