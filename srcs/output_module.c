@@ -131,6 +131,8 @@ void    out_entire_stack(t_stack *stack, char *flags)
 void		output_module(t_stack *files, char *flags)
 {
     //
+	if (!files)
+		return ;
 	if (flags[f_recur])
 		out_entire_stack(files, flags); // TESTING
 	else
