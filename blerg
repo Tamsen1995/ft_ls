@@ -1,3 +1,3 @@
 git add -A
-git commit -m "Trying to get the directory names to show up properly whenever directories are given as parameters."
-git push origin get_dir_names_to_show_when_dirs_in_param
+git commit -m "Gott the directory names to show up properly whenever directories are given as parameters."
+git push origin sucess
