@@ -27,10 +27,7 @@ t_stack  *register_fls_in_dir(char *name)
 
 	fls = NULL;
 	if (!(dir = opendir(name)))
-	{
-		ft_putendl(name);
 		exit (-1);
-	}
 	if (!(ent = readdir(dir)))
 	{
 		exit (-1);
@@ -61,6 +58,7 @@ t_stack			*alloc_list(char *dir_path)
 	if (!(fls = register_fls_in_dir(dir_path))) // zapping the entire entry list into a stack chain
 		exit (-1);
 	tmp = fls;
+	//TESTING~!
 	while (tmp)
 	{
 		tmp->path = make_path_dir(dir_path, tmp->filename); // concatenating the path into the path pointer in struct

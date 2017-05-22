@@ -45,46 +45,24 @@ void	free_args_copy()
 }
 
 
-char 	**copy_args(int ac, char **av)
-{
-	char **av_tmp;
-	int i;
 
-	i = 0;
-	av_tmp = NULL;
-	if (!(av_tmp = (char **)malloc(sizeof(char *) * ac)))
-		exit (-1);
-	while (i != ac)
-	{
-		av_tmp[i] = ft_strdup(av[i]);
-		ft_putendl(av_tmp[i]);
-		i++;
-	}
-
-
-	return(av_tmp);
-}
 
 int		parse_flags(int ac, char **av, char *flags)
 {
 
 	int i;
 	int j;
-	char **av_tmp;
-
-	av_tmp = copy_args(ac, av);
-
-
+	
 	init_flags(flags);
 	i = 1;
 	// iterate through all the given args (2D array)
-	while (i < ac && av_tmp[i][0] == '-' && av_tmp[i][1])
+	while (i < ac && av[i][0] == '-' && av[i][1])
 	{
 		j = 0;
-		if (av_tmp[i][1] == '-' && !av_tmp[i][2])
+		if (av[i][1] == '-' && !av[i][2])
 			return (i + 1);
-		while (av_tmp[i][++j])
-			*(flags + flag_index(av_tmp[i][j])) = 1;
+		while (av[i][++j])
+			*(flags + flag_index(av[i][j])) = 1;
 		i++;
 	}
 	//free_args_copy(ac, av_tmp);
