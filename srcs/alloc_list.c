@@ -27,9 +27,7 @@ t_stack  *register_fls_in_dir(char *name)
 
 	fls = NULL;
 	if (!(dir = opendir(name)))
-	{
 		exit (-1);
-	}
 	if (!(ent = readdir(dir)))
 	{
 		exit (-1);
@@ -56,21 +54,17 @@ t_stack			*alloc_list(char *dir_path)
 	t_stack			*fls;
 	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
 
-
-	//ft_putendl(dir_path);
-
 	tmp = NULL;
 	if (!(fls = register_fls_in_dir(dir_path))) // zapping the entire entry list into a stack chain
 		exit (-1);
 	tmp = fls;
+	//TESTING~!
 	while (tmp)
 	{
 		tmp->path = make_path_dir(dir_path, tmp->filename); // concatenating the path into the path pointer in struct
 		tmp->fields = get_file_info(tmp); // extracting all the info
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-		{
 			tmp->subdir = alloc_list(tmp->path); // recursively calling the function again with the newly made path in the stack elem
-		}
 		tmp = tmp->next;
 	}
 	return (fls); // returnning null for now, just testing

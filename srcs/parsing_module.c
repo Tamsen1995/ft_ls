@@ -38,11 +38,21 @@ int 		flag_index(char c)
 	return (0);
 }
 
+
+void	free_args_copy()
+{
+
+}
+
+
+
+
 int		parse_flags(int ac, char **av, char *flags)
 {
 
 	int i;
 	int j;
+	
 	init_flags(flags);
 	i = 1;
 	// iterate through all the given args (2D array)
@@ -55,9 +65,7 @@ int		parse_flags(int ac, char **av, char *flags)
 			*(flags + flag_index(av[i][j])) = 1;
 		i++;
 	}
-	i--;
-
-	i = 0;
+	//free_args_copy(ac, av_tmp);
 
 	return (i);
 }

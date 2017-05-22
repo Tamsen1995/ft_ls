@@ -98,6 +98,7 @@ t_fields			*get_file_info(t_stack *file)
 		exit(-1);
     extract_permissions_mode(buf, tmp->fields->mode);
     extract_date_time(buf, tmp->fields);
+    tmp->fields->st_blocks = (long long int)buf.st_blocks;
     tmp->fields->owner = extract_owner(buf);
     tmp->fields->group = extract_group(buf);
     tmp->fields->size = extract_file_size(buf);

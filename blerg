@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] starting to implement the recursive output"
-git push origin master
+git commit -m "[UPD] implemented the intake of directories as arguments. inputting a directory into the main args params will now result in it being printed out onto the stdout"
+git push origin multiple_dirs
