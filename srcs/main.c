@@ -29,6 +29,37 @@ void print_dir_name(char *dir_path)
 		//////////
 }
 
+
+// a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs
+char		**check_args_for_dirs(char **av_tmp, int i, int ac)
+{
+	DIR				*dir;
+	char **dir_arr;
+	int k;
+
+	dir_arr = NULL;
+	dir = NULL;
+	k = 0;
+	if (!(dir_arr = (char **)malloc(sizeof(char *) * ac)))
+		exit(-1);
+	while (i < ac && av_tmp[i])
+	{
+		if (!(dir = opendir(av_tmp[i])))
+		{
+			ft_putstr("No such file or directory:\t");
+			ft_putendl(av_tmp[i]);
+		}
+		else
+		{
+			dir_arr[k] = ft_strdup(av_tmp[i]);
+			k++;
+		}
+		i++;
+	}
+	dir_arr[k] = NULL;
+	return (dir_arr);
+}
+
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
@@ -45,6 +76,8 @@ int			main(int ac, char **av)
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 
+	av_tmp = check_args_for_dirs(av_tmp, i, ac);
+	i = 0;
 
 	while (i < ac && av_tmp[i])
 	{
