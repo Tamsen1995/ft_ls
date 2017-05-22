@@ -44,7 +44,7 @@ t_stack			*alloc_list(char *dir_path)
 		exit (-1);
 	tmp = fls;
 
-
+	
 
 	//TESTING~!
 	while (tmp)

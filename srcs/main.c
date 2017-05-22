@@ -18,13 +18,24 @@ char 	**copy_args(int ac, char **av)
 	return (av_tmp);
 }
 
+// very ugly
+// is solely used in the case directories are put in as parameters
+void print_dir_name(char *dir_path)
+{
+		////////////
+		ft_putendl("");
+		ft_putstr(dir_path);
+		ft_putendl(":");
+		//////////
+}
+
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
 	int			i;
 	t_stack		*files;
-	char *dir_path;
-	char **av_tmp;
+	char 		*dir_path;
+	char		 **av_tmp;
 
 
 	dir_path = NULL;
@@ -33,11 +44,15 @@ int			main(int ac, char **av)
 	// first initiate number of flags
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
-	// then with that the loop will iterate through the rest of the args which are a list of directories
+
+
 	while (i < ac && av_tmp[i])
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path);
+		
+		print_dir_name(dir_path); 
+
 		output_module(files, flags);
 		free(dir_path);
 		free(files);
