@@ -90,13 +90,14 @@ void print_total_blocks(t_stack *file)
 // this function handles the output of the directory in within the recursive output
 // first it need to output the folders name itself since it is considered a file contained in the higher level directory
 // then the output of the directories path with some output
-void	print_dir_path_recur(t_stack *file)
+void	print_dir_path_recur(t_stack *file, char *flags)
 {
 	//ft_putendl(file->filename);	
 	ft_putendl("");
 	ft_putendl("");
 	ft_putendl(file->path);	
-	print_total_blocks(file);
+	if (flags[f_list])
+		print_total_blocks(file);
 }
 
 // this function handles the recursive output
@@ -115,7 +116,7 @@ void    out_entire_stack(t_stack *stack, char *flags)
 	while (tmp)
 	{
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY) // hacky
-			print_dir_path_recur(tmp);	
+			print_dir_path_recur(tmp, flags);	
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			out_entire_stack(tmp->subdir, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next; 
