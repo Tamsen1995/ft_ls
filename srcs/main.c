@@ -37,7 +37,6 @@ int			main(int ac, char **av)
 	while (i < ac && av_tmp[i])
 	{
 		dir_path = ft_strdup(av_tmp[i]);
-		ft_putendl(dir_path);
 		files = alloc_list(dir_path);
 		output_module(files, flags);
 		free(dir_path);

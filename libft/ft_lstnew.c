@@ -12,6 +12,22 @@
 
 #include "../includes/libft.h"
 
+char			*make_path_dir(char *name, char *cathis)
+{
+	char *nw_path;
+	size_t l; //length for new path
+
+	l = ft_strlen(name) + ft_strlen(cathis);
+	l = l + 2;
+	nw_path = NULL;
+	if (!(nw_path = (char *)malloc(sizeof(char) * l + 1)))
+		exit (-1);
+	nw_path = ft_strcpy(nw_path, name);
+	nw_path = ft_strcat(nw_path, "/");
+	nw_path = ft_strcat(nw_path, cathis);
+	return (nw_path);
+}
+
 t_filetype		get_file_type(struct dirent *ent)
 {
 	if (ent->d_type == DT_REG)
@@ -42,13 +58,21 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	if (!(alist = (t_stack *)malloc(sizeof(t_stack))))
 		return (NULL);
 
+
+
+
 	// put the file name into the list
 	alist->filename = ft_strdup(ent->d_name);	
-	alist->path = NULL;
+	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct
 	alist->next = NULL;
 	alist->fields = NULL;
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
+
+
+
+
+
 
 
 	return (alist);
