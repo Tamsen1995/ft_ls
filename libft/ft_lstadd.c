@@ -18,6 +18,12 @@ int			stack_sorting(t_stack *s1, t_stack *s2)
 		return (-1);
 	if (s1->type != INVALID && s2->type == INVALID)
 		return (1);
+
+	// INVALIDness overrides everything
+	// rev overrides everything in the sense that it cooperates with the given conditions
+	
+
+	
 	return (ft_strcmp(s1->filename, s2->filename));
 
 }
