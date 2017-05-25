@@ -82,7 +82,7 @@ int			main(int ac, char **av)
 	while (i < ac && av_tmp[i])
 	{
 		dir_path = ft_strdup(av_tmp[i]);
-		files = alloc_list(dir_path);
+		files = alloc_list(dir_path, flags);
 		
 		print_dir_name(dir_path); 
 
@@ -93,7 +93,7 @@ int			main(int ac, char **av)
 	}
 	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
 	{
-		files = alloc_list(".");
+		files = alloc_list(".", flags);
 		output_module(files, flags);
 	}
 	return (0);

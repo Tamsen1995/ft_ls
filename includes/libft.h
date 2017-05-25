@@ -20,6 +20,7 @@
 # include <dirent.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <time.h>
 
 #define t_bool int
 #define TRUE 1
@@ -73,6 +74,8 @@ typedef enum e_filetype
 }			t_filetype;
 
 
+// These are mostly for the output of the long listing format
+// When I actually need to compare stats like time for example, re-call stat
 typedef struct 		s_fields
 {
 	char			mode[11]; // done
@@ -162,5 +165,5 @@ char				*ft_strctrim(const char *s, char c);
 char				*ft_split_char(char *s, int i, char c);
 char				**ft_strsplit(const char *s, char c);
 t_stack				*ft_lstnew(struct dirent *ent, char *path);
-void				ft_list_push_back(t_stack **alst, struct dirent *ent, char *path);
+void				ft_list_push_back(t_stack **alst, struct dirent *ent, char *path, char *flags);
 #endif

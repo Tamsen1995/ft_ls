@@ -5,7 +5,6 @@ NAME = ft_ls
 SRC = srcs/main.c \
 	srcs/parsing_module.c \
 	srcs/alloc_list.c \
-	srcs/out_entire_stack.c \
 	srcs/get_info_fields.c \
 	srcs/extract_date_time.c \
 	srcs/output_module.c \
