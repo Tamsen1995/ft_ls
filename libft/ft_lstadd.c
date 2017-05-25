@@ -12,10 +12,14 @@
 
 #include "../includes/libft.h"
 
+
+
+// INVALID overrides everything
+	// rev overrides everything in the sense that it cooperates with the given condition
 int			stack_sorting(t_stack *s1, t_stack *s2, char *flags)
 {
-	long int s1_time;
-	long int s2_time;
+	time_t s1_time;
+	time_t s2_time;
 
 	s1_time = s1->stats.st_mtimespec.tv_sec;
 	s2_time = s2->stats.st_mtimespec.tv_sec;
@@ -23,33 +27,15 @@ int			stack_sorting(t_stack *s1, t_stack *s2, char *flags)
 		return (-1);
 	if (s1->type != INVALID && s2->type == INVALID)
 		return (1);
-
-
-		
-	if (flags[f_time] && s1->type != INVALID && s2->type != INVALID && 
-		s1_time != s2_time)
+	if (flags[f_time] && s1->type != INVALID && s2->type != INVALID
+	&& s1_time != s2_time)
 	{
-		//if (flags[f_rev])
-		//{
-		//	return (s1->stats.st_mtimespec.tv_sec - s2->stats.st_mtimespec.tv_sec);
-		//}
-
-		printf("====? %ld\n", s1_time);
-		printf("====? %ld\n", s2_time);
-
-///////////// SEGFAULT SOMEWHERE HERE
-		ft_putstr("--->");
-		return (s1_time);
+		if (flags[f_rev])
+			return (s1_time - s2_time);
+		return (s2_time - s1_time);
 	}
-
-	// INVALID overrides everything
-	// rev overrides everything in the sense that it cooperates with the given conditions
-
-
-
-
-
-	
+	if (flags[f_rev])
+		return (ft_strcmp(s2->filename, s1->filename));
 	return (ft_strcmp(s1->filename, s2->filename));
 
 }
@@ -62,11 +48,18 @@ void		ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path, ch
 	t_stack *new;
 
 	new = ft_lstnew(ent, path);
-	cur = *begin_list;
+	cur = NULL;
 	prev = NULL;
-	if (!cur)
+	if (!*begin_list)
 	{
-		cur = ft_lstnew(ent, path);
+		*begin_list = ft_lstnew(ent, path);
+		return ;
+	}
+	cur = *begin_list;
+	if (stack_sorting(cur, new, flags) > 0)
+	{
+		new->next = cur;
+		*begin_list = new;
 		return ;
 	}
 	while (cur && stack_sorting(cur, new, flags) <= 0)

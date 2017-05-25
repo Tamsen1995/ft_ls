@@ -59,9 +59,10 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 		return (NULL);
 	// put the file name into the list
 	alist->filename = ft_strdup(ent->d_name);	
-	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct
-	if (lstat(alist->path, &(alist->stats)) < 0)
+	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct	
+	if (stat(alist->path, &(alist->stats)) < 0)
 		exit (-1);
+	
 	alist->next = NULL;
 	alist->fields = NULL;
 	alist->type = INVALID;
