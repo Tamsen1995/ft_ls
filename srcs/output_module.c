@@ -58,24 +58,33 @@ void		print_dir(t_stack *files, char *flags)
 	t_stack *tmp;
 
 	tmp = files;
-
-	while (is_hidden_file(tmp) && !flags[f_hidden])
-		tmp = tmp->next;
 	while (tmp)
 	{
-		print_flags(tmp, flags);
-		ft_putendl(tmp->filename);
+
+		if (!is_hidden_file(tmp))
+		{	
+			print_flags(tmp, flags);
+			ft_putendl(tmp->filename);
+		}
+		if (is_hidden_file(tmp) && flags[f_hidden])
+		{	
+			print_flags(tmp, flags);
+			ft_putendl(tmp->filename);
+		}
 		tmp = tmp->next;
 	}
 }
 
-void print_total_blocks(t_stack *file)
+void print_total_blocks(t_stack *file, char *flags)
 {
 	t_stack *tmp;
 	long long int total_blk_size;
 
 	total_blk_size = 0;
 	tmp = file->subdir;
+
+	if (!flags[f_recur])
+		tmp = file;
 	while (tmp)
 	{
 		total_blk_size = total_blk_size + tmp->fields->st_blocks;
@@ -98,7 +107,7 @@ void	print_dir_path_recur(t_stack *file, char *flags)
 	ft_putstr(file->path);
 	ft_putendl(":");
 	if (flags[f_list])
-		print_total_blocks(file);
+		print_total_blocks(file, flags);
 }
 
 // this function handles the recursive output
@@ -138,6 +147,10 @@ void		output_module(t_stack *files, char *flags)
 	if (flags[f_recur])
 		out_entire_stack(files, flags); // TESTING
 	else
+	{
+		if (flags[f_list])
+			print_total_blocks(files, flags);
 		print_dir(files, flags);
+	}
 }
 

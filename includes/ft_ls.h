@@ -14,11 +14,11 @@
 
 
 
-
-t_bool		is_hidden_file(t_stack *file);
-void		print_list(t_stack *file);
-void		print_flags(t_stack *file, char *flags);
-void		print_dir(t_stack *files, char *flags);
+void                print_total_blocks(t_stack *file, char *flags);
+t_bool		        is_hidden_file(t_stack *file);
+void		        print_list(t_stack *file);
+void        		print_flags(t_stack *file, char *flags);
+void		        print_dir(t_stack *files, char *flags);
 
 void                output_module(t_stack *files, char *flags);
 char                *extract_nbr_of_links(struct stat buf);
@@ -34,7 +34,7 @@ t_fields			*get_file_info(t_stack *file);
 
 void	    print_dir_path(t_stack *file, char *flags);
 char		*make_path_dir(char *name, char *cathis);
-t_stack     *register_fls_in_dir(char *name);
+t_stack     *register_fls_in_dir(char *name, char *flags);
 t_bool		not_curr_and_prev(t_stack *entry);
 void    out_entire_stack(t_stack *stack, char *flags);
 int		    parse_flags(int ac, char **av, char *flags);
@@ -42,7 +42,7 @@ void		extract_proper_time(char *c_time_string, t_files *fls);
 void		print_yr_only(t_files *fls);
 void		print_time(t_files *fls);
 void		print_perms(t_files *fls);
-t_stack		*alloc_list(char *name);
+t_stack		*alloc_list(char *name,char *flags);
 t_flags		*get_flags(int argc, char **argv);
 char		*make_path_dir(char *name, char *cathis);
 void		print_all_test(t_files *files, t_flags *flags);//testing?!
