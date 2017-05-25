@@ -58,13 +58,19 @@ void		print_dir(t_stack *files, char *flags)
 	t_stack *tmp;
 
 	tmp = files;
-
-	while (is_hidden_file(tmp) && !flags[f_hidden])
-		tmp = tmp->next;
 	while (tmp)
 	{
-		print_flags(tmp, flags);
-		ft_putendl(tmp->filename);
+
+		if (!is_hidden_file(tmp))
+		{	
+			print_flags(tmp, flags);
+			ft_putendl(tmp->filename);
+		}
+		if (is_hidden_file(tmp) && flags[f_hidden])
+		{	
+			print_flags(tmp, flags);
+			ft_putendl(tmp->filename);
+		}
 		tmp = tmp->next;
 	}
 }
