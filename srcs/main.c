@@ -41,7 +41,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	dir = NULL;
 	k = 0;
 	if (!(dir_arr = (char **)malloc(sizeof(char *) * ac)))
-		exit(-1);
+		error_msg("Directory could not be opened ! (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
 		if (!(dir = opendir(av_tmp[i])))

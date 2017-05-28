@@ -21,7 +21,7 @@ char			*make_path_dir(char *name, char *cathis)
 	l = l + 2;
 	nw_path = NULL;
 	if (!(nw_path = (char *)malloc(sizeof(char) * l + 1)))
-		exit (-1);
+		error_msg("Memory for a path directory name could not be allocated ! (make_path_dir)");
 	nw_path = ft_strcpy(nw_path, name);
 	nw_path = ft_strcat(nw_path, "/");
 	nw_path = ft_strcat(nw_path, cathis);
