@@ -94,7 +94,7 @@ t_fields			*get_file_info(t_stack *file)
 
 	tmp = file;
 	tmp->fields = alloc_fields(); // simply a function that allocates the fields in the stack element		
-	if (stat(tmp->path, &buf) < 0)
+	if (lstat(tmp->path, &buf) < 0)
 		exit(-1);
     extract_permissions_mode(buf, tmp->fields->mode);
     extract_date_time(buf, tmp->fields);

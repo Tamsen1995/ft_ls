@@ -61,19 +61,14 @@ void system_link_module(t_stack *file)
 	buf[link_size] = '\0'; // null terminating the buffer
 
 
-//	attr_size = lgetxattr(file->path, buf, value, link_size);
+	file->filename = ft_strjoin(file->filename, " -> ");
+	file->filename = ft_strjoin(file->filename, buf);
 
 
+	//	attr_size = lgetxattr(file->path, buf, value, link_size);
 
-	ft_putendl(file->filename); // name of the link
-	ft_putendl(buf);	// name of the link it points to
-	ft_putnbr((int)link_size); // Looking at the size of the system link
 
 }
-
-
-
-
 
 // This function takes in an entry in the directory stream and the path of the directory
 // itself and then returns a stack elem which contains all its necessary information
@@ -91,15 +86,10 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
-
-//	if (alist->type == SYMLINK)
-//	{		
-//		system_link_module(alist);
-//	}
-
+	if (alist->type == SYMLINK)	
+		system_link_module(alist);
 	if (lstat(alist->path, &(alist->stats)) < 0)
 		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
-
 	alist->next = NULL;
 	alist->fields = NULL;
 
