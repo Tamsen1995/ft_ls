@@ -60,12 +60,20 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	// put the file name into the list
 	alist->filename = ft_strdup(ent->d_name);	
 	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct	
-	if (stat(alist->path, &(alist->stats)) < 0)
-		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
 	
-	alist->next = NULL;
-	alist->fields = NULL;
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
+
+	if (alist->type == SYMLINK)
+	{
+		ft_putendl(alist->filename); //TESTING
+	}
+	else if (stat(alist->path, &(alist->stats)) < 0)
+		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
+	
+
+	alist->next = NULL;
+	alist->fields = NULL;
+
 	return (alist);
 }

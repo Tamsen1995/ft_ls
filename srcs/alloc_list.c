@@ -29,6 +29,14 @@ t_bool		not_curr_and_prev(t_stack *entry)
 	return (FALSE);
 }
 
+// TESTING
+void		system_link_module(t_stack *files)
+{
+
+	ft_putendl(files->filename);
+
+}
+
 // This function recursively allocates the entirety of the directory as well as its subdirectories
 t_stack			*alloc_list(char *dir_path, char *flags)
 {
@@ -44,6 +52,8 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	{		
 
 		tmp->fields = get_file_info(tmp); // extracting all the info
+		if (tmp->type == SYMLINK)
+			system_link_module(tmp); // TESTING
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			tmp->subdir = alloc_list(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next;
