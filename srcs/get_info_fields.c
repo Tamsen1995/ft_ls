@@ -82,7 +82,7 @@ char                *extract_nbr_of_links(struct stat buf)
 }
 
 
-// This function acts an extractor of information
+// This function acts as an extractor of information
 // It extracts all the necessary information from a file by redirecting to subfunctions which will be respoinsible
 // for extracting the specific information
 t_fields			*get_file_info(t_stack *file)

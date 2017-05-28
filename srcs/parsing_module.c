@@ -20,7 +20,7 @@ void	init_flags(char *flags)
 }
 
 
-// this function check for the validity of the flag as well as returning the index of the 
+// this function checks for the validity of the flag as well as returning the index of the 
 // flag to change in the given flag array
 int 		flag_index(char c)
 {
