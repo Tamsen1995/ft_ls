@@ -78,14 +78,12 @@ int			main(int ac, char **av)
 
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
 	i = 0;
-
+	// this loop is used in the case 
 	while (i < ac && av_tmp[i])
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
-		
 		print_dir_name(dir_path); 
-
 		output_module(files, flags);
 		free(dir_path);
 		free(files);

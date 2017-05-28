@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/ft_ls.h"
 
 char			*make_path_dir(char *name, char *cathis)
 {
@@ -61,7 +61,7 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	alist->filename = ft_strdup(ent->d_name);	
 	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct	
 	if (stat(alist->path, &(alist->stats)) < 0)
-		exit (-1);
+		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
 	
 	alist->next = NULL;
 	alist->fields = NULL;
