@@ -47,6 +47,28 @@ t_filetype		get_file_type(struct dirent *ent)
 	return (REG);
 }
 
+
+void system_link_module(t_stack *file)
+{
+	char buf[1024];
+	ssize_t link_size; 
+
+	link_size = 0;
+	link_size = readlink(file->path, buf, sizeof(buf)); // actually getting the system link
+
+	ft_putendl(file->filename); // name of the link
+
+	buf[link_size] = '\0'; // null terminating the buffer
+
+	ft_putendl(buf);	// name of the link it points to
+	ft_putnbr((int)link_size); // Looking at the size of the system link
+
+}
+
+
+
+
+
 // This function takes in an entry in the directory stream and the path of the directory
 // itself and then returns a stack elem which contains all its necessary information
 t_stack		*ft_lstnew(struct dirent *ent, char *path)
@@ -65,8 +87,10 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	alist->type = get_file_type(ent);
 
 	if (alist->type == SYMLINK)
-	{
-		ft_putendl(alist->filename); //TESTING
+	{		
+		system_link_module(alist);
+
+
 	}
 	else if (stat(alist->path, &(alist->stats)) < 0)
 		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
