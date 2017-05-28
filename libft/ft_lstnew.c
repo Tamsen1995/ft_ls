@@ -52,14 +52,20 @@ void system_link_module(t_stack *file)
 {
 	char buf[1024];
 	ssize_t link_size; 
+	ssize_t attr_size;
+	void *value[1024];
 
 	link_size = 0;
+	attr_size = 0;
 	link_size = readlink(file->path, buf, sizeof(buf)); // actually getting the system link
-
-	ft_putendl(file->filename); // name of the link
-
 	buf[link_size] = '\0'; // null terminating the buffer
 
+
+//	attr_size = lgetxattr(file->path, buf, value, link_size);
+
+
+
+	ft_putendl(file->filename); // name of the link
 	ft_putendl(buf);	// name of the link it points to
 	ft_putnbr((int)link_size); // Looking at the size of the system link
 
@@ -86,15 +92,13 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
 
-	if (alist->type == SYMLINK)
-	{		
-		system_link_module(alist);
+//	if (alist->type == SYMLINK)
+//	{		
+//		system_link_module(alist);
+//	}
 
-
-	}
-	else if (stat(alist->path, &(alist->stats)) < 0)
+	if (lstat(alist->path, &(alist->stats)) < 0)
 		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
-	
 
 	alist->next = NULL;
 	alist->fields = NULL;

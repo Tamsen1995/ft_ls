@@ -46,6 +46,7 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 		tmp->fields = get_file_info(tmp); // extracting all the info
 
 		// maybe I need to implement something for the system links
+		
 
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			tmp->subdir = alloc_list(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
