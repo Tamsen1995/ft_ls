@@ -66,7 +66,7 @@ char                *extract_file_size(struct stat buf)
 
     file_size = NULL;
     if (!(file_size = ft_itoa(buf.st_size)))
-        exit (-1);
+        error_msg("The file size was not properly extracted (extract_file_size)");
     return (file_size);
 }
 
@@ -77,7 +77,7 @@ char                *extract_nbr_of_links(struct stat buf)
 
     nbr_links = NULL;
     if (!(nbr_links = ft_itoa(buf.st_nlink)))
-        exit (-1);
+        error_msg("The number of links could not be extracted (extract_nbr_of_links)");
     return (nbr_links);
 }
 

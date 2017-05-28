@@ -16,7 +16,7 @@ typedef enum e_flgs
 t_bool		is_hidden_file(t_stack *file)
 {
 	if (!file || !file->filename || !file->filename[0])
-		exit (-1);
+		error_msg("Error in (is_hidden_file)");
 	if (file->filename[0] == '.')
 		return (TRUE);
 	return (FALSE);
@@ -46,7 +46,7 @@ void		print_flags(t_stack *file, char *flags)
 
 	tmp  = NULL;
 	if (!file)
-		exit (-1);
+		error_msg("A file is missing in (print_flags)");
 	tmp = file;
 	if (flags[f_list])
 		print_list(tmp);

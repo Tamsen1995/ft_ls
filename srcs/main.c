@@ -8,7 +8,7 @@ char 	**copy_args(int ac, char **av)
 	i = 0;
 	av_tmp = NULL;
 	if (!(av_tmp = (char **)malloc(sizeof(char *) * ac)))
-		exit (-1);
+		error_msg("Error in the copying of arguments ! (copy_args)");
 	while (i != ac)
 	{
 		av_tmp[i] = ft_strdup(av[i]);
