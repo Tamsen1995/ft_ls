@@ -61,7 +61,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 }
 
 
-// TODO fix total blocks output of root directory in recursive long listing
+// TODO Get the l in the beginning of the permissions for linked files
 // TODO figure out why the non recursive long listing format doesn't show the right amount of total blocks
 
 int			main(int ac, char **av)
