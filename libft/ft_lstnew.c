@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/ft_ls.h"
 
 char			*make_path_dir(char *name, char *cathis)
 {
@@ -21,7 +21,7 @@ char			*make_path_dir(char *name, char *cathis)
 	l = l + 2;
 	nw_path = NULL;
 	if (!(nw_path = (char *)malloc(sizeof(char) * l + 1)))
-		exit (-1);
+		error_msg("Memory for a path directory name could not be allocated ! (make_path_dir)");
 	nw_path = ft_strcpy(nw_path, name);
 	nw_path = ft_strcat(nw_path, "/");
 	nw_path = ft_strcat(nw_path, cathis);
@@ -47,9 +47,30 @@ t_filetype		get_file_type(struct dirent *ent)
 	return (REG);
 }
 
+
+void system_link_module(t_stack *file, char *flags)
+{
+	char buf[1024];
+	ssize_t link_size; 
+	ssize_t attr_size;
+	void *value[1024];
+
+	link_size = 0;
+	attr_size = 0;
+	link_size = readlink(file->path, buf, sizeof(buf)); // actually getting the system link
+	buf[link_size] = '\0'; // null terminating the buffer
+
+	if (flags[f_list])
+	{
+		file->filename = ft_strjoin(file->filename, " -> ");
+		file->filename = ft_strjoin(file->filename, buf);
+	}
+	//	attr_size = lgetxattr(file->path, buf, value, link_size);
+}
+
 // This function takes in an entry in the directory stream and the path of the directory
 // itself and then returns a stack elem which contains all its necessary information
-t_stack		*ft_lstnew(struct dirent *ent, char *path)
+t_stack		*ft_lstnew(struct dirent *ent, char *path, char *flags)
 {
 	t_stack	*alist;
 	struct stat fstat;
@@ -60,12 +81,15 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	// put the file name into the list
 	alist->filename = ft_strdup(ent->d_name);	
 	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct	
-	if (stat(alist->path, &(alist->stats)) < 0)
-		exit (-1);
 	
-	alist->next = NULL;
-	alist->fields = NULL;
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
+	if (alist->type == SYMLINK)	
+		system_link_module(alist, flags);
+	if (lstat(alist->path, &(alist->stats)) < 0)
+		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
+	alist->next = NULL;
+	alist->fields = NULL;
+
 	return (alist);
 }

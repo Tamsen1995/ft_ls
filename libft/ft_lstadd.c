@@ -47,12 +47,12 @@ void		ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path, ch
 	t_stack *prev;
 	t_stack *new;
 
-	new = ft_lstnew(ent, path);
+	new = ft_lstnew(ent, path, flags);
 	cur = NULL;
 	prev = NULL;
 	if (!*begin_list)
 	{
-		*begin_list = ft_lstnew(ent, path);
+		*begin_list = ft_lstnew(ent, path, flags);
 		return ;
 	}
 	cur = *begin_list;
