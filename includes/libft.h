@@ -164,6 +164,6 @@ char				*ft_itoa(int n);
 char				*ft_strctrim(const char *s, char c);
 char				*ft_split_char(char *s, int i, char c);
 char				**ft_strsplit(const char *s, char c);
-t_stack				*ft_lstnew(struct dirent *ent, char *path);
+t_stack				*ft_lstnew(struct dirent *ent, char *path, char *flags);
 void				ft_list_push_back(t_stack **alst, struct dirent *ent, char *path, char *flags);
 #endif

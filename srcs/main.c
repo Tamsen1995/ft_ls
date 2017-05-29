@@ -60,6 +60,10 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	return (dir_arr);
 }
 
+
+// TODO Get the l in the beginning of the permissions for linked files
+// TODO figure out why the non recursive long listing format doesn't show the right amount of total blocks
+
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
@@ -71,8 +75,6 @@ int			main(int ac, char **av)
 
 	dir_path = NULL;
 	files = NULL;
-	// TODO code function which will check the validity of an input if there is one, meaning it will check if it is even a directory or not
-	// first initiate number of flags
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 

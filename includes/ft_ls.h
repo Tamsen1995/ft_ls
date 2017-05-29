@@ -1,6 +1,31 @@
 #ifndef FT_LS_H
 # define FT_LS_H
 
+# define STOP "\033[0;0m"
+# define EOC "\033[39m"
+# define EOBG "\033[49m"
+# define BOLD "\033[1m"
+# define UNDERLINE "\033[1m"
+# define BLACK "\033[30m"
+# define WHITE "\033[97m"
+# define BLUE "\033[34m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define GRAY "\033[37m"
+# define BGBLACK "\033[40m"
+# define BGRED "\033[41m"
+# define BGGREEN "\033[42m"
+# define BGYELLOW "\033[43m"
+# define BGBLUE "\033[44m"
+# define BGMAGENTA "\033[45m"
+# define BGCYAN "\033[46m"
+# define BGLIGHT "\033[47m"
+# define BGGRAY "\033[47m"
+
+
 
 # include				"../includes/libft.h"
 # include				<dirent.h>
@@ -27,7 +52,7 @@ char                *isolate_date_time(char *temps);
 void                extract_date_time(struct stat buf, t_fields *fields);
 char                *extract_group(struct stat buf);
 char                *extract_owner(struct stat buf);
-void                extract_permissions_mode(struct stat fileStat, char *string);
+void                extract_permissions_mode(struct stat fileStat, t_stack *file);
 t_fields            *alloc_fields(void);
 t_fields			*get_file_info(t_stack *file);
 

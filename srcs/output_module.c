@@ -87,7 +87,8 @@ void print_total_blocks(t_stack *file, char *flags)
 		tmp = file;
 	while (tmp)
 	{
-		total_blk_size = total_blk_size + tmp->fields->st_blocks;
+		if (!is_hidden_file(tmp) || flags[f_hidden])
+			total_blk_size = total_blk_size + tmp->fields->st_blocks;
 		tmp = tmp->next;
 	}
 	ft_putstr("total ");
