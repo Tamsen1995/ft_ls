@@ -48,7 +48,7 @@ t_filetype		get_file_type(struct dirent *ent)
 }
 
 
-void system_link_module(t_stack *file)
+void system_link_module(t_stack *file, char *flags)
 {
 	char buf[1024];
 	ssize_t link_size; 
@@ -60,19 +60,17 @@ void system_link_module(t_stack *file)
 	link_size = readlink(file->path, buf, sizeof(buf)); // actually getting the system link
 	buf[link_size] = '\0'; // null terminating the buffer
 
-
-	file->filename = ft_strjoin(file->filename, " -> ");
-	file->filename = ft_strjoin(file->filename, buf);
-
-
+	if (flags[f_list])
+	{
+		file->filename = ft_strjoin(file->filename, " -> ");
+		file->filename = ft_strjoin(file->filename, buf);
+	}
 	//	attr_size = lgetxattr(file->path, buf, value, link_size);
-
-
 }
 
 // This function takes in an entry in the directory stream and the path of the directory
 // itself and then returns a stack elem which contains all its necessary information
-t_stack		*ft_lstnew(struct dirent *ent, char *path)
+t_stack		*ft_lstnew(struct dirent *ent, char *path, char *flags)
 {
 	t_stack	*alist;
 	struct stat fstat;
@@ -87,7 +85,7 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path)
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
 	if (alist->type == SYMLINK)	
-		system_link_module(alist);
+		system_link_module(alist, flags);
 	if (lstat(alist->path, &(alist->stats)) < 0)
 		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
 	alist->next = NULL;

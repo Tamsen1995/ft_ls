@@ -13,7 +13,7 @@ t_stack  *register_fls_in_dir(char *name, char *flags)
 		error_msg("A Directory could not be opened ! (register_fls_in_dir)");
 	if (!(ent = readdir(dir)))
 		error_msg("There was a problem with the reading of an entry in the directory ! (register_fls_in_dir)");
-	if (!(fls = ft_lstnew(ent, name)))
+	if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
 			ft_list_push_back(&fls, ent, name, flags); // TODO here is where I should implement the sorting of my stack
@@ -47,7 +47,6 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 
 		// maybe I need to implement something for the system links
 		
-
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			tmp->subdir = alloc_list(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next;
