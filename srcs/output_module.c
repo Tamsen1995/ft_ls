@@ -64,12 +64,12 @@ void		print_dir(t_stack *files, char *flags)
 		if (!is_hidden_file(tmp))
 		{	
 			print_flags(tmp, flags);
-			ft_putendl(tmp->filename);
+			ft_putendl_col(tmp);
 		}
 		if (is_hidden_file(tmp) && flags[f_hidden])
 		{	
 			print_flags(tmp, flags);
-			ft_putendl(tmp->filename);
+			ft_putendl_col(tmp);
 		}
 		tmp = tmp->next;
 	}
@@ -105,7 +105,7 @@ void	print_dir_path_recur(t_stack *file, char *flags)
 	//ft_putendl(file->filename);	
 	ft_putendl("");
 	ft_putendl("");
-	ft_putstr(file->path);
+	ft_putstr(file->filename);
 	ft_putendl(":");
 	if (flags[f_list])
 		print_total_blocks(file, flags);

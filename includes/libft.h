@@ -30,6 +30,30 @@
 # define NB_FLAGS		6
 
 
+# define STOP "\033[0;0m"
+# define EOC "\033[39m"
+# define EOBG "\033[49m"
+# define BOLD "\033[1m"
+# define UNDERLINE "\033[1m"
+# define BLACK "\033[30m"
+# define WHITE "\033[97m"
+# define BLUE "\033[34m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
+# define MAGENTA "\033[35m"
+# define CYAN "\033[36m"
+# define GRAY "\033[37m"
+# define BGBLACK "\033[40m"
+# define BGRED "\033[41m"
+# define BGGREEN "\033[42m"
+# define BGYELLOW "\033[43m"
+# define BGBLUE "\033[44m"
+# define BGMAGENTA "\033[45m"
+# define BGCYAN "\033[46m"
+# define BGLIGHT "\033[47m"
+# define BGGRAY "\033[47m"
+
 
 typedef	struct		s_files
 {
@@ -73,7 +97,6 @@ typedef enum e_filetype
 	INVALID
 }			t_filetype;
 
-
 // These are mostly for the output of the long listing format
 // When I actually need to compare stats like time for example, re-call stat
 typedef struct 		s_fields
@@ -99,6 +122,12 @@ typedef struct		 s_stack
 	struct s_stack	*subdir; // done
 	struct s_stack 	*next; // need to sort first and then determine
 }					t_stack;
+
+
+void				ft_putstr_col(t_stack *file);
+void				ft_putendl_col(t_stack *file);
+
+
 
 size_t				ft_strlen(char const *s);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
