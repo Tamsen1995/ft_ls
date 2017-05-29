@@ -64,12 +64,12 @@ void		print_dir(t_stack *files, char *flags)
 		if (!is_hidden_file(tmp))
 		{	
 			print_flags(tmp, flags);
-			ft_putendl(tmp->filename);
+			ft_putendl_col(tmp);
 		}
 		if (is_hidden_file(tmp) && flags[f_hidden])
 		{	
 			print_flags(tmp, flags);
-			ft_putendl(tmp->filename);
+			ft_putendl_col(tmp);
 		}
 		tmp = tmp->next;
 	}
