@@ -89,6 +89,7 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	if (lstat(alist->path, &(alist->stats)) < 0)
 		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");
 	alist->next = NULL;
+	alist->prev = NULL;
 	alist->fields = NULL;
 
 	return (alist);

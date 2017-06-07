@@ -55,26 +55,6 @@
 # define BGGRAY "\033[47m"
 
 
-typedef	struct		s_files
-{
-	struct dirent	*ent;
-	struct s_files	*next;
-	struct s_files	*subdir;
-	struct s_files	*prev;
-	char 				*file_name;
-	char 				*dir_path;
-	time_t			mtime; //time the file was last modified
-	mode_t			st_mode;
-	ino_t			st_ino;     /* inode number */
-	nlink_t			st_nlink;
-	uid_t			st_uid;
-	gid_t			st_gid;
-	off_t			st_size;
-	quad_t			st_blocks;
-
-}					t_files;
-
-
 typedef enum e_flgs
 {
 	f_recur = 0,
@@ -118,9 +98,9 @@ typedef struct		 s_stack
 	t_filetype		type; //done
 	struct stat 	stats; 
 	t_fields 		*fields;
-	char 			*err_msg;
 	struct s_stack	*subdir; // done
 	struct s_stack 	*next; // need to sort first and then determine
+	struct s_stack 	*prev;
 }					t_stack;
 
 

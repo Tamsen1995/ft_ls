@@ -22,12 +22,19 @@ t_stack  *register_fls_in_dir(char *name, char *flags)
 
 // This function simply check if the current entry's name 
 // is neither the current directory nor the previous one
+
+
+
+
+
 t_bool		not_curr_and_prev(t_stack *entry)
 {
 	if (ft_strcmp(entry->filename, ".") != 0 && ft_strcmp(entry->filename, "..") != 0)
 		return (TRUE);
 	return (FALSE);
 }
+
+
 
 // This function recursively allocates the entirety of the directory as well as its subdirectories
 t_stack			*alloc_list(char *dir_path, char *flags)
@@ -42,14 +49,13 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	tmp = fls;
 	while (tmp)
 	{		
-
+		if (tmp->next)
+			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp); // extracting all the info
-
-		// maybe I need to implement something for the system links
-		
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			tmp->subdir = alloc_list(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next;
 	}
-	return (fls); // returnning null for now, just testing
+	return (fls);
+	 // returnning null for now, just testing
 }
