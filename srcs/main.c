@@ -61,8 +61,38 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 }
 
 
-// TODO Get the l in the beginning of the permissions for linked files
-// TODO figure out why the non recursive long listing format doesn't show the right amount of total blocks
+
+
+
+// frees all the attributes of the list structure
+void		free_list_attr(t_stack *list)
+{
+	
+	ft_strdel(&list->path);
+	ft_strdel(&list->filename);
+	ft_strdel(&list->fields->links);
+	ft_strdel(&list->fields->size);
+	ft_strdel(&list->fields->date);
+
+}
+
+// This function will go through the entire stack recursively BACKWARDS
+void		free_list(t_stack *list)
+{
+	// go to the end of the list
+	// in order to go backwards again
+	while (list->next) 
+		list = list->next;
+	// iterating through the whole thing backwards
+	while (list)
+	{		
+		if (not_curr_and_prev(list) == TRUE && list->type == DIRECTORY)
+			free_list(list->subdir);
+		free_list_attr(list);
+		free(list);
+		list = list->prev;
+	}
+}
 
 int			main(int ac, char **av)
 {
@@ -72,12 +102,8 @@ int			main(int ac, char **av)
 	char 		*dir_path;
 	char		 **av_tmp;
 
-
-	dir_path = NULL;
-	files = NULL;
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
-
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
 	i = 0;
 	// this loop is used in the case 
@@ -87,15 +113,15 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path); 
 		output_module(files, flags);
-		free(dir_path);
-		free(files);
 		i++;
 	}
+	
 	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
 	}
+	free_list(files);
 	return (0);
 }
 

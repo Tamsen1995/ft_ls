@@ -37,19 +37,13 @@ t_stack     *register_fls_in_dir(char *name, char *flags);
 t_bool		not_curr_and_prev(t_stack *entry);
 void    out_entire_stack(t_stack *stack, char *flags);
 int		    parse_flags(int ac, char **av, char *flags);
-void		extract_proper_time(char *c_time_string, t_files *fls);
-void		print_yr_only(t_files *fls);
-void		print_time(t_files *fls);
-void		print_perms(t_files *fls);
 t_stack		*alloc_list(char *name,char *flags);
 t_flags		*get_flags(int argc, char **argv);
 char		*make_path_dir(char *name, char *cathis);
-void		print_all_test(t_files *files, t_flags *flags);//testing?!
 int			ft_init_flags(t_flags **flags);
 void		det_flags(char *flag, t_flags **flags);
 void		big_r(DIR *rep);
-void		normal_ls(t_files *fls, t_flags *flags);
-void		assess_output(t_files *files, t_flags *flags);
+
 
 
 #endif
