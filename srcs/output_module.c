@@ -120,12 +120,11 @@ void    out_entire_stack(t_stack *stack, char *flags)
     tmp = NULL;
 	tmp = stack;
 
-
-	while (is_hidden_file(tmp) && !flags[f_hidden])
-		tmp = tmp->next;
 	print_dir(tmp, flags);
 	while (tmp)
 	{
+		while (is_hidden_file(tmp) && !flags[f_hidden])
+			tmp = tmp->next;
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY) // hacky
 			print_dir_path_recur(tmp, flags);	
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
