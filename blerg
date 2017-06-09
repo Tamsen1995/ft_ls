@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[ADD] implemented the output of files in the case of it being an input. Also made sure only truly invalid inputs would send the message of unavailability."
+git commit -m "[FIX] reversed the output of the single input files and the (no such directory or file) message"
 git push origin showing_of_files_and_no_name_when_one_dir_as_input

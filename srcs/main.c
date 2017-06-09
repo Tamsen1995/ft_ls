@@ -29,10 +29,22 @@ void print_dir_name(char *dir_path)
 		//////////
 }
 
+// this function will iterate through the arguments array again
+// and see which files are valid regular files which ought to be sent to the output.
+void		print_valid_fls(char **av_tmp, int ac) 
+{
+	int i;
+	DIR			*dir;
+	struct stat buf;
 
-// a function which will return the tentative file path
-// in order for it to be checked by lstat
-// if the lstat in the check args functions returns a null that the file is not a valid file.
+	i = 1;
+	while (i < ac && av_tmp[i])
+	{
+		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
+			ft_putendl(av_tmp[i]);
+		i++;
+	}
+}
 
 // a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs
 char		**check_args_for_dirs(char **av_tmp, int i, int ac)
@@ -60,10 +72,9 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
 		}
-		else
-			ft_putendl(av_tmp[i]);
 		i++;
 	}
+	print_valid_fls(av_tmp, ac);
 	dir_arr[k] = NULL;
 	return (dir_arr);
 }
