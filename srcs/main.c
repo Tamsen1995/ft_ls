@@ -12,21 +12,16 @@ char 	**copy_args(int ac, char **av)
 	while (i != ac)
 	{
 		av_tmp[i] = ft_strdup(av[i]);
-//		ft_putendl(av_tmp[i]); //TESTING
 		i++;
 	}
 	return (av_tmp);
 }
 
-// very ugly
-// is solely used in the case directories are put in as parameters
 void print_dir_name(char *dir_path)
 {
-		////////////
 		ft_putendl("");
 		ft_putstr(dir_path);
 		ft_putendl(":");
-		//////////
 }
 
 // this function will iterate through the arguments array again
@@ -61,7 +56,6 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		error_msg("Directory could not be opened ! (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
-		
 		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) < 0)
 		{
 			ft_putstr("No such file or directory:\t");
@@ -121,7 +115,6 @@ int			main(int ac, char **av)
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
 	i = 0;
-	// this loop is used in the case 
 	while (i < ac && av_tmp[i])
 	{
 		dir_path = ft_strdup(av_tmp[i]);
