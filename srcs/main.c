@@ -30,12 +30,17 @@ void print_dir_name(char *dir_path)
 }
 
 
+// a function which will return the tentative file path
+// in order for it to be checked by lstat
+// if the lstat in the check args functions returns a null that the file is not a valid file.
+
 // a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs
 char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 {
-	DIR				*dir;
-	char **dir_arr;
-	int k;
+	DIR			*dir;
+	char		**dir_arr;
+	int 		k;
+	struct stat buf; 
 
 	dir_arr = NULL;
 	dir = NULL;
@@ -44,36 +49,33 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		error_msg("Directory could not be opened ! (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
-		if (!(dir = opendir(av_tmp[i])))
+		
+		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) < 0)
 		{
 			ft_putstr("No such file or directory:\t");
 			ft_putendl(av_tmp[i]);
 		}
-		else
+		else if ((dir = opendir(av_tmp[i])))
 		{
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
 		}
+		else
+			ft_putendl(av_tmp[i]);
 		i++;
 	}
 	dir_arr[k] = NULL;
 	return (dir_arr);
 }
 
-
-
-
-
 // frees all the attributes of the list structure
 void		free_list_attr(t_stack *list)
 {
-	
 	ft_strdel(&list->path);
 	ft_strdel(&list->filename);
 	ft_strdel(&list->fields->links);
 	ft_strdel(&list->fields->size);
 	ft_strdel(&list->fields->date);
-
 }
 
 // This function will go through the entire stack recursively BACKWARDS
@@ -81,6 +83,8 @@ void		free_list(t_stack *list)
 {
 	// go to the end of the list
 	// in order to go backwards again
+	if (!list)
+		return ;
 	while (list->next) 
 		list = list->next;
 	// iterating through the whole thing backwards
@@ -115,8 +119,7 @@ int			main(int ac, char **av)
 		output_module(files, flags);
 		i++;
 	}
-	
-	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
+	if (dir_path == NULL && ac < 2) // if it's still null at this point then the programm will just assume that no directories have been found
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);

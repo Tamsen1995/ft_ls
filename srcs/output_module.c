@@ -96,7 +96,6 @@ void print_total_blocks(t_stack *file, char *flags)
 	ft_putendl("");
 }
 
-
 // this function handles the output of the directory in within the recursive output
 // first it need to output the folders name itself since it is considered a file contained in the higher level directory
 // then the output of the directories path with some output
@@ -133,15 +132,12 @@ void    out_entire_stack(t_stack *stack, char *flags)
 	}
 }
 
-
-
 // This is where the entire logic of the output module will stem from
 // I have two main flows, one with handling the recursive output and the other
 // one handling the normal output
 // they will be nearlt identical.
 void		output_module(t_stack *files, char *flags)
 {
-    //
 	if (!files)
 		return ;
 	if (flags[f_recur])
