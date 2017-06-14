@@ -9,10 +9,14 @@ t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
 
 	tmp = fls;
 	// while the filepath does not match the tmp->path
-	while (ft_strcmp(tmp->path, fl_path) != 0 && tmp)
+
+
+	ft_putendl(fl_path);
+
+	while (tmp && ft_strcmp(tmp->path, fl_path) != 0)
 	{
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			extr_sought_fl(tmp, fl_path);
+			extr_sought_fl(tmp->subdir, fl_path);
 		tmp = tmp->next;
 	}
 	// freeing everything after the sought after element
@@ -31,8 +35,6 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 
 
 
-	ft_putendl(fl_path);
-
 	// check to make sure this file path is valid and existent
 	if (lstat(fl_path, &buf) < 0)
 		error_msg("This is not an actual file! (handle_single_fl)");
@@ -42,6 +44,11 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// allocating the whole list. Then return only the sought for
 	// which is the file of the given file path (fl_path)
 	fls = alloc_list(".", flags);
+
+
+
+
+
 	fls = extr_sought_fl(fls, fl_path);
 	return (fls);
 
