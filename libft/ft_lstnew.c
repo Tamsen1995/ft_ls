@@ -91,6 +91,5 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	alist->next = NULL;
 	alist->prev = NULL;
 	alist->fields = NULL;
-
 	return (alist);
 }

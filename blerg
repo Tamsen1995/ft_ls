@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] Trying to make sure filepaths are treated equally to direcotory paths in the allocation module."
+git commit -m "[UPD] Starting to form the logic behind the handling of a single file_path."
 git push origin fix_dir_only_lmitation_in_alloc
