@@ -9,11 +9,17 @@ t_stack  *register_fls_in_dir(char *name, char *flags)
 	struct dirent	*ent;
 
 	fls = NULL;
-	if (!(dir = opendir(name)))
-		error_msg("A Directory could not be opened ! (register_fls_in_dir)");
-	if (!(ent = readdir(dir)))
-		error_msg("There was a problem with the reading of an entry in the directory ! (register_fls_in_dir)");
-	if (!(fls = ft_lstnew(ent, name, flags)))
+	if ((dir = opendir(name)))
+	{
+	//	error_msg("A Directory could not be opened ! (register_fls_in_dir)");
+		if (!(ent = readdir(dir)))
+			error_msg("There was a problem with the reading of an entry in the directory ! (register_fls_in_dir)");
+	}
+	else 
+	{}
+
+
+	else if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
 			ft_list_push_back(&fls, ent, name, flags); // TODO here is where I should implement the sorting of my stack

@@ -56,19 +56,21 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		error_msg("Directory could not be opened ! (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
+		// this checks if the current argument is an invalid or nonexistent directory name
 		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) < 0)
 		{
 			ft_putstr("No such file or directory:\t");
 			ft_putendl(av_tmp[i]);
 		}
-		else if ((dir = opendir(av_tmp[i])))
+		else if (lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
 		{
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
 		}
 		i++;
 	}
-	print_valid_fls(av_tmp, ac);
+	// this prints every file which isn't a directory
+	// print_valid_fls(av_tmp, ac); 
 	dir_arr[k] = NULL;
 	return (dir_arr);
 }
@@ -132,4 +134,11 @@ int			main(int ac, char **av)
 	return (0);
 }
 
+// TODO
+// make sure only the files info is printed with the respective flags in case a file is put as an input 
+	// In order to do this you need to send the file as a directory path into the normal flow. 
+	// Once it is in there you need to check if it's a directory or a regular file.
+	// In the case of it being a regular file we redirect it towards a flow in which file paths are taken care of instead of directory paths
 
+
+// make sure not to print the folder name in the case of the being a single input (with flags)
