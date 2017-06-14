@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] reversed the output of the single input files and the (no such directory or file) message"
+git commit -m "[FIX] Nothing would  be outputted in the case of more than one input. including flags. Fixed it though  (main)"
 git push origin showing_of_files_and_no_name_when_one_dir_as_input
