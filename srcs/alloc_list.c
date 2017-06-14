@@ -1,6 +1,16 @@
 #include "../includes/ft_ls.h"
 
 
+// all this function does is iterate through the list and then
+// returns the file sought after
+t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
+{
+
+
+}
+
+
+// this function handles the case of a single file path being put in as the main input
 t_stack			*handle_single_fl(char *fl_path, char *flags)
 {
 	struct stat buf;
@@ -17,8 +27,7 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// allocating the whole list. Then return only the sought for
 	// which is the file of the given file path (fl_path)
 	fls = alloc_list(".", flags);
-
-	
+	fls = extr_sought_fl(fls, fl_path);
 	return (fls);
 
 }
