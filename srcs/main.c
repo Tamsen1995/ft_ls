@@ -17,11 +17,20 @@ char 	**copy_args(int ac, char **av)
 	return (av_tmp);
 }
 
+
+// checks if the dir_path actually belongs to a directory
+// if so it prints it
+// used in the case of feeding files or directories into the input
 void print_dir_name(char *dir_path)
 {
+	DIR		*dir;
+
+	if ((dir = opendir(dir_path)))
+	{
 		ft_putendl("");
 		ft_putstr(dir_path);
 		ft_putendl(":");
+	}
 }
 
 // this function will iterate through the arguments array again
