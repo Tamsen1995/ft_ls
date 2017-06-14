@@ -9,6 +9,7 @@ SRC = srcs/main.c \
 	srcs/extract_date_time.c \
 	srcs/output_module.c \
 	srcs/error_message.c \
+	srcs/handle_sngl_fl.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 

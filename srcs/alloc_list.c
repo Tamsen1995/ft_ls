@@ -1,40 +1,6 @@
 #include "../includes/ft_ls.h"
 
 
-// all this function does is iterate through the list and then
-// returns the file sought after
-t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
-{
-
-
-}
-
-
-// this function handles the case of a single file path being put in as the main input
-t_stack			*handle_single_fl(char *fl_path, char *flags)
-{
-	struct stat buf;
-	t_stack *fls;
-
-	fls = NULL;
-	fl_path = ft_strjoin("./", fl_path);
-	// check to make sure this file path is valid and existent
-	if (lstat(fl_path, &buf) < 0)
-		error_msg("This is not an actual file! (handle_single_fl)");
-	// somehow make it so once fls is returned it points to a printable list element
-		// containing the file
-	
-	// allocating the whole list. Then return only the sought for
-	// which is the file of the given file path (fl_path)
-	fls = alloc_list(".", flags);
-	fls = extr_sought_fl(fls, fl_path);
-	return (fls);
-
-}
-
-
-
-
 
 
 // This function receives a name and allocates everything in the the current directory into 
@@ -52,15 +18,9 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 
 	// in the case of the name not actually being a given directory path, but maybe still a valid file path 
 	if (!(dir = opendir(name)))
-		return (handle_single_fl(name, flags));
-	else if ((dir = opendir(name))) // this is the normal case with a normal directory
-	{
-		if (!(ent = readdir(dir)))
+		error_msg("Could not open directory (register_fls_in_dir)");
+	if (!(ent = readdir(dir)))
 			error_msg("There was a problem with the reading of an entry in the directory ! (register_fls_in_dir)");
-	}
-
-
-
 	if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
@@ -82,8 +42,13 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 {
 	t_stack			*fls;
 	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
+	DIR				*test; // A test directory file to see if I can actually open the dir_path
 
 	tmp = NULL;
+
+	// here I deal with the single file input case
+	if (!(test = opendir(dir_path)))
+		return (handle_single_fl(ft_strjoin("./", dir_path), flags));
 	if (!(fls = register_fls_in_dir(dir_path, flags))) // zapping the entire entry list into a stack chain
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
