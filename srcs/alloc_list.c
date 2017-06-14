@@ -1,7 +1,7 @@
 #include "../includes/ft_ls.h"
 
 
-t_stack			*handle_single_fl(char *fl_path)
+t_stack			*handle_single_fl(char *fl_path, char *flags)
 {
 	struct stat buf;
 	t_stack *fls;
@@ -11,10 +11,14 @@ t_stack			*handle_single_fl(char *fl_path)
 	// check to make sure this file path is valid and existent
 	if (lstat(fl_path, &buf) < 0)
 		error_msg("This is not an actual file! (handle_single_fl)");
-	// somehow make it so once fls is returned it point to a printable list element
+	// somehow make it so once fls is returned it points to a printable list element
 		// containing the file
-	// we extract the file's information by merging its path with the path of the current directory
-	// once this is done we follow as we normally would, but only for that one single file path
+	
+	// allocating the whole list. Then return only the sought for
+	// which is the file of the given file path (fl_path)
+	fls = alloc_list(".", flags);
+
+	
 	return (fls);
 
 }
@@ -39,7 +43,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 
 	// in the case of the name not actually being a given directory path, but maybe still a valid file path 
 	if (!(dir = opendir(name)))
-		return (handle_single_fl(name));
+		return (handle_single_fl(name, flags));
 	else if ((dir = opendir(name))) // this is the normal case with a normal directory
 	{
 		if (!(ent = readdir(dir)))

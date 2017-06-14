@@ -81,7 +81,7 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	// put the file name into the list
 	alist->filename = ft_strdup(ent->d_name);	
 	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct	
-	
+
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
 	if (alist->type == SYMLINK)	
