@@ -13,7 +13,6 @@
 
 t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
-
 void				free_list(t_stack *list);
 void                print_total_blocks(t_stack *file, char *flags);
 t_bool		        is_hidden_file(t_stack *file);

@@ -55,9 +55,13 @@ void		print_valid_fls(char **av_tmp, int ac)
 // the path belongs to a valid folder into which one can enter
 t_bool		is_valid_folder(char *path)
 {
+	struct stat buf; 
 
-	lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0 || (ft_strncmp("/", av_tmp[i], 1) == 0  && )
-
+	if (lstat(ft_strjoin("./", path), &buf) == 0 || ft_strncmp("/", path, 1) == 0)
+	{
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
 // a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs

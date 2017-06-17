@@ -108,7 +108,7 @@ void				ft_putstr_col(t_stack *file);
 void				ft_putendl_col(t_stack *file);
 
 
-
+t_filetype			get_file_type(struct dirent *ent);
 size_t				ft_strlen(char const *s);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
 void				ft_exit(char *s);
