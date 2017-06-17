@@ -18,21 +18,6 @@ char 	**copy_args(int ac, char **av)
 }
 
 
-// checks if the dir_path actually belongs to a directory
-// if so it prints it
-// used in the case of feeding files or directories into the input
-void print_dir_name(char *dir_path)
-{
-	DIR		*dir;
-
-	if ((dir = opendir(dir_path)))
-	{
-		ft_putendl("");
-		ft_putstr(dir_path);
-		ft_putendl(":");
-	}
-}
-
 // this function will iterate through the arguments array again
 // and see which files are valid regular files which ought to be sent to the output.
 void		print_valid_fls(char **av_tmp, int ac) 
@@ -128,6 +113,29 @@ void		free_list(t_stack *list)
 	}
 }
 
+
+// checks if the dir_path actually belongs to a directory
+// if so it prints it
+// used in the case of feeding files or directories into the input
+void print_dir_name(char *dir_path, char **av_tmp)
+{
+	DIR		*dir;
+
+
+	// TODO
+	// finish this function and make sure the folder name is only printed 
+	// when it is not the sole input, excluding flags
+	if (av_tmp)
+	{
+		if ((dir = opendir(dir_path)))
+		{
+			ft_putendl("");
+			ft_putstr(dir_path);
+			ft_putendl(":");
+		}
+	}
+}
+
 int			main(int ac, char **av)
 {
 	char 		flags[NB_FLAGS];
@@ -144,7 +152,7 @@ int			main(int ac, char **av)
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
-		print_dir_name(dir_path); 
+		print_dir_name(dir_path, av_tmp);	
 		output_module(files, flags);
 		i++;
 	}
