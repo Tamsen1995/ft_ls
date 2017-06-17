@@ -49,6 +49,10 @@ void                extract_permissions_mode(struct stat buf, t_stack *file)
     string[0] = *((S_ISDIR(buf.st_mode)) ? "d" : "-");
     if (file->type == SYMLINK)
         string[0] = 'l';
+	else if (file->type == FIFO)
+		string[0] = 'p';
+	else if (file->type == SOCK_LINK)
+		string[0] = 's';
     string[1] = *((buf.st_mode & S_IRUSR) ? "r" : "-");
     string[2] = *((buf.st_mode & S_IWUSR) ? "w" : "-");
     string[3] = *((buf.st_mode & S_IXUSR) ? "x" : "-");

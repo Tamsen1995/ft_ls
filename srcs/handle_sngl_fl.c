@@ -33,7 +33,11 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	fls = NULL;
 	// check to make sure this file path is valid and existent
 	if (lstat(fl_path, &buf) < 0)
+	{
+		ft_putstr("----> ");
+		ft_putendl(fl_path);
 		error_msg("This is not an actual file! (handle_single_fl)");
+	}
 	// somehow make it so once fls is returned it points to a printable list element
 		// containing the file
 	

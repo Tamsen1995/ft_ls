@@ -50,6 +50,20 @@ void		print_valid_fls(char **av_tmp, int ac)
 	}
 }
 
+
+// This function takes in a path and checks to see if
+// the path belongs to a valid folder into which one can enter
+t_bool		is_valid_folder(char *path)
+{
+	struct stat buf; 
+
+	if (lstat(ft_strjoin("./", path), &buf) == 0 || ft_strncmp("/", path, 1) == 0)
+	{
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 // a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs
 char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 {
@@ -71,7 +85,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 			ft_putstr("No such file or directory:\t");
 			ft_putendl(av_tmp[i]);
 		}
-		else if (lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
+		else if (is_valid_folder(av_tmp[i]))
 		{
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
@@ -132,7 +146,6 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path); 
 		output_module(files, flags);
-	//	free_list(files);
 		i++;
 	}
 	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
@@ -145,9 +158,7 @@ int			main(int ac, char **av)
 }
 
 // TODO
-// make sure only the files info is printed with the respective flags in case a file is put as an input 
-	// There seems to be an error in the (handle_single_fl)
-	// I suspect it's within the loop in (extr_sought_fl)
-
+// Implement the fifo and socket_files, to be shown in the permissions
+// right now the problem is that if /var/run is inputted the program doesn't recognize it as a directory to enter into
 
 // make sure not to print the folder name in the case of the being a single input (with flags)

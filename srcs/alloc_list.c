@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   alloc_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/17 20:58:30 by tbui              #+#    #+#             */
+/*   Updated: 2017/06/17 20:58:37 by tbui             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_ls.h"
 
 
@@ -37,6 +49,18 @@ t_bool		not_curr_and_prev(t_stack *entry)
 	return (FALSE);
 }
 
+
+// This function takes in a dir_path and checks too see if it starts with "/"
+// If this is the case it will not concatenate the "./" 
+// onto the beginning of the path, as a folder which starts with "/"
+// Is not a folder in the current directory
+char			*make_dir_path(char *dir_path)
+{
+	if (ft_strncmp("/", dir_path, 1) != 0)
+		dir_path = ft_strjoin("./", dir_path);
+	return (dir_path);
+}
+
 // This function recursively allocates the entirety of the directory as well as its subdirectories
 t_stack			*alloc_list(char *dir_path, char *flags)
 {
@@ -48,7 +72,7 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 
 	// here I deal with the single file input case
 	if (!(test = opendir(dir_path)))
-		return (handle_single_fl(ft_strjoin("./", dir_path), flags));
+		return (handle_single_fl(make_dir_path(dir_path), flags));
 	if (!(fls = register_fls_in_dir(dir_path, flags))) // zapping the entire entry list into a stack chain
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
