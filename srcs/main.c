@@ -158,7 +158,4 @@ int			main(int ac, char **av)
 }
 
 // TODO
-// Implement the fifo and socket_files, to be shown in the permissions
-// Implement the colored output for said sockets/fifos
-
 // make sure not to print the folder name in the case of the being a single input (with flags)
