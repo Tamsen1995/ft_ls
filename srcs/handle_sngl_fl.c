@@ -3,6 +3,7 @@
 
 // all this function does is iterate through the list and then
 // returns the file sought after
+// which should be the single file input
 t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
 {
 	t_stack		*tmp;
@@ -10,15 +11,15 @@ t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
 	tmp = fls;
 	// while the filepath does not match the tmp->path
 
-	while (tmp && ft_strcmp(tmp->path, fl_path) != 0)
+	while (tmp->next && ft_strcmp(tmp->path, fl_path) != 0)
 	{
-		ft_putendl(tmp->path);
+
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			extr_sought_fl(tmp->subdir, fl_path);
 		tmp = tmp->next;
 	}
 	// freeing everything after the sought after element
-	// tmp->next = NULL;
+	tmp->next = NULL;
 	return (tmp);
 }
 
@@ -30,9 +31,6 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	t_stack *fls;
 
 	fls = NULL;
-
-
-
 	// check to make sure this file path is valid and existent
 	if (lstat(fl_path, &buf) < 0)
 		error_msg("This is not an actual file! (handle_single_fl)");

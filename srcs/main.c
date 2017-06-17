@@ -132,7 +132,7 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path); 
 		output_module(files, flags);
-		free_list(files);
+	//	free_list(files);
 		i++;
 	}
 	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
