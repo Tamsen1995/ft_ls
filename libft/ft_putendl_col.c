@@ -9,6 +9,8 @@ void			ft_putendl_col(t_stack *file)
         color = CYAN;
     else if (file->type == SYMLINK)
         color = MAGENTA;
+	else if (file->type == SOCK_LINK)
+		color = GREEN;
 	ft_putstr(color);
     ft_putstr(file->filename);
     ft_putstr(STOP);
