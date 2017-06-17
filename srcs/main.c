@@ -122,9 +122,21 @@ int			main(int ac, char **av)
 	char 		*dir_path;
 	char		 **av_tmp;
 
+
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
+	
+
+	///////// TESTING
+	while (av_tmp[i])
+	{
+		ft_putendl(av_tmp[i]);
+		i++;
+	}
+	///////// TESTING
+
+	
 	i = 0;
 	while (i < ac && av_tmp[i])
 	{
@@ -132,7 +144,6 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path); 
 		output_module(files, flags);
-	//	free_list(files);
 		i++;
 	}
 	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
@@ -145,9 +156,7 @@ int			main(int ac, char **av)
 }
 
 // TODO
-// make sure only the files info is printed with the respective flags in case a file is put as an input 
-	// There seems to be an error in the (handle_single_fl)
-	// I suspect it's within the loop in (extr_sought_fl)
-
+// Implement the fifo and socket_files, to be shown in the permissions
+// right now the problem is that if /var/run is inputted the program doesn't recognize it as a directory to enter into
 
 // make sure not to print the folder name in the case of the being a single input (with flags)
