@@ -144,7 +144,7 @@ void		output_module(t_stack *files, char *flags)
 		out_entire_stack(files, flags); // TESTING
 	else
 	{
-		if (flags[f_list])
+		if (flags[f_list] && files->type == DIRECTORY)
 			print_total_blocks(files, flags);
 		print_dir(files, flags);
 	}
