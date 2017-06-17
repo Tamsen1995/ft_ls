@@ -17,11 +17,20 @@ char 	**copy_args(int ac, char **av)
 	return (av_tmp);
 }
 
+
+// checks if the dir_path actually belongs to a directory
+// if so it prints it
+// used in the case of feeding files or directories into the input
 void print_dir_name(char *dir_path)
 {
+	DIR		*dir;
+
+	if ((dir = opendir(dir_path)))
+	{
 		ft_putendl("");
 		ft_putstr(dir_path);
 		ft_putendl(":");
+	}
 }
 
 // this function will iterate through the arguments array again
@@ -56,19 +65,21 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		error_msg("Directory could not be opened ! (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
+		// this checks if the current argument is an invalid or nonexistent directory name
 		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) < 0)
 		{
 			ft_putstr("No such file or directory:\t");
 			ft_putendl(av_tmp[i]);
 		}
-		else if ((dir = opendir(av_tmp[i])))
+		else if (lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
 		{
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
 		}
 		i++;
 	}
-	print_valid_fls(av_tmp, ac);
+	// this prints every file which isn't a directory
+	// print_valid_fls(av_tmp, ac); 
 	dir_arr[k] = NULL;
 	return (dir_arr);
 }
@@ -121,6 +132,7 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path); 
 		output_module(files, flags);
+	//	free_list(files);
 		i++;
 	}
 	if (dir_path == NULL) // if it's still null at this point then the programm will just assume that no directories have been found
@@ -132,4 +144,10 @@ int			main(int ac, char **av)
 	return (0);
 }
 
+// TODO
+// make sure only the files info is printed with the respective flags in case a file is put as an input 
+	// There seems to be an error in the (handle_single_fl)
+	// I suspect it's within the loop in (extr_sought_fl)
 
+
+// make sure not to print the folder name in the case of the being a single input (with flags)

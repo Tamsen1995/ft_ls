@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] Nothing would  be outputted in the case of more than one input. including flags. Fixed it though  (main)"
-git push origin showing_of_files_and_no_name_when_one_dir_as_input
+git commit -m "[UPD] I fixed my weird segfault, turns out my (free_list) function is faulty. I'm gonna have to make som re-adjustments to it later. I now have to make sure the total_size of blocks isn't shown when a single file is an input"
+git push origin fix_dir_only_lmitation_in_alloc
