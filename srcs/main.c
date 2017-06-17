@@ -50,6 +50,16 @@ void		print_valid_fls(char **av_tmp, int ac)
 	}
 }
 
+
+// This function takes in a path and checks to see if
+// the path belongs to a valid folder into which one can enter
+t_bool		is_valid_folder(char *path)
+{
+
+	lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0 || (ft_strncmp("/", av_tmp[i], 1) == 0  && )
+
+}
+
 // a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs
 char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 {
@@ -71,7 +81,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 			ft_putstr("No such file or directory:\t");
 			ft_putendl(av_tmp[i]);
 		}
-		else if (lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
+		else if (is_valid_folder(av_tmp[i]))
 		{
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
@@ -122,21 +132,9 @@ int			main(int ac, char **av)
 	char 		*dir_path;
 	char		 **av_tmp;
 
-
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
-	
-
-	///////// TESTING
-	while (av_tmp[i])
-	{
-		ft_putendl(av_tmp[i]);
-		i++;
-	}
-	///////// TESTING
-
-	
 	i = 0;
 	while (i < ac && av_tmp[i])
 	{
