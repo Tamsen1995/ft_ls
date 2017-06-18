@@ -16,7 +16,7 @@ typedef enum e_flgs
 t_bool		is_hidden_file(t_stack *file)
 {
 	if (!file || !file->filename || !file->filename[0])
-		error_msg("Error in (is_hidden_file)");
+		error_msg("");
 	if (file->filename[0] == '.')
 		return (TRUE);
 	return (FALSE);
