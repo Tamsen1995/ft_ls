@@ -152,7 +152,8 @@ int			main(int ac, char **av)
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
-		print_dir_name(dir_path, av_tmp);
+
+			print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
 		i++;
 	}
@@ -166,4 +167,4 @@ int			main(int ac, char **av)
 }
 
 // TODO
-// make sure not to print the folder name in the case of the being a single input (with flags)
+// make sure not to print the folder name in the case of it being being the sole input (with flags)
