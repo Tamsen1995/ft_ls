@@ -152,7 +152,7 @@ int			main(int ac, char **av)
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
-		print_dir_name(dir_path, av_tmp);	
+		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
 		i++;
 	}
