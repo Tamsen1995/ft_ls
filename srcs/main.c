@@ -120,14 +120,14 @@ void		free_list(t_stack *list)
 void print_dir_name(char *dir_path, char **av_tmp)
 {
 	DIR		*dir;
+	int		i;
 
-
-	// TODO
-	// finish this function and make sure the folder name is only printed 
-	// when it is not the sole input, excluding flags
+	i = 0;
 	if (av_tmp)
 	{
-		if ((dir = opendir(dir_path)))
+		while (av_tmp[i])
+			i++;
+		if ((dir = opendir(dir_path)) && i > 1)
 		{
 			ft_putendl("");
 			ft_putstr(dir_path);
@@ -152,7 +152,7 @@ int			main(int ac, char **av)
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
-		print_dir_name(dir_path, av_tmp);	
+		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
 		i++;
 	}
@@ -166,4 +166,4 @@ int			main(int ac, char **av)
 }
 
 // TODO
-// make sure not to print the folder name in the case of the being a single input (with flags)
+// make sure not to print the folder name in the case of it being being the sole input (with flags)
