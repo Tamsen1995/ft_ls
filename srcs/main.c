@@ -61,7 +61,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	dir = NULL;
 	k = 0;
 	if (!(dir_arr = (char **)malloc(sizeof(char *) * ac)))
-		error_msg("Directory could not be opened ! (check_args_for_dir)");
+		error_msg("ERROR: (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
 		// this checks if the current argument is an invalid or nonexistent directory name
@@ -77,6 +77,8 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		}
 		i++;
 	}
+	if (k <= 0)
+		exit(-1);
 	// this prints every file which isn't a directory
 	// print_valid_fls(av_tmp, ac); 
 	dir_arr[k] = NULL;
@@ -156,7 +158,9 @@ int			main(int ac, char **av)
 		output_module(files, flags);
 		i++;
 	}
-	if (dir_path == NULL && ac < 2) // if it's still null at this point then the programm will just assume that no directories have been found
+	// if it's still null at this point then
+	// the programm will just assume that no directories have been found
+	if (dir_path == NULL)// && ac < 2)
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
