@@ -11,6 +11,12 @@
 # include				<sys/types.h>
 # include				<errno.h>
 
+
+char	        	**check_args_for_dirs(char **av_tmp, int i, int ac, char *flags);
+t_bool	        	is_valid_folder(char *path);
+char 	            **copy_args(int ac, char **av);
+
+
 t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
 void				free_list(t_stack *list);
