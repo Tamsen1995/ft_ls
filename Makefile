@@ -10,6 +10,7 @@ SRC = srcs/main.c \
 	srcs/output_module.c \
 	srcs/error_message.c \
 	srcs/handle_sngl_fl.c \
+	srcs/parse_args.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 
