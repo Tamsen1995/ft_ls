@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] re-fixed the nosuch file error"
-git push origin fix/nosuchfile
+git commit -m "[FIX] I need to go ahead and fix the sorting of the arguments"
+git push origin fix/sort_arguments
