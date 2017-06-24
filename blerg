@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] I need to go ahead and fix the sorting of the arguments"
+git commit -m "[FIX] I need to fix the total block size"
 git push origin fix/sort_arguments
