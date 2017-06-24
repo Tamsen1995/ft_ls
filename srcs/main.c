@@ -81,7 +81,7 @@ int			main(int ac, char **av)
 
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
-	av_tmp = check_args_for_dirs(av_tmp, i, ac, flags);
+	av_tmp = check_args_for_dirs(av_tmp, i, ac);
 	i = 0;
 	while (i < ac && av_tmp[i])
 	{
@@ -103,4 +103,5 @@ int			main(int ac, char **av)
 }
 
 // TODO
-// make sure not to print the folder name in the case of it being being the sole input (with flags)
+// re-fix the no such file or directory output in case 
+// the invalid 
