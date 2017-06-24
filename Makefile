@@ -11,6 +11,7 @@ SRC = srcs/main.c \
 	srcs/error_message.c \
 	srcs/handle_sngl_fl.c \
 	srcs/parse_args.c \
+	srcs/sort_args.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 

@@ -12,6 +12,7 @@
 # include				<errno.h>
 
 
+char 		        **sort_args(char **av_tmp, int i, int ac);
 char	        	**check_args_for_dirs(char **av_tmp, int i, int ac);
 t_bool	        	is_valid_folder(char *path);
 char 	            **copy_args(int ac, char **av);
