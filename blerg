@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] Trying to figure out the sorting of the arguments in the main"
+git commit -m "[UPD] Fixed the sorting of the arguments by ascii, but I still need to fix it by file type. Files come before directories"
 git push origin fix/sort_arguments
