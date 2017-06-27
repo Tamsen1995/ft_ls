@@ -12,6 +12,8 @@
 # include				<errno.h>
 
 
+
+char		    	*make_dir_path(char *dir_path);
 char 		        **sort_args(char **av_tmp);
 char	        	**check_args_for_dirs(char **av_tmp, int i, int ac);
 t_bool	        	is_valid_folder(char *path);

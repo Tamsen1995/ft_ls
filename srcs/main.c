@@ -82,8 +82,7 @@ int			main(int ac, char **av)
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
-	av_tmp = sort_args(av_tmp); // TESTING
-
+	av_tmp = sort_args(av_tmp); // WIP 
 	i = 0;
 	while (i < ac && av_tmp[i])
 	{
@@ -106,4 +105,4 @@ int			main(int ac, char **av)
 
 // TODO
 // Fix the sorting of the arguments
-// The arguments aren't being properly sorted as of now.
+// Implement the sorting by files and folders

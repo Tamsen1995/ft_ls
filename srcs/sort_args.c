@@ -1,5 +1,31 @@
 #include "../includes/ft_ls.h"
 
+
+// ONLY FOR TESTING PURPOSES
+void		print_twod_arr(char **arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i])
+	{
+		ft_putendl(arr[i]);
+		i++;
+	}
+	ft_putendl("");
+}/////////////////////////
+
+t_filetype		get_type_from_path(char *path)
+{
+	struct stat buf;
+	mode_t type;
+
+	path = make_dir_path(path);
+	lstat(path, &buf);
+
+	return (DIRECTORY);
+}
+
 // this function takes in a 2d array to check if it is already
 // fully sorted
 // returns true if so
@@ -7,11 +33,17 @@ t_bool			sorted(char **array)
 {
 	int i;
 	int k;
-	
+	t_filetype type_i;
+	t_filetype type_k;
+
+	// if the second array isn't a directory but a regular file
+	// then it needs to be sorted
 	i = 0;
 	k = 1;
 	while (array[k] && array[i])
 	{
+		type_i = get_type_from_path(array[i]);
+		type_k = get_type_from_path(array[k]);
 		if (ft_strcmp(array[i] , array[k]) > 0)
 			return (FALSE);
 		i++;
@@ -48,20 +80,6 @@ char		**swap_arr(char **av_tmp, int arg_one, int arg_two)
 
 
 
-void		print_twod_arr(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_putendl(arr[i]);
-		i++;
-	}
-	ft_putendl("");
-}
-
-
 // TODO finish this function
 // modify the sorted() and cmp_args() functions
 // so that they will also consider normal files
@@ -73,9 +91,6 @@ char 		**sort_args(char **av_tmp)
 
 	i = 0;
 	k = 1;
-
-	print_twod_arr(av_tmp); // TESTING
-
 	while (sorted(av_tmp) == FALSE)
 	{
 		i = 0;
@@ -88,9 +103,5 @@ char 		**sort_args(char **av_tmp)
 			k++;
 		}
 	}
-
-	print_twod_arr(av_tmp); // TESTING
-
-
 	return (av_tmp);
 }
