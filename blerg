@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] Fully implemented the sorting. Now testing before merge"
-git push origin fix/sort_arguments
+git commit -m "[ADD] adding a dev branch"
+git push origin develop
