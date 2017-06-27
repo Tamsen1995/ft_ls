@@ -15,6 +15,9 @@ void		print_twod_arr(char **arr)
 	ft_putendl("");
 }/////////////////////////
 
+
+// This function takes in the path of a file
+// and determines whether it's a directory or not
 t_filetype		get_type_from_path(char *path)
 {
 	struct stat buf;
@@ -22,8 +25,10 @@ t_filetype		get_type_from_path(char *path)
 
 	path = make_dir_path(path);
 	lstat(path, &buf);
-
-	return (DIRECTORY);
+	type = buf.st_mode;
+	if (S_ISDIR(type))
+		return (DIRECTORY);
+	return (INVALID);
 }
 
 // this function takes in a 2d array to check if it is already
@@ -44,7 +49,11 @@ t_bool			sorted(char **array)
 	{
 		type_i = get_type_from_path(array[i]);
 		type_k = get_type_from_path(array[k]);
-		if (ft_strcmp(array[i] , array[k]) > 0)
+		if (ft_strcmp(array[i] , array[k]) > 0 &&\
+			((type_i == INVALID && type_k == INVALID) ||\
+			(type_i == DIRECTORY && type_k == DIRECTORY)))
+			return (FALSE);
+		if (type_k == INVALID && type_i == DIRECTORY)
 			return (FALSE);
 		i++;
 		k++;
@@ -58,7 +67,14 @@ t_bool			sorted(char **array)
 // files are also sorted by ascii but always come before the dir paths
 t_bool		cmp_args(char *arg_one, char *arg_two)
 {
+	t_filetype type_one;
+	t_filetype type_two;
+
+	type_one = get_type_from_path(arg_one);
+	type_two = get_type_from_path(arg_two);
 	if (ft_strcmp(arg_one, arg_two) > 0)
+		return (TRUE);
+	if (type_two == INVALID && type_one == DIRECTORY)
 		return (TRUE);
 	return (FALSE);
 }
@@ -76,9 +92,6 @@ char		**swap_arr(char **av_tmp, int arg_one, int arg_two)
 	av_tmp[arg_two] = ft_strdup(tmp);
 	return (av_tmp);
 }
-
-
-
 
 // TODO finish this function
 // modify the sorted() and cmp_args() functions

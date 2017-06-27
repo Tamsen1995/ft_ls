@@ -1,6 +1,4 @@
 #include "../includes/ft_ls.h"
-
-
 // this function will iterate through the arguments array again
 // and see which files are valid regular files which ought to be sent to the output.
 void		print_valid_fls(char **av_tmp, int ac) 
