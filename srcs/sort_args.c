@@ -72,7 +72,9 @@ t_bool		cmp_args(char *arg_one, char *arg_two)
 
 	type_one = get_type_from_path(arg_one);
 	type_two = get_type_from_path(arg_two);
-	if (ft_strcmp(arg_one, arg_two) > 0)
+	if (ft_strcmp(arg_one , arg_two) > 0 &&\
+		((type_one == INVALID && type_two == INVALID) ||\
+		(type_one == DIRECTORY && type_two == DIRECTORY)))
 		return (TRUE);
 	if (type_two == INVALID && type_one == DIRECTORY)
 		return (TRUE);
