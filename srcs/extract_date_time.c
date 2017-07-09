@@ -14,12 +14,29 @@ char *get_hour(char **split_time)
         error_msg("Was not able to recuperate a proper hour array (get_hour)");
     hour = ft_strjoin(hour_array[0], ":");
     hour = ft_strjoin(hour, hour_array[1]);
+    free(hour_array);
     return (hour);
 }
 
+void        free_twod_arr(char **arr)
+{
+    int i;
+    char **tmp;
+
+    tmp = NULL;
+    i = 0;
+    while ((*arr))
+    {
+        free((*arr));
+        arr++;
+    }
+ 
+
+
+}
 
 // this function gets a clean string of date and time into the structure
-char *isolate_date_time(char *temps)
+char        *isolate_date_time(char *temps)
 {
     char    *date;
     char    *hour;
@@ -36,6 +53,8 @@ char *isolate_date_time(char *temps)
     date = ft_strjoin(date, split_time[2]);
     date = ft_strjoin(date, " ");
     date = ft_strjoin(date, hour);
+    free(hour);
+    free_twod_arr(split_time);
     free(split_time);
     return (date);
 
