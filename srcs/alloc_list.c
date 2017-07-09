@@ -37,6 +37,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
 			ft_list_push_back(&fls, ent, name, flags); // TODO here is where I should implement the sorting of my stack
+	closedir(dir);
 	return (fls);
 }
 
@@ -69,10 +70,10 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	DIR				*test; // A test directory file to see if I can actually open the dir_path
 
 	tmp = NULL;
-
 	// here I deal with the single file input case
 	if (!(test = opendir(dir_path)))
 		return (handle_single_fl(make_dir_path(dir_path), flags));
+	closedir(test);
 	if (!(fls = register_fls_in_dir(dir_path, flags))) // zapping the entire entry list into a stack chain
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
@@ -86,5 +87,4 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 		tmp = tmp->next;
 	}
 	return (fls);
-	 // returnning null for now, just testing
 }

@@ -36,6 +36,7 @@ char *isolate_date_time(char *temps)
     date = ft_strjoin(date, split_time[2]);
     date = ft_strjoin(date, " ");
     date = ft_strjoin(date, hour);
+    free(split_time);
     return (date);
 
 }
