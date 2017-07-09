@@ -14,36 +14,44 @@ void		print_valid_fls(char **av_tmp, int ac)
 			ft_putendl(av_tmp[i]);
 		i++;
 	}
+	if (dir)
+		closedir(dir);
 }
 
 // frees all the attributes of the list structure
 void		free_list_attr(t_stack *list)
 {
-	ft_strdel(&list->path);
-	ft_strdel(&list->filename);
-	ft_strdel(&list->fields->links);
-	ft_strdel(&list->fields->size);
-	ft_strdel(&list->fields->date);
+	free(list->path);
+	free(list->filename);
+	free(list->fields->links);
+	free(list->fields->size);
+	free(list->fields->date);
 }
 
 // This function will go through the entire stack recursively BACKWARDS
 void		free_list(t_stack *list)
 {
-	// go to the end of the list
-	// in order to go backwards again
+	t_stack *tmp;
+
+	tmp = NULL;
 	if (!list)
-		return ;
-	while (list->next) 
+		error_msg("Error in the freeing of the list");
+	tmp = list;
+	while (list && list->next)
+	{
+		tmp = list;
 		list = list->next;
-	// iterating through the whole thing backwards
-	while (list)
-	{		
-		if (not_curr_and_prev(list) == TRUE && list->type == DIRECTORY)
-			free_list(list->subdir);
-		free_list_attr(list);
-		free(list);
-		list = list->prev;
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
+			free_list(tmp->subdir);
+		free(tmp->path);
+		free(tmp->filename);
+		free(tmp->fields->links);
+		free(tmp->fields->size);
+		free(tmp->fields->date);
+		free(tmp->fields);
+		free(tmp);
 	}
+	free(list);
 }
 
 
@@ -96,8 +104,8 @@ int			main(int ac, char **av)
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
+		free_list(files); //TESTING
 	}
-	free_list(files);
 	return (0);
 }
 

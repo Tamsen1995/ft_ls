@@ -83,7 +83,7 @@ t_stack		*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	alist->path = make_path_dir(path, alist->filename); // concatenating the path into the path pointer in struct	
 	alist->type = INVALID;
 	alist->type = get_file_type(ent);
-	if (alist->type == SYMLINK)	
+	if (alist->type == SYMLINK)
 		system_link_module(alist, flags);
 	if (lstat(alist->path, &(alist->stats)) < 0)
 		error_msg("Was not able to retrieve stat information of file ! (ft_lstnew)");

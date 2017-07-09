@@ -27,9 +27,6 @@ t_bool		is_valid_folder(char *path)
 		return (TRUE);
 	return (FALSE);
 }
-
-
-
 // This functions simply returns true 
 // if all flags are absent
 t_bool      flags_absent(char *flags)
@@ -71,6 +68,7 @@ t_bool		inv_fls_present(char **av_tmp, int i, int ac)
 	}
 	return (flag);
 }
+
 
 // a function which cuts out all the nondirectories in the args and also throw an error message for the invalid inputs
 char		**check_args_for_dirs(char **av_tmp, int i, int ac)

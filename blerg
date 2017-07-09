@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] adding the condition in sorted into the cmp args as well in the sort args"
-git push origin minorfix/sortargs
+git commit -m "[UPD] Properly freeing some memory in order to get rid of leaks. down to 49k bytes leaking now."
+git push origin feature/star
