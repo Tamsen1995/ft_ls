@@ -3,9 +3,7 @@
 void        free_twod_arr(char **arr)
 {
     int i;
-    char **tmp;
 
-    tmp = NULL;
     i = 0;
     while ((*arr))
     {
@@ -42,7 +40,6 @@ char        *isolate_date_time(char *temps)
     char    *date;
     char    *hour;
     char    **split_time;
-
 
     date = NULL;
     hour = NULL;

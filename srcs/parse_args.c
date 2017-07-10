@@ -3,15 +3,19 @@
 char 	**copy_args(int ac, char **av)
 {
 	char **av_tmp;
+	char **tmp;
 	int i;
 
 	i = 0;
 	av_tmp = NULL;
+	tmp = NULL;
 	if (!(av_tmp = (char **)malloc(sizeof(char *) * ac)))
 		error_msg("Error in the copying of arguments ! (copy_args)");
-	while (i != ac)
+	tmp = av_tmp;
+	while (i < ac)
 	{
-		av_tmp[i] = ft_strdup(av[i]);
+		(*tmp) = ft_strdup(av[i]);
+		tmp++;
 		i++;
 	}
 	return (av_tmp);

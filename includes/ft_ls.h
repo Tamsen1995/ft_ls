@@ -18,8 +18,7 @@ char 		        **sort_args(char **av_tmp);
 char	        	**check_args_for_dirs(char **av_tmp, int i, int ac);
 t_bool	        	is_valid_folder(char *path);
 char 	            **copy_args(int ac, char **av);
-
-
+void                free_twod_arr(char **arr);
 t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
 void				free_list(t_stack *list);
