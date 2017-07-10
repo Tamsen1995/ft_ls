@@ -69,6 +69,7 @@ void print_dir_name(char *dir_path, char **av_tmp)
 			ft_putstr(dir_path);
 			ft_putendl(":");
 		}
+		closedir(dir);
 	}
 }
 
@@ -93,6 +94,7 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
+		free_list(files);
 		i++;
 	}
 	// if it's still null at this point then

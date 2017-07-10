@@ -5,10 +5,10 @@ void        free_twod_arr(char **arr)
     int i;
 
     i = 0;
-    while ((*arr))
+    while (arr[i])
     {
-        free((*arr));
-        arr++;
+        free(arr[i]);
+        i++;
     }
 }
 

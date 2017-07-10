@@ -15,6 +15,7 @@ char 	**copy_args(int ac, char **av)
 	while (i < ac)
 	{
 		(*tmp) = ft_strdup(av[i]);
+		//ft_putendl((*tmp)); // TESTING
 		tmp++;
 		i++;
 	}
@@ -99,8 +100,6 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	i = i - j;
 	if (inv_fls_present(av_tmp, i, ac) && k <= 0) //&& flags_absent(flags)) // TESING // TODO solve this
 		exit(-1);
-	// this prints every file which isn't a directory
-	// print_valid_fls(av_tmp, ac); 
 	dir_arr[k] = NULL;
 	free(av_tmp);
 	return (dir_arr);

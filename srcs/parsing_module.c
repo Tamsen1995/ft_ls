@@ -55,6 +55,7 @@ int		parse_flags(int ac, char **av, char *flags)
 			return (i + 1);
 		while (av[i][++j])
 			*(flags + flag_index(av[i][j])) = 1;
+		free(av[i]);
 		i++;
 	}
 	//free_args_copy(ac, av_tmp);
