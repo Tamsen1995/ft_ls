@@ -100,7 +100,6 @@ int			main(int ac, char **av)
 		files = alloc_list(".", flags);
 		output_module(files, flags);
 		free_list(files); //TESTING
-		free(files);
 	}
 	return (0);
 }
