@@ -69,6 +69,7 @@ t_bool		inv_fls_present(char **av_tmp, int i, int ac)
 			ft_putendl(av_tmp[i]);
 			flag = TRUE;
 		}
+		closedir(dir);
 		i++;
 	}
 	return (flag);
