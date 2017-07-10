@@ -53,7 +53,7 @@ void system_link_module(t_stack *file, char *flags)
 	char buf[1024];
 	ssize_t link_size; 
 	ssize_t attr_size;
-	void *value[1024];
+	char *tmp;
 
 	link_size = 0;
 	attr_size = 0;
@@ -62,8 +62,10 @@ void system_link_module(t_stack *file, char *flags)
 
 	if (flags[f_list])
 	{
-		file->filename = ft_strjoin(file->filename, " -> ");
-		file->filename = ft_strjoin(file->filename, buf);
+		tmp = ft_strjoin(file->filename, " -> ");
+		free(file->filename);
+		file->filename = ft_strjoin(tmp, buf);
+		free(tmp);
 	}
 	//	attr_size = lgetxattr(file->path, buf, value, link_size);
 }

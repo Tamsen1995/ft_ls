@@ -102,5 +102,6 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	// this prints every file which isn't a directory
 	// print_valid_fls(av_tmp, ac); 
 	dir_arr[k] = NULL;
+	free(av_tmp);
 	return (dir_arr);
 }

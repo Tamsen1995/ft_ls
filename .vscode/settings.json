@@ -2,6 +2,8 @@
     "files.associations": {
         "libft.h": "c",
         "stdlib.h": "c",
-        "_null.h": "c"
+        "_null.h": "c",
+        "ft_ls.h": "c",
+        "unistd.h": "c"
     }
 }

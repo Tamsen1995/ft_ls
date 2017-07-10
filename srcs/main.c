@@ -81,6 +81,7 @@ int			main(int ac, char **av)
 	char		 **av_tmp;
 
 	av++;
+	ac--;
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
@@ -100,8 +101,9 @@ int			main(int ac, char **av)
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
-		free_list(files); //TESTING
+		free_list(files);
 	}
+	free(av_tmp);
 	return (0);
 }
 

@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] The logic of using strjoin in order to continuously concatenate strings was flawed. So I changed it to strcat instead."
+git commit -m "[UPD] fixed the leak in -l with the sys_link module"
 git push origin fix/memory
