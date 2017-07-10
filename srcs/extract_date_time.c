@@ -26,8 +26,11 @@ char *get_hour(char **split_time)
         error_msg("Could not split the time array in (get_hour)");
     if (!hour_array[0] || !hour_array[1])
         error_msg("Was not able to recuperate a proper hour array (get_hour)");
-    hour = ft_strjoin(hour_array[0], ":");
-    hour = ft_strjoin(hour, hour_array[1]);
+    if (!(hour = (char *)malloc(sizeof(char) * 100)))
+        error_msg("(get_hour) could not malloc");
+    hour = ft_strcat(hour, hour_array[0]);
+    hour = ft_strcat(hour, ":");
+    hour = ft_strcat(hour, hour_array[1]);
     free_twod_arr(hour_array);
     free(hour_array);
     return (hour);
