@@ -47,10 +47,13 @@ char        *isolate_date_time(char *temps)
     hour = get_hour(split_time);
     if (!split_time[1] || !split_time[2] || !hour)
         error_msg("The time could not be properly split (isolate_date_time)");
-    date = ft_strjoin(split_time[1], " ");
-    date = ft_strjoin(date, split_time[2]);
-    date = ft_strjoin(date, " ");
-    date = ft_strjoin(date, hour);
+    if (!(date = (char *)malloc(sizeof(char) * 100)))
+        error_msg("(isolate_date_time), could not malloc");
+    date = ft_strcat(date, split_time[1]);
+    date = ft_strcat(date, " ");
+    date = ft_strcat(date, split_time[2]);
+    date = ft_strcat(date, " ");
+    date = ft_strcat(date, hour);
     free(hour);
     free_twod_arr(split_time);
     free(split_time);
