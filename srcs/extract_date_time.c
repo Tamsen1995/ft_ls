@@ -1,5 +1,19 @@
 #include "../includes/ft_ls.h"
 
+void        free_twod_arr(char **arr)
+{
+    int i;
+    char **tmp;
+
+    tmp = NULL;
+    i = 0;
+    while ((*arr))
+    {
+        free((*arr));
+        arr++;
+    }
+}
+
 // this function gets rid of the seconds in the time and returns the reduced time
 char *get_hour(char **split_time)
 {
@@ -14,25 +28,9 @@ char *get_hour(char **split_time)
         error_msg("Was not able to recuperate a proper hour array (get_hour)");
     hour = ft_strjoin(hour_array[0], ":");
     hour = ft_strjoin(hour, hour_array[1]);
+    free_twod_arr(hour_array);
     free(hour_array);
     return (hour);
-}
-
-void        free_twod_arr(char **arr)
-{
-    int i;
-    char **tmp;
-
-    tmp = NULL;
-    i = 0;
-    while ((*arr))
-    {
-        free((*arr));
-        arr++;
-    }
- 
-
-
 }
 
 // this function gets a clean string of date and time into the structure

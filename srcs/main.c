@@ -3,29 +3,23 @@
 // and see which files are valid regular files which ought to be sent to the output.
 void		print_valid_fls(char **av_tmp, int ac) 
 {
-	int i;
+	int 		i;
 	DIR			*dir;
 	struct stat buf;
+	char 		*path;
 
 	i = 1;
+	path = NULL;
 	while (i < ac && av_tmp[i])
 	{
-		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
+		path = ft_strjoin("./", av_tmp[i]);
+		if (!(dir = opendir(av_tmp[i])) && lstat(path, &buf) == 0)
 			ft_putendl(av_tmp[i]);
 		i++;
+		free(path);
 	}
 	if (dir)
 		closedir(dir);
-}
-
-// frees all the attributes of the list structure
-void		free_list_attr(t_stack *list)
-{
-	free(list->path);
-	free(list->filename);
-	free(list->fields->links);
-	free(list->fields->size);
-	free(list->fields->date);
 }
 
 // This function will go through the entire stack recursively BACKWARDS
@@ -37,7 +31,7 @@ void		free_list(t_stack *list)
 	if (!list)
 		error_msg("Error in the freeing of the list");
 	tmp = list;
-	while (list && list->next)
+	while (list)
 	{
 		tmp = list;
 		list = list->next;
@@ -52,6 +46,7 @@ void		free_list(t_stack *list)
 		free(tmp);
 	}
 	free(list);
+	return ;
 }
 
 
@@ -100,11 +95,12 @@ int			main(int ac, char **av)
 	}
 	// if it's still null at this point then
 	// the programm will just assume that no directories have been found
-	if (dir_path == NULL)// && ac < 2)
+	if (dir_path == NULL)
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
 		free_list(files); //TESTING
+		free(files);
 	}
 	return (0);
 }

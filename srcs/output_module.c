@@ -1,18 +1,5 @@
 #include "../includes/ft_ls.h"
 
-/*
-typedef enum e_flgs
-{
-	f_recur = 0,
-	f_hidden = 1,
-	f_list = 2,
-	f_rev = 3,
-	f_time = 4,
-	f_main = 5
-}			t_flags;
-*/
-
-
 t_bool		is_hidden_file(t_stack *file)
 {
 	if (!file || !file->filename || !file->filename[0])
@@ -38,11 +25,10 @@ void		print_list(t_stack *file)
 	ft_putstr("\t");
 }
 
-// This function prints 
+// This function outputs some flags
 void		print_flags(t_stack *file, char *flags)
 {
 	t_stack *tmp;
-
 
 	tmp  = NULL;
 	if (!file)

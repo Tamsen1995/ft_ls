@@ -45,6 +45,7 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// which is the file of the given file path (fl_path)
 	fls = alloc_list(".", flags);
 	fls = extr_sought_fl(fls, fl_path);
+	free(fl_path);
 	return (fls);
 
 }
