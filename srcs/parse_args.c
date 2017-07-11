@@ -93,8 +93,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	dir_arr = NULL;
 	k = 0;
 	j = 0;
-
-	if (!(dir_arr = (char **)malloc(sizeof(char *) * ac)))
+	if (!(dir_arr = (char **)malloc(sizeof(char *) * ac + 1)))
 		error_msg("ERROR: (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
@@ -111,5 +110,6 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		exit(-1);
 	dir_arr[k] = NULL;
 	free(av_tmp);
+//	ft_putendl(dir_arr[0]);
 	return (dir_arr);
 }

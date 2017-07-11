@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] There seems to be a weird problem with the memory in the printing of the sys links. I have fixed most leaks, but still have some to close for the user selected inputs."
+git commit -m "[FIX] Turns out just changing the ac can have some serious effects on how your arguments are handled. Always make sure to check out much memory is still allocated after changing variables which may be linked to memory allocation (such as ac)"
 git push origin fix/memory
