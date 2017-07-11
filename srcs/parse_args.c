@@ -102,6 +102,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
 		}
+		free(av_tmp[i]);
 		i++;
 		j++;
 	}
@@ -110,6 +111,5 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 		exit(-1);
 	dir_arr[k] = NULL;
 	free(av_tmp);
-//	ft_putendl(dir_arr[0]);
 	return (dir_arr);
 }

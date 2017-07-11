@@ -4,6 +4,7 @@
         "stdlib.h": "c",
         "_null.h": "c",
         "ft_ls.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "time.h": "c"
     }
 }

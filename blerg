@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] Freed the memory allocated for the path in the get tyoe from path function. I'm not sure about this because I suspect that maybe at some point a none dyncamically allocated path could be fed into the function as well, making for an unnecessary free and thus a crash."
+git commit -m "[FIX] freeing the arguments in the 2d arrays."
 git push origin fix/memory

@@ -90,9 +90,9 @@ char		**swap_arr(char **av_tmp, int arg_one, int arg_two)
 	char *tmp;
 
 	tmp = NULL;
-	tmp = ft_strdup(av_tmp[arg_one]);
-	av_tmp[arg_one] = ft_strdup(av_tmp[arg_two]);
-	av_tmp[arg_two] = ft_strdup(tmp);
+	tmp = av_tmp[arg_one];
+	av_tmp[arg_one] = av_tmp[arg_two];
+	av_tmp[arg_two] = tmp;
 	return (av_tmp);
 }
 
