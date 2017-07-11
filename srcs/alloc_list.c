@@ -68,8 +68,10 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	t_stack			*fls;
 	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
 	DIR				*test; // A test directory file to see if I can actually open the dir_path
+	char			*fl_path; // a file path for a single file
 
 	tmp = NULL;
+	fl_path = NULL;
 	// here I deal with the single file input case
 	if (!(test = opendir(dir_path)))
 		return (handle_single_fl(make_dir_path(dir_path), flags));
@@ -78,7 +80,7 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
 	while (tmp)
-	{		
+	{	
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp); // extracting all the info

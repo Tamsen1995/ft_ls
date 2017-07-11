@@ -1,40 +1,42 @@
 #include "../includes/ft_ls.h"
 
-
-// all this function does is iterate through the list and then
-// returns the file sought after
-// which should be the single file input
-t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
+// takes in the file path and directory path
+// then returns a single file entry corresponding to that
+// file by looping over every file in the root and all subdirs
+struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
 {
-	t_stack		*tmp;
+	DIR				*dir;
+	struct dirent	*ent;
+	char 			*ent_path; // the path of the entry
 
-	tmp = fls;
-	// while the filepath does not match the tmp->path
-	while (tmp->next && ft_strcmp(tmp->path, fl_path) != 0)
+
+	if (!(dir = opendir(dir_path)))
+		error_msg("Could not open directory (register_fls_in_dir)");
+	// this loop is going to look for the sought after ent
+	while ((ent = readdir(dir)))
 	{
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			extr_sought_fl(tmp->subdir, fl_path);
-		if (tmp->prev)
-			free_list_elem(tmp->prev);
-		tmp = tmp->next;
+		ent_path = ft_strjoin(dir_path, ent->d_name);
+		if (ft_strcmp(ent_path, fl_path) == 0)
+		{
+			free(ent_path);
+			return (ent);
+		}
+		if (ent->d_type == DT_DIR)
+		{
+			// here is where I invoke the recursion but idk how
+//			ent = ret_sing_ent(fl_path, ent_path);
+		}
+		free(ent_path);
 	}
-	// freeing everything after the sought after element
-
-	if (tmp->next)
-		free_list(tmp->next); // MORE LEAKS SOMEWHERE IN THIS FUNCTION
-	tmp->prev = NULL;
-	tmp->next = NULL;
-
-
-	return (tmp);
+	return (ent);
 }
-
 
 // this function handles the case of a single file path being put in as the main input
 t_stack			*handle_single_fl(char *fl_path, char *flags)
 {
 	struct stat buf;
-	t_stack *fls;
+	t_stack *fls;	
+	struct dirent	*ent;
 
 	fls = NULL;
 	// check to make sure this file path is valid and existent
@@ -47,10 +49,9 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// somehow make it so once fls is returned it points to a printable list element
 		// containing the file
 	
-	// allocating the whole list. Then return only the sought for
-	// which is the file of the given file path (fl_path)
-	fls = alloc_list(".", flags);
-	fls = extr_sought_fl(fls, fl_path);
+	ent = ret_sing_ent(fl_path, "./"); // WIP
+	ft_putendl(ent->d_name); //TESTING
+	fls = alloc_list("./", flags); // TESTING purposes (replace with a function which will return the sought after list elemnt)
 	free(fl_path);
 	return (fls);
 
