@@ -69,7 +69,8 @@ t_bool		inv_fls_present(char **av_tmp, int i, int ac)
 			ft_putendl(av_tmp[i]);
 			flag = TRUE;
 		}
-		closedir(dir);
+		if (dir)
+			closedir(dir);
 		i++;
 	}
 	return (flag);
@@ -86,6 +87,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	dir_arr = NULL;
 	k = 0;
 	j = 0;
+
 	if (!(dir_arr = (char **)malloc(sizeof(char *) * ac)))
 		error_msg("ERROR: (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
@@ -101,6 +103,7 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 	i = i - j;
 	if (inv_fls_present(av_tmp, i, ac) && k <= 0) //&& flags_absent(flags)) // TESING // TODO solve this
 		exit(-1);
+		
 	dir_arr[k] = NULL;
 	free(av_tmp);
 	return (dir_arr);
