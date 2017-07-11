@@ -26,6 +26,7 @@ t_filetype		get_type_from_path(char *path)
 	path = make_dir_path(path);
 	lstat(path, &buf);
 	type = buf.st_mode;
+	free(path);
 	if (S_ISDIR(type))
 		return (DIRECTORY);
 	return (INVALID);
