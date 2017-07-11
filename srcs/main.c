@@ -103,6 +103,7 @@ int			main(int ac, char **av)
 		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
 		free_list(files);
+		free(dir_path);
 		i++;
 	}
 	// if it's still null at this point then
