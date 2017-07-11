@@ -63,20 +63,24 @@ t_bool		inv_fls_present(char **av_tmp, int i, int ac)
 	t_bool		flag;
 	struct stat buf;
 	DIR			*dir;
+	char		*dir_path;
 
 	flag = FALSE;
 	dir = NULL;
 	while (i < ac && av_tmp[i])
 	{
 		// this checks if the current argument is an invalid or nonexistent directory name
-		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) < 0)
+		dir_path = ft_strjoin("./", av_tmp[i]);
+		if (!(dir = opendir(av_tmp[i])) && lstat(dir_path, &buf) < 0)
 		{
 			ft_putstr("No such file or directory:\t");
 			ft_putendl(av_tmp[i]);
 			flag = TRUE;
 		}
+		free(dir_path);
 		if (dir)
 			closedir(dir);
+		free(av_tmp[i]);
 		i++;
 	}
 	return (flag);
@@ -102,7 +106,6 @@ char		**check_args_for_dirs(char **av_tmp, int i, int ac)
 			dir_arr[k] = ft_strdup(av_tmp[i]);
 			k++;
 		}
-		free(av_tmp[i]);
 		i++;
 		j++;
 	}
