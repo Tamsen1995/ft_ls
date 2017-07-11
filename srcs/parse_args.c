@@ -26,10 +26,16 @@ char 	**copy_args(int ac, char **av)
 // the path belongs to a valid folder into which one can enter
 t_bool		is_valid_folder(char *path)
 {
-	struct stat buf; 
+	struct stat buf;
+	char *dir_path;
 
-	if (lstat(ft_strjoin("./", path), &buf) == 0 || ft_strncmp("/", path, 1) == 0)
+	dir_path = ft_strjoin("./", path);
+	if (lstat(dir_path, &buf) == 0 || ft_strncmp("/", path, 1) == 0)
+	{
+		free(dir_path);
 		return (TRUE);
+	}
+	free(dir_path);
 	return (FALSE);
 }
 // This functions simply returns true 
