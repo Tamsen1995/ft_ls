@@ -22,6 +22,19 @@ void		print_valid_fls(char **av_tmp, int ac)
 		closedir(dir);
 }
 
+void free_list_elem(t_stack *tmp)
+{
+	free(tmp->path);
+	free(tmp->filename);
+	free(tmp->fields->links);
+	free(tmp->fields->size);
+	free(tmp->fields->date);
+	free(tmp->fields);
+	free(tmp);
+}
+
+
+
 // This function will go through the entire stack recursively BACKWARDS
 void		free_list(t_stack *list)
 {
@@ -37,13 +50,7 @@ void		free_list(t_stack *list)
 		list = list->next;
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			free_list(tmp->subdir);
-		free(tmp->path);
-		free(tmp->filename);
-		free(tmp->fields->links);
-		free(tmp->fields->size);
-		free(tmp->fields->date);
-		free(tmp->fields);
-		free(tmp);
+		free_list_elem(tmp);
 	}
 	free(list);
 	return ;

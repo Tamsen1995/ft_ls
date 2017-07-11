@@ -10,16 +10,22 @@ t_stack			*extr_sought_fl(t_stack *fls, char *fl_path)
 
 	tmp = fls;
 	// while the filepath does not match the tmp->path
-
 	while (tmp->next && ft_strcmp(tmp->path, fl_path) != 0)
 	{
-
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			extr_sought_fl(tmp->subdir, fl_path);
+		if (tmp->prev)
+			free_list_elem(tmp->prev);
 		tmp = tmp->next;
 	}
 	// freeing everything after the sought after element
+
+	if (tmp->next)
+		free_list(tmp->next); // MORE LEAKS SOMEWHERE IN THIS FUNCTION
+	tmp->prev = NULL;
 	tmp->next = NULL;
+
+
 	return (tmp);
 }
 

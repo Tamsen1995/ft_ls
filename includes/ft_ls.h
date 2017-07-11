@@ -12,7 +12,7 @@
 # include				<errno.h>
 
 
-
+void                free_list_elem(t_stack *tmp);
 char		    	*make_dir_path(char *dir_path);
 char 		        **sort_args(char **av_tmp);
 char	        	**check_args_for_dirs(char **av_tmp, int i, int ac);
