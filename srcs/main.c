@@ -69,7 +69,8 @@ void print_dir_name(char *dir_path, char **av_tmp)
 			ft_putstr(dir_path);
 			ft_putendl(":");
 		}
-		closedir(dir);
+		if (dir)
+			closedir(dir);
 	}
 }
 

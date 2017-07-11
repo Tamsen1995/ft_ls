@@ -108,9 +108,10 @@ char 		**sort_args(char **av_tmp)
 	k = 1;
 	while (sorted(av_tmp) == FALSE)
 	{
+
 		i = 0;
 		k = 1;
-		while (av_tmp[k] != NULL)
+		while (av_tmp[k])
 		{
 			if (cmp_args(av_tmp[i], av_tmp[k]))
 				av_tmp = swap_arr(av_tmp, i, k);
