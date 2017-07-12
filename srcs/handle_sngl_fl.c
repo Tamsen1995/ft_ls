@@ -19,13 +19,12 @@ struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
 	char 			*ent_path; // the path of the entry
 	char 			*nw_path;
 
-
 	nw_path = NULL;
 	if (!(dir = opendir(dir_path)))
 		error_msg("Could not open directory (ret_sing_ent)");
 	// this loop is going to look for the sought after ent
 	while ((ent = readdir(dir)))
-	{
+	{		
 		ent_path = ft_strjoin(dir_path, ent->d_name);
 		if (ft_strcmp(ent_path, fl_path) == 0)
 		{
@@ -60,7 +59,10 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 		error_msg("This is not an actual file! (handle_single_fl)");
 	}
 	// somehow make it so once fls is returned it points to a printable list element
-		// containing the file
+	// containing the file
+
+
+
 	ent = ret_sing_ent(fl_path, "./"); // WIP
 
 	// TODO implement function which will get a single ent
