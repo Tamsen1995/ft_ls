@@ -44,6 +44,59 @@ struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
 	return (ent);
 }
 
+// finds the directory in which the sought after entry is
+// puts it into a string
+// applies a recursive logic
+char 			*find_dir_path(char *fl_path, char *dir_path)
+{
+	DIR				*dir;
+	struct dirent	*ent;
+	char 			*ent_path; // the path of the entry
+	char 			*nw_path;
+
+
+	nw_path = NULL;
+	if (!(dir = opendir(dir_path)))
+		error_msg("Could not open directory (ret_sing_ent)");
+	// this loop is going to look for the sought after ent
+	while ((ent = readdir(dir)))
+	{
+		ent_path = ft_strjoin(dir_path, ent->d_name);
+		if (ft_strcmp(ent_path, fl_path) == 0)
+		{
+			free(ent_path);
+			return (ent);
+		}
+		if (ent->d_type == DT_DIR && not_curr_and_prev_ch(ent->d_name))
+		{
+			nw_path = ft_strjoin(ent_path, "/");
+			ft_putendl(nw_path); // TESTING
+			ent = ret_sing_ent(fl_path, nw_path); // Gotta figure out why the passing of the dir_path doesn't function
+			free(nw_path);
+		}
+		free(ent_path);
+	}
+	// TODO modify this so it return a directory path to the directory in which the sought after file is in
+}
+
+t_stack 		*ret_sing_ent(char *fl_path, struct dirent *ent, char *flags)
+{
+	t_stack			*elem; // the single element which is to be returned
+	char 			*dir_path;
+
+	elem = NULL;
+	dir_path = find_dir_path(fl_path, "./");
+
+
+	// put the flags, ent, and dir_path into a list elem
+
+	// get all the info into the list element with get_info or something
+
+	// return element
+	return (elem);
+}
+
+
 // this function handles the case of a single file path being put in as the main input
 t_stack			*handle_single_fl(char *fl_path, char *flags)
 {
@@ -55,21 +108,19 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// check to make sure this file path is valid and existent
 	if (lstat(fl_path, &buf) < 0)
 	{
-		ft_putstr("----> ");
 		ft_putendl(fl_path);
-		error_msg("This is not an actual file! (handle_single_fl)");
+		error_msg(" This is not an actual file! (handle_single_fl)");
 	}
 	// somehow make it so once fls is returned it points to a printable list element
 		// containing the file
 	ent = ret_sing_ent(fl_path, "./"); // WIP
-	//fls = ret_sing_elem(ent, flags);
+	fls = ret_sing_elem(fl_path, ent, flags); // WIP
 
 	// TODO implement function which will get a single ent
 	// and return the corresponding list element.
 
 	ft_putendl(ent->d_name); //TESTING
 	ft_putendl(flags); // TESTING
-	fls = NULL; // TESTING
 	free(fl_path);
 	return (fls);
 
