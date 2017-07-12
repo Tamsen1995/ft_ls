@@ -34,7 +34,6 @@ struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
 		if (ent->d_type == DT_DIR && not_curr_and_prev_ch(ent->d_name))
 		{
 			nw_path = ft_strjoin(ent_path, "/");
-			ft_putendl(nw_path); // TESTING
 			ent = ret_sing_ent(fl_path, nw_path); // Gotta figure out why the passing of the dir_path doesn't function
 			free(nw_path);
 		}
