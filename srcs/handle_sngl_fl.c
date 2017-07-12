@@ -17,13 +17,12 @@ struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
 	DIR				*dir;
 	struct dirent	*ent;
 	char 			*ent_path; // the path of the entry
+	char 			*nw_path;
 
 
+	nw_path = NULL;
 	if (!(dir = opendir(dir_path)))
-	{	
-		ft_putendl(dir_path); // TESTING
 		error_msg("Could not open directory (ret_sing_ent)");
-	}
 	// this loop is going to look for the sought after ent
 	while ((ent = readdir(dir)))
 	{
@@ -34,7 +33,12 @@ struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
 			return (ent);
 		}
 		if (ent->d_type == DT_DIR && not_curr_and_prev_ch(ent->d_name))
-			ent = ret_sing_ent(fl_path, ft_strjoin(ent_path, "/")); // Gotta figure out why the passing of the dir_path doesn't function
+		{
+			nw_path = ft_strjoin(ent_path, "/");
+			ft_putendl(nw_path); // TESTING
+			ent = ret_sing_ent(fl_path, nw_path); // Gotta figure out why the passing of the dir_path doesn't function
+			free(nw_path);
+		}
 		free(ent_path);
 	}
 	return (ent);
@@ -58,9 +62,13 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// somehow make it so once fls is returned it points to a printable list element
 		// containing the file
 	ent = ret_sing_ent(fl_path, "./"); // WIP
-//ft_putendl(ent->d_name); //TESTING
-	fls = alloc_list("./", flags); // TESTING purposes (replace with a function which will return the sought after list elemnt)
-	ft_putendl(""); // TESTING
+
+	// TODO implement function which will get a single ent
+	// and return the corresponding list element.
+
+	ft_putendl(ent->d_name); //TESTING
+	ft_putendl(flags); // TESTING
+	fls = NULL; // TESTING
 	free(fl_path);
 	return (fls);
 

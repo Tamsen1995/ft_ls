@@ -80,7 +80,7 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
 	while (tmp)
-	{	
+	{
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp); // extracting all the info
