@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] ent extracted, now implement single list element"
-git push origin fix/single_fl
+git commit -m "[UPD] going to implement a function which receives a single entry, and then returns the corresponding list element"
+git push origin compl/sngl_elem

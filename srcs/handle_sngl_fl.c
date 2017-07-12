@@ -62,6 +62,7 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	// somehow make it so once fls is returned it points to a printable list element
 		// containing the file
 	ent = ret_sing_ent(fl_path, "./"); // WIP
+	//fls = ret_sing_elem(ent, flags);
 
 	// TODO implement function which will get a single ent
 	// and return the corresponding list element.
