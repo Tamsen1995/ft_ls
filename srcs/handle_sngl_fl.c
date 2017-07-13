@@ -12,33 +12,40 @@ t_bool		not_curr_and_prev_ch(char *dir_name)
 // takes in the file path and directory path
 // then returns a single file entry corresponding to that
 // file by looping over every file in the root and all subdirs
-struct dirent		*ret_sing_ent(char *fl_path, char *dir_path)
+struct dirent		*ret_sing_ent(char *fl_path, char *dir_path, char *flags)
 {
 	DIR				*dir;
 	struct dirent	*ent;
 	char 			*ent_path; // the path of the entry
 	char 			*nw_path;
+	t_stack			*fls;
 
 	nw_path = NULL;
+	fls = NULL;
 	if (!(dir = opendir(dir_path)))
 		error_msg("Could not open directory (ret_sing_ent)");
 	// this loop is going to look for the sought after ent
 	while ((ent = readdir(dir)))
 	{		
 		ent_path = ft_strjoin(dir_path, ent->d_name);
+
 		if (ft_strcmp(ent_path, fl_path) == 0)
 		{
 			free(ent_path);
+			closedir(dir);
+
+			fls = ft_lstnew(ent, dir_path, flags);
 			return (ent);
 		}
 		if (ent->d_type == DT_DIR && not_curr_and_prev_ch(ent->d_name))
 		{
 			nw_path = ft_strjoin(ent_path, "/");
-			ent = ret_sing_ent(fl_path, nw_path); // Gotta figure out why the passing of the dir_path doesn't function
+			ent = ret_sing_ent(fl_path, nw_path, flags); // Gotta figure out why the passing of the dir_path doesn't function
 			free(nw_path);
 		}
 		free(ent_path);
 	}
+	closedir(dir);
 	return (ent);
 }
 
@@ -62,12 +69,13 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 
 
 
-	ent = ret_sing_ent(fl_path, "./"); // WIP
+	ent = ret_sing_ent(fl_path, "./", flags); // WIP
 
+	//ft_putendl(ent->d_name);
 	// TODO implement function which will get a single ent
 	// and return the corresponding list element.
 
-	ft_putendl(ent->d_name); //TESTING
+	
 	ft_putendl(flags); // TESTING
 	fls = NULL; // TESTING
 	free(fl_path);
