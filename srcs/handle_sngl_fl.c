@@ -45,10 +45,11 @@ void		ret_sing_ent(t_stack **fls, char *fl_path, char *dir_path, char *flags)
 		if (ft_strcmp(ent_path, fl_path) == 0)
 		{
 			free(ent_path);
-			ft_list_push_back(fls, ent, dir_path, flags);
+			(*fls) = ft_lstnew(ent, dir_path, flags);
 			free((*fls)->filename);
 			fl_path = expend_root(fl_path); // WIP
 			(*fls)->filename = ft_strdup(fl_path); // TODO get rid of the directory path in the beginning "./"
+			closedir(dir);
 			return ;
 		}
 		if (ent->d_type == DT_DIR && not_curr_and_prev_ch(ent->d_name))

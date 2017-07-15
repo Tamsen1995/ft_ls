@@ -51,7 +51,7 @@ t_filetype		get_file_type(struct dirent *ent)
 void system_link_module(t_stack *file, char *flags)
 {
 	char buf[1024];
-	ssize_t link_size; 
+	ssize_t link_size;
 	ssize_t attr_size;
 	char *tmp;
 
@@ -59,7 +59,6 @@ void system_link_module(t_stack *file, char *flags)
 	attr_size = 0;
 	link_size = readlink(file->path, buf, sizeof(buf)); // actually getting the system link
 	buf[link_size] = '\0'; // null terminating the buffer
-
 	if (flags[f_list])
 	{
 		tmp = ft_strjoin(file->filename, " -> ");
