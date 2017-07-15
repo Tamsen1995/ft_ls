@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] Instead of calling the pushback function, which allocates two elements. One oughta call the lstnew function instead" 
+git commit -m "[FIX] running /var/run gives a segfault and idk why"
 git push origin fix/memory
