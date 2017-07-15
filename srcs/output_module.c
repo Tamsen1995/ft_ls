@@ -3,7 +3,7 @@
 t_bool		is_hidden_file(t_stack *file)
 {
 	if (!file || !file->filename || !file->filename[0])
-		error_msg("");
+		error_msg("Error in (is_hidden_file)");
 	if (file->filename[0] == '.')
 		return (TRUE);
 	return (FALSE);
@@ -44,9 +44,10 @@ void		print_dir(t_stack *files, char *flags)
 	t_stack *tmp;
 
 	tmp = files;
+
+
 	while (tmp)
 	{
-
 		if (!is_hidden_file(tmp))
 		{	
 			print_flags(tmp, flags);

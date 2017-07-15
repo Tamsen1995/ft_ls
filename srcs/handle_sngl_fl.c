@@ -10,6 +10,21 @@ t_bool		not_curr_and_prev_ch(char *dir_name)
 }
 
 
+// This function takes in the file path and gets rid of the "./" in the beginning
+// This is essential as a filename starting with "./"
+// Will be recognized as a hidden file
+char		*expend_root(char *fl_path)
+{
+	char *tmp;
+
+	tmp = fl_path;
+	if (ft_strncmp("./", fl_path, 2) == 0)
+		tmp += 2;
+//	ft_putendl(tmp); // TESTING
+
+	return (tmp);
+}
+
 // takes in the file path and directory path
 // then returns a single file entry corresponding to that
 // file by looping over every file in the root and all subdirs
@@ -32,7 +47,8 @@ void		ret_sing_ent(t_stack **fls, char *fl_path, char *dir_path, char *flags)
 			free(ent_path);
 			ft_list_push_back(fls, ent, dir_path, flags);
 			free((*fls)->filename);
-			(*fls)->filename = ft_strdup(ent_path); // TODO get rid of the directory path in the beginning "./"
+			fl_path = expend_root(fl_path); // WIP
+			(*fls)->filename = ft_strdup(fl_path); // TODO get rid of the directory path in the beginning "./"
 			return ;
 		}
 		if (ent->d_type == DT_DIR && not_curr_and_prev_ch(ent->d_name))
