@@ -5,6 +5,8 @@
         "_null.h": "c",
         "ft_ls.h": "c",
         "unistd.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "strings.h": "c",
+        "dirent.h": "c"
     }
 }

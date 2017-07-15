@@ -28,7 +28,6 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	fls = NULL;
 	ent = NULL;
 
-	// in the case of the name not actually being a given directory path, but maybe still a valid file path 
 	if (!(dir = opendir(name)))
 		error_msg("Could not open directory (register_fls_in_dir)");
 	if (!(ent = readdir(dir)))
@@ -36,7 +35,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
-			ft_list_push_back(&fls, ent, name, flags); // TODO here is where I should implement the sorting of my stack
+			ft_list_push_back(&fls, ent, name, flags);
 	closedir(dir);
 	return (fls);
 }
@@ -68,8 +67,10 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	t_stack			*fls;
 	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
 	DIR				*test; // A test directory file to see if I can actually open the dir_path
+	char			*fl_path; // a file path for a single file
 
 	tmp = NULL;
+	fl_path = NULL;
 	// here I deal with the single file input case
 	if (!(test = opendir(dir_path)))
 		return (handle_single_fl(make_dir_path(dir_path), flags));
@@ -78,7 +79,7 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
 	while (tmp)
-	{		
+	{
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp); // extracting all the info

@@ -34,7 +34,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	mem = my_strlen(s1) + my_strlen(s2);
-	if (!(conc = (char *)malloc(sizeof(char) * mem)))
+	if (!(conc = (char *)malloc(sizeof(char) * mem + 1)))
 		return (NULL);
 	tmp = conc;
 	while (*s1 != '\0')
