@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] Okay so I get the proper entry into the list element. But for some reason I can't return it properly?"
+git commit -m "[FIX] I believe the list element gets allocated correctly now. But somehow the single file cannot be printed. (Bug to be hunted)"
 git push origin single_fl/file_in_dir

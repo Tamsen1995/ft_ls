@@ -28,7 +28,6 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	fls = NULL;
 	ent = NULL;
 
-	// in the case of the name not actually being a given directory path, but maybe still a valid file path 
 	if (!(dir = opendir(name)))
 		error_msg("Could not open directory (register_fls_in_dir)");
 	if (!(ent = readdir(dir)))
@@ -36,7 +35,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
-			ft_list_push_back(&fls, ent, name, flags); // TODO here is where I should implement the sorting of my stack
+			ft_list_push_back(&fls, ent, name, flags);
 	closedir(dir);
 	return (fls);
 }
