@@ -109,6 +109,7 @@ int			main(int ac, char **av)
 	}
 	// if it's still null at this point then
 	// the programm will just assume that no directories have been found
+	
 	if (dir_path == NULL)
 	{
 		files = alloc_list(".", flags);
@@ -118,6 +119,3 @@ int			main(int ac, char **av)
 	free(av_tmp);
 	return (0);
 }
-
-// TODO
-/// Fix the copy args memory leak

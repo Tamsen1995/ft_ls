@@ -63,9 +63,6 @@ void		ret_sing_ent(t_stack **fls, char *fl_path, char *dir_path, char *flags)
 	closedir(dir);
 }
 
-
-
-
 // this function handles the case of a single file path being put in as the main input
 t_stack			*handle_single_fl(char *fl_path, char *flags)
 {
@@ -86,7 +83,6 @@ t_stack			*handle_single_fl(char *fl_path, char *flags)
 	fls->fields = get_file_info(fls);
 	free(fl_path);
 	return (fls);
-
 }
 
 

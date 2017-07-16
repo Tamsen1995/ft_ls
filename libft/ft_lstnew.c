@@ -43,7 +43,10 @@ t_filetype		get_file_type(struct dirent *ent)
 	if (ent->d_type == DT_SOCK)
 		return (SOCK_LINK);
 	if (ent->d_type == DT_FIFO)
+	{
+		ft_putendl("YOUNG AND STUPID");
 		return (FIFO);
+	}
 	return (REG);
 }
 

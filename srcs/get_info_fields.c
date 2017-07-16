@@ -6,6 +6,7 @@
 t_fields *alloc_fields(void)
 {
 	t_fields *fields;
+    
 	fields = NULL;
 	if (!(fields = (t_fields *)malloc(sizeof(t_fields))))
 		exit(-1);

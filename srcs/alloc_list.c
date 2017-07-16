@@ -61,20 +61,14 @@ char			*make_dir_path(char *dir_path)
 	return (dir_path);
 }
 
-// This function recursively allocates the entirety of the directory as well as its subdirectories
-t_stack			*alloc_list(char *dir_path, char *flags)
-{
-	t_stack			*fls;
-	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
-	DIR				*test; // A test directory file to see if I can actually open the dir_path
-	char			*fl_path; // a file path for a single file
 
+t_stack 	*handle_dirs(char *dir_path, char *flags)
+{
+	t_stack *fls;
+	t_stack *tmp;
+
+	fls = NULL;
 	tmp = NULL;
-	fl_path = NULL;
-	// here I deal with the single file input case
-	if (!(test = opendir(dir_path)))
-		return (handle_single_fl(make_dir_path(dir_path), flags));
-	closedir(test);
 	if (!(fls = register_fls_in_dir(dir_path, flags))) // zapping the entire entry list into a stack chain
 		error_msg("There was an error in the registering of a file ! (alloc_list)");
 	tmp = fls;
@@ -84,8 +78,29 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp); // extracting all the info
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			tmp->subdir = alloc_list(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
+			tmp->subdir = handle_dirs(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
 		tmp = tmp->next;
+	}
+	return (fls);
+}
+
+
+
+// This function recursively allocates the entirety of the directory as well as its subdirectories
+t_stack			*alloc_list(char *dir_path, char *flags)
+{
+	t_stack			*fls;
+	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
+	DIR				*test; // A test directory file to see if I can actually open the dir_path
+
+	tmp = NULL;
+	// here I deal with the single file input case
+	if (!(test = opendir(dir_path)))
+		fls = handle_single_fl(make_dir_path(dir_path), flags);
+	else
+	{
+		fls = handle_dirs(dir_path, flags);
+		closedir(test);
 	}
 	return (fls);
 }
