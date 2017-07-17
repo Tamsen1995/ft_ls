@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/17 17:05:47 by tbui              #+#    #+#             */
+/*   Updated: 2017/07/17 17:05:51 by tbui             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_ls.h"
-// this function will iterate through the arguments array again
-// and see which files are valid regular files which ought to be sent to the output.
-void		print_valid_fls(char **av_tmp, int ac) 
+
+void			print_valid_fls(char **av_tmp, int ac)
 {
-	int 		i;
+	int			i;
 	DIR			*dir;
 	struct stat buf;
-	char 		*path;
+	char		*path;
 
 	i = 1;
 	path = NULL;
@@ -22,7 +33,7 @@ void		print_valid_fls(char **av_tmp, int ac)
 		closedir(dir);
 }
 
-void free_list_elem(t_stack *tmp)
+void			free_list_elem(t_stack *tmp)
 {
 	free(tmp->path);
 	free(tmp->filename);
@@ -33,10 +44,7 @@ void free_list_elem(t_stack *tmp)
 	free(tmp);
 }
 
-
-
-// This function will go through the entire stack recursively BACKWARDS
-void		free_list(t_stack *list)
+void			free_list(t_stack *list)
 {
 	t_stack *tmp;
 
@@ -56,11 +64,7 @@ void		free_list(t_stack *list)
 	return ;
 }
 
-
-// checks if the dir_path actually belongs to a directory
-// if so it prints it
-// used in the case of feeding files or directories into the input
-void print_dir_name(char *dir_path, char **av_tmp)
+void			print_dir_name(char *dir_path, char **av_tmp)
 {
 	DIR		*dir;
 	int		i;
@@ -81,13 +85,13 @@ void print_dir_name(char *dir_path, char **av_tmp)
 	}
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	char 		flags[NB_FLAGS];
+	char		flags[NB_FLAGS];
 	int			i;
 	t_stack		*files;
-	char 		*dir_path;
-	char		 **av_tmp;
+	char		*dir_path;
+	char		**av_tmp;
 
 	av++;
 	ac--;
@@ -107,9 +111,6 @@ int			main(int ac, char **av)
 		free(dir_path);
 		i++;
 	}
-	// if it's still null at this point then
-	// the programm will just assume that no directories have been found
-	
 	if (dir_path == NULL)
 	{
 		files = alloc_list(".", flags);
