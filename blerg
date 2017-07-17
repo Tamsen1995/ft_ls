@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] main.c normed, but still need to cut the main in two "
+git commit -m "[UPD] file for handling a single user input normed"
 git push origin fix/norm
