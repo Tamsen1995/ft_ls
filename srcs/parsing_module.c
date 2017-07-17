@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_module.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/07/17 16:35:13 by tbui              #+#    #+#             */
+/*   Updated: 2017/07/17 16:35:15 by tbui             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_ls.h"
 
-void	log_flags(char arg)
+void		log_flags(char arg)
 {
 	ft_putstr_fd("ft_ls: illegal option -- ", 2);
 	ft_putchar_fd(arg, 2);
@@ -10,21 +22,18 @@ void	log_flags(char arg)
 	exit(0);
 }
 
-void	init_flags(char *flags)
+void		init_flags(char *flags)
 {
-	int i;
+	int		i;
 
-	i = 0; // I changed this so it would iterate by addition instead of subtraction
+	i = 0;
 	while (i++ <= NB_FLAGS)
 		flags[i] = 0;
 }
 
-
-// this function checks for the validity of the flag as well as returning the index of the 
-// flag to change in the given flag array
-int 		flag_index(char c)
+int			flag_index(char c)
 {
-	int 	i;
+	int i;
 
 	i = 0;
 	while (VALID_FLAGS[i])
@@ -33,21 +42,17 @@ int 		flag_index(char c)
 			return (i);
 		i++;
 	}
-	// log flags 
 	log_flags(c);
 	return (0);
 }
 
-int		parse_flags(int ac, char **av, char *flags)
+int			parse_flags(int ac, char **av, char *flags)
 {
+	int		i;
+	int		j;
 
-	int i;
-	int j;
-	
 	init_flags(flags);
-	//i = 1; 
 	i = 0;
-	// iterate through all the given args (2D array)
 	while (i < ac && av[i][0] == '-' && av[i][1])
 	{
 		j = 0;
@@ -58,7 +63,5 @@ int		parse_flags(int ac, char **av, char *flags)
 		free(av[i]);
 		i++;
 	}
-	//free_args_copy(ac, av_tmp);
-
 	return (i);
 }
