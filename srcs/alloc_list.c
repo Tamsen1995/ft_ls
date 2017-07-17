@@ -28,7 +28,6 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	fls = NULL;
 	ent = NULL;
 
-	// in the case of the name not actually being a given directory path, but maybe still a valid file path 
 	if (!(dir = opendir(name)))
 		error_msg("Could not open directory (register_fls_in_dir)");
 	if (!(ent = readdir(dir)))
@@ -36,7 +35,8 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("The first file of a dir could not be allocated ! (register_fls_in_dir)");
 	while ((ent = readdir(dir)))
-			ft_list_push_back(&fls, ent, name, flags); // TODO here is where I should implement the sorting of my stack
+			ft_list_push_back(&fls, ent, name, flags);
+	closedir(dir);
 	return (fls);
 }
 
@@ -61,6 +61,31 @@ char			*make_dir_path(char *dir_path)
 	return (dir_path);
 }
 
+
+t_stack 	*handle_dirs(char *dir_path, char *flags)
+{
+	t_stack *fls;
+	t_stack *tmp;
+
+	fls = NULL;
+	tmp = NULL;
+	if (!(fls = register_fls_in_dir(dir_path, flags))) // zapping the entire entry list into a stack chain
+		error_msg("There was an error in the registering of a file ! (alloc_list)");
+	tmp = fls;
+	while (tmp)
+	{
+		if (tmp->next)
+			tmp->next->prev = tmp;
+		tmp->fields = get_file_info(tmp); // extracting all the info
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
+			tmp->subdir = handle_dirs(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
+		tmp = tmp->next;
+	}
+	return (fls);
+}
+
+
+
 // This function recursively allocates the entirety of the directory as well as its subdirectories
 t_stack			*alloc_list(char *dir_path, char *flags)
 {
@@ -69,22 +94,13 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	DIR				*test; // A test directory file to see if I can actually open the dir_path
 
 	tmp = NULL;
-
 	// here I deal with the single file input case
 	if (!(test = opendir(dir_path)))
-		return (handle_single_fl(make_dir_path(dir_path), flags));
-	if (!(fls = register_fls_in_dir(dir_path, flags))) // zapping the entire entry list into a stack chain
-		error_msg("There was an error in the registering of a file ! (alloc_list)");
-	tmp = fls;
-	while (tmp)
-	{		
-		if (tmp->next)
-			tmp->next->prev = tmp;
-		tmp->fields = get_file_info(tmp); // extracting all the info
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			tmp->subdir = alloc_list(tmp->path, flags); // recursively calling the function again with the newly made path in the stack elem
-		tmp = tmp->next;
+		fls = handle_single_fl(make_dir_path(dir_path), flags);
+	else
+	{
+		fls = handle_dirs(dir_path, flags);
+		closedir(test);
 	}
 	return (fls);
-	 // returnning null for now, just testing
 }

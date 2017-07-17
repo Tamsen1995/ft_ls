@@ -5,6 +5,7 @@ void			ft_putendl_col(t_stack *file)
     char *color;
 
     color = GRAY;
+
     if (file->type == DIRECTORY)
         color = CYAN;
     else if (file->type == SYMLINK)

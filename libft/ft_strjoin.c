@@ -27,29 +27,28 @@ static int	my_strlen(const char *str)
 
 char		*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*concptr;
+	char	*tmp;
 	char	*conc;
 	int		mem;
 
 	if (!s1 || !s2)
 		return (NULL);
 	mem = my_strlen(s1) + my_strlen(s2);
-	if (!(char *)malloc(sizeof(char) * mem))
+	if (!(conc = (char *)malloc(sizeof(char) * mem + 1)))
 		return (NULL);
-	conc = (char *)malloc(sizeof(char) * mem);
-	concptr = conc;
+	tmp = conc;
 	while (*s1 != '\0')
 	{
-		*conc = *s1;
-		conc++;
+		*tmp = *s1;
+		tmp++;
 		s1++;
 	}
 	while (*s2 != '\0')
 	{
-		*conc = *s2;
-		conc++;
+		*tmp = *s2;
+		tmp++;
 		s2++;
 	}
-	*conc = '\0';
-	return (concptr);
+	*tmp = '\0';
+	return (conc);
 }
