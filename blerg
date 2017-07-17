@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] Going to norm the whole thing"
+git commit -m "[UPD] sort_args.c normed, "
 git push origin fix/norm
