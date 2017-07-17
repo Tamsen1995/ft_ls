@@ -43,7 +43,10 @@ t_filetype		get_file_type(struct dirent *ent)
 	if (ent->d_type == DT_SOCK)
 		return (SOCK_LINK);
 	if (ent->d_type == DT_FIFO)
+	{
+		ft_putendl("YOUNG AND STUPID");
 		return (FIFO);
+	}
 	return (REG);
 }
 
@@ -51,19 +54,20 @@ t_filetype		get_file_type(struct dirent *ent)
 void system_link_module(t_stack *file, char *flags)
 {
 	char buf[1024];
-	ssize_t link_size; 
+	ssize_t link_size;
 	ssize_t attr_size;
-	void *value[1024];
+	char *tmp;
 
 	link_size = 0;
 	attr_size = 0;
 	link_size = readlink(file->path, buf, sizeof(buf)); // actually getting the system link
 	buf[link_size] = '\0'; // null terminating the buffer
-
 	if (flags[f_list])
 	{
-		file->filename = ft_strjoin(file->filename, " -> ");
-		file->filename = ft_strjoin(file->filename, buf);
+		tmp = ft_strjoin(file->filename, " -> ");
+		free(file->filename);
+		file->filename = ft_strjoin(tmp, buf);
+		free(tmp);
 	}
 	//	attr_size = lgetxattr(file->path, buf, value, link_size);
 }

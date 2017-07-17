@@ -1,5 +1,5 @@
 CC = gcc
-FLAGS =  -Wall -Wextra -Werror -I includes
+FLAGS = -g -Wall -Wextra -Werror -I includes
 LIBFT = libft/libft.a
 NAME = ft_ls
 SRC = srcs/main.c \

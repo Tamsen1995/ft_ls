@@ -26,6 +26,7 @@ t_filetype		get_type_from_path(char *path)
 	path = make_dir_path(path);
 	lstat(path, &buf);
 	type = buf.st_mode;
+	free(path);
 	if (S_ISDIR(type))
 		return (DIRECTORY);
 	return (INVALID);
@@ -89,9 +90,9 @@ char		**swap_arr(char **av_tmp, int arg_one, int arg_two)
 	char *tmp;
 
 	tmp = NULL;
-	tmp = ft_strdup(av_tmp[arg_one]);
-	av_tmp[arg_one] = ft_strdup(av_tmp[arg_two]);
-	av_tmp[arg_two] = ft_strdup(tmp);
+	tmp = av_tmp[arg_one];
+	av_tmp[arg_one] = av_tmp[arg_two];
+	av_tmp[arg_two] = tmp;
 	return (av_tmp);
 }
 
@@ -108,9 +109,10 @@ char 		**sort_args(char **av_tmp)
 	k = 1;
 	while (sorted(av_tmp) == FALSE)
 	{
+
 		i = 0;
 		k = 1;
-		while (av_tmp[k] != NULL)
+		while (av_tmp[k])
 		{
 			if (cmp_args(av_tmp[i], av_tmp[k]))
 				av_tmp = swap_arr(av_tmp, i, k);

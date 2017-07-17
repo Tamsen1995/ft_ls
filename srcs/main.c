@@ -3,30 +3,37 @@
 // and see which files are valid regular files which ought to be sent to the output.
 void		print_valid_fls(char **av_tmp, int ac) 
 {
-	int i;
+	int 		i;
 	DIR			*dir;
 	struct stat buf;
+	char 		*path;
 
 	i = 1;
+	path = NULL;
 	while (i < ac && av_tmp[i])
 	{
-		if (!(dir = opendir(av_tmp[i])) && lstat(ft_strjoin("./", av_tmp[i]), &buf) == 0)
+		path = ft_strjoin("./", av_tmp[i]);
+		if (!(dir = opendir(av_tmp[i])) && lstat(path, &buf) == 0)
 			ft_putendl(av_tmp[i]);
 		i++;
+		free(path);
 	}
 	if (dir)
 		closedir(dir);
 }
 
-// frees all the attributes of the list structure
-void		free_list_attr(t_stack *list)
+void free_list_elem(t_stack *tmp)
 {
-	free(list->path);
-	free(list->filename);
-	free(list->fields->links);
-	free(list->fields->size);
-	free(list->fields->date);
+	free(tmp->path);
+	free(tmp->filename);
+	free(tmp->fields->links);
+	free(tmp->fields->size);
+	free(tmp->fields->date);
+	free(tmp->fields);
+	free(tmp);
 }
+
+
 
 // This function will go through the entire stack recursively BACKWARDS
 void		free_list(t_stack *list)
@@ -37,21 +44,16 @@ void		free_list(t_stack *list)
 	if (!list)
 		error_msg("Error in the freeing of the list");
 	tmp = list;
-	while (list && list->next)
+	while (list)
 	{
 		tmp = list;
 		list = list->next;
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			free_list(tmp->subdir);
-		free(tmp->path);
-		free(tmp->filename);
-		free(tmp->fields->links);
-		free(tmp->fields->size);
-		free(tmp->fields->date);
-		free(tmp->fields);
-		free(tmp);
+		free_list_elem(tmp);
 	}
 	free(list);
+	return ;
 }
 
 
@@ -74,6 +76,8 @@ void print_dir_name(char *dir_path, char **av_tmp)
 			ft_putstr(dir_path);
 			ft_putendl(":");
 		}
+		if (dir)
+			closedir(dir);
 	}
 }
 
@@ -85,10 +89,12 @@ int			main(int ac, char **av)
 	char 		*dir_path;
 	char		 **av_tmp;
 
+	av++;
+	ac--;
 	av_tmp = copy_args(ac, av);
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
-	av_tmp = sort_args(av_tmp); // WIP 
+	av_tmp = sort_args(av_tmp);
 	i = 0;
 	while (i < ac && av_tmp[i])
 	{
@@ -96,19 +102,20 @@ int			main(int ac, char **av)
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
+		free(av_tmp[i]);
+		free_list(files);
+		free(dir_path);
 		i++;
 	}
 	// if it's still null at this point then
 	// the programm will just assume that no directories have been found
-	if (dir_path == NULL)// && ac < 2)
+	
+	if (dir_path == NULL)
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
-		free_list(files); //TESTING
+		free_list(files);
 	}
+	free(av_tmp);
 	return (0);
 }
-
-// TODO
-// Fix the sorting of the arguments
-// Implement the sorting by files and folders
