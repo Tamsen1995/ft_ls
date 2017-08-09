@@ -1,3 +1,4 @@
 git add -A
-git commit -m "[UPD] Going to implement the f flag which supposedly prevents the sorting of the output"
+git commit -m "[UPD] The recognition of the flags has been implemented.
+Next up is the actual action of the f_nosort"
 git push origin bonus/f

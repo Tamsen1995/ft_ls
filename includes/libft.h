@@ -26,8 +26,8 @@
 #define TRUE 1
 #define FALSE 0
 
-# define VALID_FLAGS	"Ralrt1"
-# define NB_FLAGS		6
+# define VALID_FLAGS	"Ralrt1f"
+# define NB_FLAGS		7
 
 
 # define STOP "\033[0;0m"
@@ -62,7 +62,8 @@ typedef enum e_flgs
 	f_list = 2,
 	f_rev = 3,
 	f_time = 4,
-	f_main = 5
+	f_main = 5,
+	f_nosort = 6
 }			t_flags;
 
 typedef enum e_filetype

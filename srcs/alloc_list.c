@@ -12,9 +12,6 @@
 
 #include "../includes/ft_ls.h"
 
-
-
-
 // This function receives a name and allocates everything in the the current directory into 
 // a nice stack. it then returns this stack
 // in the case of it being only a file path we check to see if it's valid and reutrn a list with
