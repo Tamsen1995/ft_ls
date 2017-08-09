@@ -1,3 +1,4 @@
 git add -A
-git commit -m "[UPD] file for handling a single user input normed"
-git push origin fix/norm
+git commit -m "[UPD] The recognition of the flags has been implemented.
+Next up is the actual action of the f_nosort"
+git push origin bonus/f

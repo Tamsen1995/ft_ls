@@ -26,8 +26,8 @@
 #define TRUE 1
 #define FALSE 0
 
-# define VALID_FLAGS	"Ralrt1"
-# define NB_FLAGS		6
+# define VALID_FLAGS	"Ralrt1f"
+# define NB_FLAGS		7
 
 
 # define STOP "\033[0;0m"
@@ -62,7 +62,8 @@ typedef enum e_flgs
 	f_list = 2,
 	f_rev = 3,
 	f_time = 4,
-	f_main = 5
+	f_main = 5,
+	f_nosort = 6
 }			t_flags;
 
 typedef enum e_filetype
@@ -175,4 +176,6 @@ char				*ft_split_char(char *s, int i, char c);
 char				**ft_strsplit(const char *s, char c);
 t_stack				*ft_lstnew(struct dirent *ent, char *path, char *flags);
 void				ft_list_push_back(t_stack **alst, struct dirent *ent, char *path, char *flags);
+void				ft_lstadd(t_stack **begin_list, struct dirent *ent, char *path, char *flags);
+
 #endif

@@ -46,6 +46,24 @@ int			flag_index(char c)
 	return (0);
 }
 
+
+/*
+** Certain flags turn other flags
+** on and/or cancel other flags 
+** (Ex. the f flags turns on the a flag 
+** and turns off any other sorting flag)
+** This function checks for the occurences
+*/
+void check_flag_overlaps(char *flags)
+{
+	if (flags[f_nosort] == 1)
+	{
+		flags[f_hidden] = 1;
+		flags[f_time] = 0;
+		flags[f_rev] = 0;
+	}
+}
+
 int			parse_flags(int ac, char **av, char *flags)
 {
 	int		i;
@@ -63,5 +81,6 @@ int			parse_flags(int ac, char **av, char *flags)
 		free(av[i]);
 		i++;
 	}
+	check_flag_overlaps(flags);
 	return (i);
 }
