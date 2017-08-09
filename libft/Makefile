@@ -11,6 +11,7 @@ SRC = ft_atoi.c \
 	ft_isprint.c \
 	ft_itoa.c \
 	ft_lstadd_sort.c \
+	ft_lstadd.c \
 	ft_lstnew.c \
 	ft_memalloc.c \
 	ft_memccpy.c \
