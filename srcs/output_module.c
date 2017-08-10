@@ -33,7 +33,6 @@ void			print_dir(t_stack *files, char *flags)
 	}
 }
 
-
 void			print_dir_path_recur(t_stack *file, char *flags)
 {
 	ft_putendl("");

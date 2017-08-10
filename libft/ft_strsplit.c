@@ -17,10 +17,8 @@ static int		ft_count_words(char const *s, char c)
 	int		i;
 	int		len;
 
-
-	if(!s || !c)
+	if (!s || !c)
 		return (0);
-
 	i = 0;
 	len = 0;
 	while (s[i])
@@ -71,8 +69,7 @@ char			**ft_strsplit(const char *s, char c)
 		return (NULL);
 	amt = ft_count_words(s, c);
 	if (amt <= 0)
-		return(NULL);
-
+		return (NULL);
 	if (!(arr = (char **)malloc(sizeof(char *) * (amt + 1))))
 		return (NULL);
 	arr = ft_line_creator(s, arr, c, amt);
