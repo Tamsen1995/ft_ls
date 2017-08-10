@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[UPD] Norming the project"
-git push origin fix/norm
+git commit -m "[FIX] Fixing the slash"
+git push origin fix/slash
