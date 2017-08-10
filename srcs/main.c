@@ -6,7 +6,7 @@
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 17:05:47 by tbui              #+#    #+#             */
-/*   Updated: 2017/07/17 17:05:51 by tbui             ###   ########.fr       */
+/*   Updated: 2017/08/10 17:50:42 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ void			print_dir_name(char *dir_path, char **av_tmp)
 	}
 }
 
-
 /*
 ** This is the part of the ls which
 ** takes over when several directories
 ** are put as input
 */
 
-char 			*ls_loop(int ac, char **av_tmp, char *flags)
+char			*ls_loop(int ac, char **av_tmp, char *flags)
 {
 	int			i;
 	t_stack		*files;
@@ -83,7 +82,7 @@ char 			*ls_loop(int ac, char **av_tmp, char *flags)
 	files = NULL;
 	while (i < ac && av_tmp[i])
 	{
-		dir_path = ft_strdup(av_tmp[i]); 
+		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
