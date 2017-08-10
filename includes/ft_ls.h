@@ -11,7 +11,8 @@
 # include				<sys/types.h>
 # include				<errno.h>
 
-
+void				ret_sing_ent(t_stack **fls, char *fl_path, \
+char *dir_path, char *flags);
 void                free_list_elem(t_stack *tmp);
 char		    	*make_dir_path(char *dir_path);
 char 		        **sort_args(char **av_tmp);

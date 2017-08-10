@@ -112,7 +112,9 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 	if (!(test = opendir(dir_path)))
 		fls = handle_single_fl(make_dir_path(dir_path), flags);
 	else
+	{
 		fls = handle_dirs(dir_path, flags);
-	closedir(test);
+		closedir(test);
+	}
 	return (fls);
 }
