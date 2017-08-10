@@ -46,15 +46,15 @@ int			flag_index(char c)
 	return (0);
 }
 
-
 /*
 ** Certain flags turn other flags
-** on and/or cancel other flags 
-** (Ex. the f flags turns on the a flag 
+** on and/or cancel other flags
+** (Ex. the f flags turns on the a flag
 ** and turns off any other sorting flag)
 ** This function checks for the occurences
 */
-void check_flag_overlaps(char *flags)
+
+void		check_flag_overlaps(char *flags)
 {
 	if (flags[f_nosort] == 1)
 	{
