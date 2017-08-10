@@ -92,7 +92,7 @@ t_stack				*handle_single_fl(char *fl_path, char *flags)
 		error_msg("This is not an actual file! (handle_single_fl)");
 	}
 	ret_sing_ent(&fls, fl_path, "./", flags);
-	fls->fields = get_file_info(fls);
+	fls->fields = get_file_info(fls); // TODO get rid of segfault in this function
 	free(fl_path);
 	return (fls);
 }

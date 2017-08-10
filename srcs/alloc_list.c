@@ -29,8 +29,6 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 
 	fls = NULL;
 	ent = NULL;
-	ft_putendl(name); // TESTING
-	
 	if (!(dir = opendir(name)))
 		error_msg("Could not open directory (register_fls_in_dir)");
 	if (!(ent = readdir(dir)))
@@ -73,10 +71,27 @@ char			*make_dir_path(char *dir_path)
 }
 
 /*
+** Checks to see if the file is a directory and
+** the access permissions for the current user
+** are restricted
+*/
+t_bool			directory_no_access(char *dir_path)
+{
+	DIR		*dir;
+	struct stat fstat;
+
+	if (stat(dir_path, &fstat) < 0)
+		error_msg("Stat error: (directory_no_access)");
+	if (!(dir = opendir(dir_path)) && (S_ISDIR(fstat.st_mode)))
+		return (TRUE);
+	return (FALSE);
+}
+
+
+/*
 ** This function recursively allocates
 ** the entire current directory as well as its subdirectories
 */
-
 t_stack			*handle_dirs(char *dir_path, char *flags)
 {
 	t_stack *fls;
@@ -84,7 +99,9 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 
 	fls = NULL;
 	tmp = NULL;
-	if (!(fls = register_fls_in_dir(dir_path, flags)))
+	if (directory_no_access(dir_path) == TRUE)
+		return (handle_single_fl(dir_path, flags));
+	else if (!(fls = register_fls_in_dir(dir_path, flags)))
 		error_msg("Error: (handle_dirs)");
 	tmp = fls;
 	while (tmp)
