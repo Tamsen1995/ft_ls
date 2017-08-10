@@ -85,9 +85,6 @@ void			print_dir_name(char *dir_path, char **av_tmp)
 	}
 }
 
-
-
-
 int				main(int ac, char **av)
 {
 	char		flags[NB_FLAGS];
