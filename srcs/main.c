@@ -44,26 +44,6 @@ void			free_list_elem(t_stack *tmp)
 	free(tmp);
 }
 
-void			free_list(t_stack *list)
-{
-	t_stack *tmp;
-
-	tmp = NULL;
-	if (!list)
-		error_msg("Error in the freeing of the list");
-	tmp = list;
-	while (list)
-	{
-		tmp = list;
-		list = list->next;
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			free_list(tmp->subdir);
-		free_list_elem(tmp);
-	}
-	free(list);
-	return ;
-}
-
 void			print_dir_name(char *dir_path, char **av_tmp)
 {
 	DIR		*dir;
@@ -85,6 +65,43 @@ void			print_dir_name(char *dir_path, char **av_tmp)
 	}
 }
 
+
+/*
+** This is the part of the ls which
+** takes over when several directories
+** are put as input
+*/
+
+char 			*ls_loop(int ac, char **av_tmp, char *flags)
+{
+	int			i;
+	t_stack		*files;
+	char		*dir_path;
+
+	i = 0;
+	dir_path = NULL;
+	files = NULL;
+	while (i < ac && av_tmp[i])
+	{
+		dir_path = ft_strdup(av_tmp[i]); 
+		files = alloc_list(dir_path, flags);
+		print_dir_name(dir_path, av_tmp);
+		output_module(files, flags);
+		free(av_tmp[i]);
+		free_list(files);
+		free(dir_path);
+		i++;
+	}
+	return (dir_path);
+}
+
+/*
+** in the main function the flags are initiated
+** and the flow is directed either to the module which
+** handles several directories, or
+** the part which takes care of only the base dir
+*/
+
 int				main(int ac, char **av)
 {
 	char		flags[NB_FLAGS];
@@ -99,18 +116,7 @@ int				main(int ac, char **av)
 	i = parse_flags(ac, av_tmp, flags);
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
 	av_tmp = sort_args(av_tmp);
-	i = 0;
-	while (i < ac && av_tmp[i])
-	{
-		dir_path = ft_strdup(av_tmp[i]);
-		files = alloc_list(dir_path, flags);
-		print_dir_name(dir_path, av_tmp);
-		output_module(files, flags);
-		free(av_tmp[i]);
-		free_list(files);
-		free(dir_path);
-		i++;
-	}
+	dir_path = ls_loop(ac, av_tmp, flags);
 	if (dir_path == NULL)
 	{
 		files = alloc_list(".", flags);
