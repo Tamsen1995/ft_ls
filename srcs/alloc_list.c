@@ -12,10 +12,13 @@
 
 #include "../includes/ft_ls.h"
 
-// This function receives a name and allocates everything in the the current directory into 
-// a nice stack. it then returns this stack
-// in the case of it being only a file path we check to see if it's valid and reutrn a list with
-// the file's info
+/*
+** This function receives a name and allocates everything in the the current directory into 
+** a nice stack. it then returns this stack
+** in the case of it being only a file path we check to see if it's valid and reutrn a list with
+** the file's info
+*/
+
 t_stack			*register_fls_in_dir(char *name, char *flags)
 {
 	DIR				*dir;
@@ -63,7 +66,6 @@ char			*make_dir_path(char *dir_path)
 	return (dir_path);
 }
 
-
 t_stack 	*handle_dirs(char *dir_path, char *flags)
 {
 	t_stack *fls;
@@ -87,16 +89,18 @@ t_stack 	*handle_dirs(char *dir_path, char *flags)
 }
 
 
+/*
+** This function recursively allocates the entire current directory as well as its subdirectories
+** It also takes care of a single file input
+*/
 
-// This function recursively allocates the entirety of the directory as well as its subdirectories
 t_stack			*alloc_list(char *dir_path, char *flags)
 {
 	t_stack			*fls;
-	t_stack 		*tmp; // This pointer serves as a tmp pointer for the recursion
-	DIR				*test; // A test directory file to see if I can actually open the dir_path
+	t_stack 		*tmp;
+	DIR				*test;
 
 	tmp = NULL;
-	// here I deal with the single file input case
 	if (!(test = opendir(dir_path)))
 		fls = handle_single_fl(make_dir_path(dir_path), flags);
 	else
