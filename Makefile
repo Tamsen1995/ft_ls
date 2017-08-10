@@ -12,6 +12,7 @@ SRC = srcs/main.c \
 	srcs/handle_sngl_fl.c \
 	srcs/parse_args.c \
 	srcs/sort_args.c \
+	srcs/extract_permissions_mode.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 
