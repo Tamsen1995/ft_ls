@@ -82,9 +82,6 @@ char			*ls_loop(int ac, char **av_tmp, char *flags)
 	files = NULL;
 	while (i < ac && av_tmp[i])
 	{
-		
-		ft_putendl("TESTING"); // TESTING
-
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
 		print_dir_name(dir_path, av_tmp);

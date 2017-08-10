@@ -29,6 +29,8 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 
 	fls = NULL;
 	ent = NULL;
+	ft_putendl(name); // TESTING
+	
 	if (!(dir = opendir(name)))
 		error_msg("Could not open directory (register_fls_in_dir)");
 	if (!(ent = readdir(dir)))
