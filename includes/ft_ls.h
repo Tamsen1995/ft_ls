@@ -12,6 +12,7 @@
 # include				<errno.h>
 
 
+t_fields			*alloc_fields(void);
 void				free_list(t_stack *list);
 void				ret_sing_ent(t_stack **fls, char *fl_path, \
 char *dir_path, char *flags);

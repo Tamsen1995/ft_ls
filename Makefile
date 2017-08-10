@@ -8,12 +8,14 @@ SRC = srcs/main.c \
 	srcs/get_info_fields.c \
 	srcs/extract_date_time.c \
 	srcs/output_module.c \
+	srcs/output_flags.c \
 	srcs/error_message.c \
 	srcs/handle_sngl_fl.c \
 	srcs/parse_args.c \
 	srcs/sort_args.c \
 	srcs/extract_permissions_mode.c \
 	srcs/free_list.c \
+	srcs/alloc_fields.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 

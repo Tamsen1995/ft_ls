@@ -12,16 +12,6 @@
 
 #include "../includes/ft_ls.h"
 
-t_fields		*alloc_fields(void)
-{
-	t_fields *fields;
-
-	fields = NULL;
-	if (!(fields = (t_fields *)malloc(sizeof(t_fields))))
-		exit(-1);
-	return (fields);
-}
-
 char			*extract_owner(struct stat buf)
 {
 	struct passwd		*pwd;
