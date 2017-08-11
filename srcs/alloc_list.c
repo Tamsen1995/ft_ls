@@ -99,9 +99,7 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 
 	fls = NULL;
 	tmp = NULL;
-	if (directory_no_access(dir_path) == TRUE)
-		return (handle_single_fl(dir_path, flags));
-	else if (!(fls = register_fls_in_dir(dir_path, flags)))
+	if (!(fls = register_fls_in_dir(dir_path, flags)))
 		error_msg("Error: (handle_dirs)");
 	tmp = fls;
 	while (tmp)
@@ -109,8 +107,15 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp);
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			tmp->subdir = handle_dirs(tmp->path, flags);
+		if (directory_no_access(tmp->path) == TRUE)
+		{
+			if (tmp->next)
+				tmp = tmp->next;
+
+			// TODO figure out what to do here
+		}
+		else if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
+				tmp->subdir = handle_dirs(tmp->path, flags);
 		tmp = tmp->next;
 	}
 	return (fls);
