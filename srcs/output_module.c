@@ -43,6 +43,11 @@ void			print_dir_path_recur(t_stack *file, char *flags)
 		print_total_blocks(file, flags);
 }
 
+/*
+** out_entire_stack outputs the entire stack of elements
+** recursively. 
+*/
+
 void			out_entire_stack(t_stack *stack, char *flags)
 {
 	t_stack *tmp;
@@ -52,11 +57,12 @@ void			out_entire_stack(t_stack *stack, char *flags)
 	print_dir(tmp, flags);
 	while (tmp)
 	{
-		while (is_hidden_file(tmp) && !flags[f_hidden])
+		while (tmp->next && is_hidden_file(tmp) && !flags[f_hidden])
 			tmp = tmp->next;
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
 			print_dir_path_recur(tmp, flags);
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY &&\
+		directory_no_access(tmp) == FALSE)
 			out_entire_stack(tmp->subdir, flags);
 		tmp = tmp->next;
 	}

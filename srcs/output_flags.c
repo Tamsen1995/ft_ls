@@ -14,6 +14,7 @@
 
 T_BOOL			is_hidden_file(t_stack *file)
 {
+
 	if (!file || !file->filename || !file->filename[0])
 		error_msg("Error in (is_hidden_file)");
 	if (file->filename[0] == '.')
