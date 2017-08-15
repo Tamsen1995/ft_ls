@@ -107,17 +107,12 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	tmp = fls;
 	while (tmp)
 	{
-
-
-		ft_putendl(tmp->path); // TESTING
-
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp);
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
 		&& directory_no_access(tmp) == FALSE)
 			tmp->subdir = handle_dirs(tmp->path, flags);
-
 		tmp = tmp->next;
 	}
 	return (fls);
