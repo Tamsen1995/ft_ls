@@ -48,7 +48,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 ** is neither the current directory nor the previous one
 */
 
-t_bool			not_curr_and_prev(t_stack *entry)
+T_BOOL			not_curr_and_prev(t_stack *entry)
 {
 	if (ft_strcmp(entry->filename, ".") != 0 && \
 		ft_strcmp(entry->filename, "..") != 0)

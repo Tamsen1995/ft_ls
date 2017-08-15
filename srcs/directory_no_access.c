@@ -18,7 +18,7 @@
 ** are restricted
 */
 
-t_bool			directory_no_access(t_stack *elem)
+T_BOOL			directory_no_access(t_stack *elem)
 {
 	DIR			*dir;
 	t_stack		*tmp;

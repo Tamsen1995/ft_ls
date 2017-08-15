@@ -33,7 +33,7 @@ char			**copy_args(int ac, char **av)
 	return (av_tmp);
 }
 
-t_bool			is_valid_folder(char *path)
+T_BOOL			is_valid_folder(char *path)
 {
 	struct stat		buf;
 	char			*dir_path;
@@ -48,7 +48,7 @@ t_bool			is_valid_folder(char *path)
 	return (FALSE);
 }
 
-t_bool			flags_absent(char *flags)
+T_BOOL			flags_absent(char *flags)
 {
 	int i;
 
@@ -62,9 +62,9 @@ t_bool			flags_absent(char *flags)
 	return (TRUE);
 }
 
-t_bool			inv_fls_present(char **av_tmp, int i, int ac)
+T_BOOL			inv_fls_present(char **av_tmp, int i, int ac)
 {
-	t_bool		flag;
+	T_BOOL		flag;
 	struct stat buf;
 	DIR			*dir;
 	char		*dir_path;

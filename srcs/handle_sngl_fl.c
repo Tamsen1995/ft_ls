@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-t_bool				not_curr_and_prev_ch(char *dir_name)
+T_BOOL				not_curr_and_prev_ch(char *dir_name)
 {
 	if (ft_strcmp(dir_name, ".") != 0 && ft_strcmp(dir_name, "..") != 0)
 		return (TRUE);

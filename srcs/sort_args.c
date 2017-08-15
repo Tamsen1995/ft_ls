@@ -26,7 +26,7 @@ t_filetype		get_type_from_path(char *path)
 	return (INVALID);
 }
 
-t_bool			sorted(char **array)
+T_BOOL			sorted(char **array)
 {
 	int				i;
 	int				k;
@@ -51,7 +51,7 @@ t_bool			sorted(char **array)
 	return (TRUE);
 }
 
-t_bool			cmp_args(char *arg_one, char *arg_two)
+T_BOOL			cmp_args(char *arg_one, char *arg_two)
 {
 	t_filetype type_one;
 	t_filetype type_two;

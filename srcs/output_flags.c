@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-t_bool			is_hidden_file(t_stack *file)
+T_BOOL			is_hidden_file(t_stack *file)
 {
 	if (!file || !file->filename || !file->filename[0])
 		error_msg("Error in (is_hidden_file)");

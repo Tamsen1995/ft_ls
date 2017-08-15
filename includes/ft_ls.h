@@ -24,7 +24,7 @@
 # include <errno.h>
 
 void				free_list(t_stack *list, char *flags);
-t_bool				directory_no_access(t_stack *elem);
+T_BOOL				directory_no_access(t_stack *elem);
 t_fields			*alloc_fields(void);
 void				ret_sing_ent(t_stack **fls, char *fl_path, \
 char *dir_path, char *flags);
@@ -32,13 +32,13 @@ void				free_list_elem(t_stack *tmp);
 char				*make_dir_path(char *dir_path);
 char				**sort_args(char **av_tmp);
 char				**check_args_for_dirs(char **av_tmp, int i, int ac);
-t_bool				is_valid_folder(char *path);
+T_BOOL				is_valid_folder(char *path);
 char				**copy_args(int ac, char **av);
 void				free_twod_arr(char **arr);
 t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
 void				print_total_blocks(t_stack *file, char *flags);
-t_bool				is_hidden_file(t_stack *file);
+T_BOOL				is_hidden_file(t_stack *file);
 void				print_list(t_stack *file);
 void				print_flags(t_stack *file, char *flags);
 void				print_dir(t_stack *files, char *flags);
@@ -57,7 +57,7 @@ void				error_msg(char *message);
 void				print_dir_path(t_stack *file, char *flags);
 char				*make_path_dir(char *name, char *cathis);
 t_stack				*register_fls_in_dir(char *name, char *flags);
-t_bool				not_curr_and_prev(t_stack *entry);
+T_BOOL				not_curr_and_prev(t_stack *entry);
 void				out_entire_stack(t_stack *stack, char *flags);
 int					parse_flags(int ac, char **av, char *flags);
 t_stack				*alloc_list(char *name, char *flags);
