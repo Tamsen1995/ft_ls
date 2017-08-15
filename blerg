@@ -1,3 +1,4 @@
 git add -A
-git commit -m "[NORM]"
-git push origin fix/norm
+git commit -m "[FIX] There is weird error which occurs in which a directory with no permissions is accessed even though it shouldn't be.
+There error is most likely to be found in alloc_list.c somewhere"
+git push origin master
