@@ -1,4 +1,3 @@
 git add -A
-git commit -m "[FIX] Figured out how to skip over the directories for which you have no access.
-Going to fix the output as well as the freeing of the list now."
+git commit -m "[FIX] Fixed the slash problem"
 git push origin fix/slash

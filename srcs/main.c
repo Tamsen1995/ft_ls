@@ -87,7 +87,7 @@ char			*ls_loop(int ac, char **av_tmp, char *flags)
 		print_dir_name(dir_path, av_tmp);
 		output_module(files, flags);
 		free(av_tmp[i]);
-		free_list(files);
+		free_list(files, flags);
 		free(dir_path);
 		i++;
 	}
@@ -120,7 +120,7 @@ int				main(int ac, char **av)
 	{
 		files = alloc_list(".", flags);
 		output_module(files, flags);
-		free_list(files);
+		free_list(files, flags);
 	}
 	free(av_tmp);
 	return (0);

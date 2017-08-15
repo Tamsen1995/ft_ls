@@ -12,8 +12,9 @@
 # include				<errno.h>
 
 
+void				free_list(t_stack *list, char *flags);
+t_bool              directory_no_access(t_stack *elem);
 t_fields			*alloc_fields(void);
-void				free_list(t_stack *list);
 void				ret_sing_ent(t_stack **fls, char *fl_path, \
 char *dir_path, char *flags);
 void                free_list_elem(t_stack *tmp);
@@ -25,7 +26,6 @@ char 	            **copy_args(int ac, char **av);
 void                free_twod_arr(char **arr);
 t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
-void				free_list(t_stack *list);
 void                print_total_blocks(t_stack *file, char *flags);
 t_bool		        is_hidden_file(t_stack *file);
 void		        print_list(t_stack *file);

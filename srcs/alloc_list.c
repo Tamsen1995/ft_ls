@@ -111,7 +111,7 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp);
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
-		&& directory_no_access(tmp) == FALSE)
+		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1)
 			tmp->subdir = handle_dirs(tmp->path, flags);
 		tmp = tmp->next;
 	}
