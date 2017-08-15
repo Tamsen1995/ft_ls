@@ -1,7 +1,4 @@
 git add -A
-git commit -m "[FIX] Fixing the slash. 
-Right now there is a segfault in the handle single file function when it is 
-called to handle a directory for which I don't have permissions. 
-Also my ls crashes when I don't have permissions for a directory, 
-instead of saying that it doesn't have permission and continuing on its path."
+git commit -m "[FIX] Figured out how to skip over the directories for which you have no access.
+Going to fix the output as well as the freeing of the list now."
 git push origin fix/slash
