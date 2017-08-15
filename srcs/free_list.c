@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_message.c                                    :+:      :+:    :+:   */
+/*   free_list.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/10 17:56:23 by tbui              #+#    #+#             */
-/*   Updated: 2017/08/10 17:56:38 by tbui             ###   ########.fr       */
+/*   Created: 2017/08/10 17:57:03 by tbui              #+#    #+#             */
+/*   Updated: 2017/08/10 17:57:06 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	error_msg(char *message)
+void			free_list(t_stack *list, char *flags)
 {
-	if (!message)
+	t_stack *tmp;
+
+	tmp = NULL;
+	if (!list)
+		error_msg("Error in the freeing of the list");
+	tmp = list;
+	while (list)
 	{
-		ft_putendl("This is an unknown error.");
-		exit(-1);
+		tmp = list;
+		list = list->next;
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
+		&& directory_no_access(tmp) == FALSE \
+		&& flags[f_recur] == 1)
+			free_list(tmp->subdir, flags);
+		free_list_elem(tmp);
 	}
-	ft_putendl(message);
-	exit(-1);
+	free(list);
+	return ;
 }

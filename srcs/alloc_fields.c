@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   alloc_fields.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 14:55:48 by tbui              #+#    #+#             */
-/*   Updated: 2015/11/24 15:01:43 by tbui             ###   ########.fr       */
+/*   Created: 2017/08/10 18:16:15 by tbui              #+#    #+#             */
+/*   Updated: 2017/08/10 18:16:18 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/ft_ls.h"
 
-char	*ft_strdup(const char *s1)
+t_fields		*alloc_fields(void)
 {
-	int			i;
-	int			j;
-	char		*s2;
+	t_fields *fields;
 
-	i = 0;
-	while (s1[i])
-		i++;
-	if (!(s2 = (char *)malloc(sizeof(char) * i + 1)))
-		return (NULL);
-	j = 0;
-	while (s1[j])
-	{
-		s2[j] = s1[j];
-		j++;
-	}
-	s2[j] = '\0';
-	return (s2);
+	fields = NULL;
+	if (!(fields = (t_fields *)malloc(sizeof(t_fields))))
+		exit(-1);
+	return (fields);
 }

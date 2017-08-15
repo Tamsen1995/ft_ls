@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   directory_no_access.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 14:55:48 by tbui              #+#    #+#             */
-/*   Updated: 2015/11/24 15:01:43 by tbui             ###   ########.fr       */
+/*   Created: 2017/08/15 21:23:09 by tbui              #+#    #+#             */
+/*   Updated: 2017/08/15 21:23:10 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../includes/ft_ls.h"
 
-char	*ft_strdup(const char *s1)
+/*
+** Checks to see if the file is a directory and
+** the access permissions for the current user
+** are restricted
+*/
+
+T_BOOL			directory_no_access(t_stack *elem)
 {
-	int			i;
-	int			j;
-	char		*s2;
+	DIR			*dir;
+	t_stack		*tmp;
 
-	i = 0;
-	while (s1[i])
-		i++;
-	if (!(s2 = (char *)malloc(sizeof(char) * i + 1)))
-		return (NULL);
-	j = 0;
-	while (s1[j])
-	{
-		s2[j] = s1[j];
-		j++;
-	}
-	s2[j] = '\0';
-	return (s2);
+	tmp = NULL;
+	dir = NULL;
+	tmp = elem;
+	if (!(dir = opendir(tmp->path)) && tmp->type == DIRECTORY)
+		return (TRUE);
+	if (dir)
+		closedir(dir);
+	return (FALSE);
 }
