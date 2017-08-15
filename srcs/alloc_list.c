@@ -75,14 +75,15 @@ char			*make_dir_path(char *dir_path)
 ** the access permissions for the current user
 ** are restricted
 */
-t_bool			directory_no_access(char *dir_path)
+t_bool			directory_no_access(t_stack *elem)
 {
-	DIR		*dir;
-	struct stat fstat;
+	DIR *dir;
+	t_stack *tmp;
 
-	if (stat(dir_path, &fstat) < 0)
-		error_msg("Stat error: (directory_no_access)");
-	if (!(dir = opendir(dir_path)) && (S_ISDIR(fstat.st_mode)))
+	tmp = NULL;
+	dir = NULL;
+	tmp = elem;
+	if (!(dir = opendir(tmp->path)) && tmp->type == DIRECTORY)
 		return (TRUE);
 	return (FALSE);
 }
@@ -107,10 +108,12 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp);
-		if (directory_no_access(tmp->path) == TRUE)
+		if (directory_no_access(tmp) == TRUE)
 		{
-			if (tmp->next)
-				tmp = tmp->next;
+	//		if (tmp->next)
+	//			tmp = tmp->next;
+
+			ft_putendl(tmp->path); // TESTING
 
 			// TODO figure out what to do here
 		}
