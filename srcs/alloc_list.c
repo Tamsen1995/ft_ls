@@ -65,16 +65,36 @@ t_bool			not_curr_and_prev(t_stack *entry)
 
 char			*make_dir_path(char *dir_path)
 {
-	if (ft_strncmp("/", dir_path, 1) != 0)
+	if (ft_strncmp("/", dir_path, 1) != 0 && ft_strncmp("./", dir_path, 2) != 0) 
 		dir_path = ft_strjoin("./", dir_path);
 	return (dir_path);
+}
+
+/*
+** Checks to see if the file is a directory and
+** the access permissions for the current user
+** are restricted
+*/
+
+t_bool			directory_no_access(t_stack *elem)
+{
+	DIR *dir;
+	t_stack *tmp;
+
+	tmp = NULL;
+	dir = NULL;
+	tmp = elem;
+	if (!(dir = opendir(tmp->path)) && tmp->type == DIRECTORY)
+		return (TRUE);
+	if (dir)
+		closedir(dir);
+	return (FALSE);
 }
 
 /*
 ** This function recursively allocates
 ** the entire current directory as well as its subdirectories
 */
-
 t_stack			*handle_dirs(char *dir_path, char *flags)
 {
 	t_stack *fls;
@@ -90,7 +110,8 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		tmp->fields = get_file_info(tmp);
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
+		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1)
 			tmp->subdir = handle_dirs(tmp->path, flags);
 		tmp = tmp->next;
 	}

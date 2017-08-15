@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void			free_list(t_stack *list)
+void			free_list(t_stack *list, char *flags)
 {
 	t_stack *tmp;
 
@@ -24,8 +24,10 @@ void			free_list(t_stack *list)
 	{
 		tmp = list;
 		list = list->next;
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY)
-			free_list(tmp->subdir);
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
+		&& directory_no_access(tmp) == FALSE \
+		&& flags[f_recur] == 1)
+			free_list(tmp->subdir, flags);
 		free_list_elem(tmp);
 	}
 	free(list);
