@@ -43,10 +43,7 @@ t_filetype		get_file_type(struct dirent *ent)
 	if (ent->d_type == DT_SOCK)
 		return (SOCK_LINK);
 	if (ent->d_type == DT_FIFO)
-	{
-		ft_putendl("DT_FIFO (get_file_type)");
 		return (FIFO);
-	}
 	return (REG);
 }
 
@@ -93,9 +90,7 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 		system_link_module(alist, flags);
 	alist->next = NULL;
 	alist->prev = NULL;
-	if (path_no_access(alist))
-		alist->fields = NULL;
-	else
-		alist->fields = get_file_info(alist);
+	lstat(ft_strjoin(alist->path, "/."), &(alist->stats));
+	alist->fields = get_file_info(alist);
 	return (alist);
 }

@@ -19,12 +19,12 @@ void			print_dir(t_stack *files, char *flags)
 	tmp = files;
 	while (tmp)
 	{
-		if (!is_hidden_file(tmp) && tmp->fields)
+		if (!is_hidden_file(tmp))
 		{
 			print_flags(tmp, flags);
 			ft_putendl_col(tmp);
 		}
-		if (is_hidden_file(tmp) && flags[f_hidden] && tmp->fields)
+		if (is_hidden_file(tmp) && flags[f_hidden])
 		{
 			print_flags(tmp, flags);
 			ft_putendl_col(tmp);
@@ -85,12 +85,34 @@ void			out_entire_stack(t_stack *stack, char *flags)
 	}
 }
 
+void			print_total_blocks_cur(t_stack *file, char *flags)
+{
+	t_stack			*tmp;
+	long long int	total_blk_size;
+
+	total_blk_size = 0;
+	tmp = file;
+	while (tmp)
+	{
+		if ((!is_hidden_file(tmp) || flags[f_hidden]) && tmp->fields)
+			total_blk_size = total_blk_size + tmp->fields->st_blocks;
+		tmp = tmp->next;
+	}
+	ft_putstr("total ");
+	ft_putnbr((int)total_blk_size);
+	ft_putendl("");
+}
+
 void			output_module(t_stack *files, char *flags)
 {
 	if (!files)
 		return ;
 	if (flags[f_recur])
+	{
+		if (flags[f_list])
+			print_total_blocks_cur(files, flags);
 		out_entire_stack(files, flags);
+	}
 	else
 	{
 		if (flags[f_list] && files->type == DIRECTORY)
