@@ -38,6 +38,30 @@ void			print_list(t_stack *file)
 	ft_putstr("\t");
 }
 
+/*
+** prints the total blocks for the current directory
+** insetad of the subdirectory's
+*/
+
+void			print_total_blocks_cur(t_stack *file, char *flags)
+{
+	t_stack			*tmp;
+	long long int	total_blk_size;
+
+	total_blk_size = 0;
+	tmp = file;
+	while (tmp)
+	{
+		if ((!is_hidden_file(tmp) || flags[f_hidden]) && tmp->fields)
+			total_blk_size = total_blk_size + tmp->fields->st_blocks;
+		tmp = tmp->next;
+	}
+	ft_putstr("total ");
+	ft_putnbr((int)total_blk_size);
+	ft_putendl("");
+}
+
+
 void			print_total_blocks(t_stack *file, char *flags)
 {
 	t_stack			*tmp;

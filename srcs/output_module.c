@@ -35,7 +35,7 @@ void			print_dir(t_stack *files, char *flags)
 
 /*
 ** prints out the permission error message in
-** case a directory could not be accessed 
+** case a directory could not be accessed
 */
 
 void			perm_denied(t_stack *file)
@@ -45,8 +45,13 @@ void			perm_denied(t_stack *file)
 	ft_putstr(" ");
 	ft_putstr(strerror(errno));
 	ft_putendl("");
-
 }
+
+/*
+** prints dir paths for the recursion module
+** as the paths have to be shown before listing the
+** dirs contents
+*/
 
 void			print_dir_path_recur(t_stack *file, char *flags)
 {
@@ -54,7 +59,7 @@ void			print_dir_path_recur(t_stack *file, char *flags)
 	ft_putendl("");
 	ft_putstr(file->path);
 	ft_putendl(":");
-	if (flags[f_list] && path_no_access(file) == FALSE) // TODO implement the permission denied thingy
+	if (flags[f_list] && path_no_access(file) == FALSE)
 		print_total_blocks(file, flags);
 	if (path_no_access(file) == TRUE)
 		perm_denied(file);
@@ -62,7 +67,7 @@ void			print_dir_path_recur(t_stack *file, char *flags)
 
 /*
 ** out_entire_stack outputs the entire stack of elements
-** recursively. 
+** recursively.
 */
 
 void			out_entire_stack(t_stack *stack, char *flags)
@@ -83,24 +88,6 @@ void			out_entire_stack(t_stack *stack, char *flags)
 			out_entire_stack(tmp->subdir, flags);
 		tmp = tmp->next;
 	}
-}
-
-void			print_total_blocks_cur(t_stack *file, char *flags)
-{
-	t_stack			*tmp;
-	long long int	total_blk_size;
-
-	total_blk_size = 0;
-	tmp = file;
-	while (tmp)
-	{
-		if ((!is_hidden_file(tmp) || flags[f_hidden]) && tmp->fields)
-			total_blk_size = total_blk_size + tmp->fields->st_blocks;
-		tmp = tmp->next;
-	}
-	ft_putstr("total ");
-	ft_putnbr((int)total_blk_size);
-	ft_putendl("");
 }
 
 void			output_module(t_stack *files, char *flags)

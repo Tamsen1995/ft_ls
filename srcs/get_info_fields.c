@@ -21,7 +21,7 @@ char			*extract_owner(struct stat buf)
 	pwd = getpwuid(uid);
 	if (pwd)
 		return (pwd->pw_name);
-	return (NULL); // TESTING
+	return (NULL);
 }
 
 char			*extract_group(struct stat buf)
@@ -31,7 +31,6 @@ char			*extract_group(struct stat buf)
 
 	gid = buf.st_gid;
 	grp = getgrgid(gid);
-
 	if (grp)
 		return (grp->gr_name);
 	return (NULL);
