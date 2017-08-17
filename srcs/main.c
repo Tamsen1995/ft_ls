@@ -37,10 +37,13 @@ void			free_list_elem(t_stack *tmp)
 {
 	free(tmp->path);
 	free(tmp->filename);
-	free(tmp->fields->links);
-	free(tmp->fields->size);
-	free(tmp->fields->date);
-	free(tmp->fields);
+	if (tmp->fields)
+	{
+		free(tmp->fields->links);
+		free(tmp->fields->size);
+		free(tmp->fields->date);
+		free(tmp->fields);
+	}
 	free(tmp);
 }
 

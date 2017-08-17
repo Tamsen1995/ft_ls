@@ -91,7 +91,6 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	alist->type = get_file_type(ent);
 	if (alist->type == SYMLINK)
 		system_link_module(alist, flags);
-	ft_putendl(alist->path); // TESTING
 	alist->next = NULL;
 	alist->prev = NULL;
 	if (path_no_access(alist))

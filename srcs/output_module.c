@@ -33,14 +33,31 @@ void			print_dir(t_stack *files, char *flags)
 	}
 }
 
+/*
+** prints out the permission error message in
+** case a directory could not be accessed 
+*/
+
+void			perm_denied(t_stack *file)
+{
+	ft_putstr("ls: ");
+	ft_putstr(file->filename);
+	ft_putstr(" ");
+	ft_putstr(strerror(errno));
+	ft_putendl("");
+
+}
+
 void			print_dir_path_recur(t_stack *file, char *flags)
 {
 	ft_putendl("");
 	ft_putendl("");
 	ft_putstr(file->path);
 	ft_putendl(":");
-	if (flags[f_list]) // TODO implement the permission denied thingy
+	if (flags[f_list] && path_no_access(file) == FALSE) // TODO implement the permission denied thingy
 		print_total_blocks(file, flags);
+	if (path_no_access(file) == TRUE)
+		perm_denied(file);
 }
 
 /*
