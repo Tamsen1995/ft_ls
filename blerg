@@ -1,4 +1,3 @@
 git add -A
-git commit -m "[FIX] Need to figure out how to print PERMISSION DENIED on the 
-recursive flags for directories for whcih I do not have access"
+git commit -m "[NORM]"
 git push origin master
