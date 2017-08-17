@@ -66,6 +66,6 @@ void			print_flags(t_stack *file, char *flags)
 	if (!file)
 		error_msg("A file is missing in (print_flags)");
 	tmp = file;
-	if (flags[f_list])
+	if (flags[f_list] && tmp->fields)
 		print_list(tmp);
 }
