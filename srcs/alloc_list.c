@@ -40,6 +40,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	while (flags[f_nosort] == 1 && (ent = readdir(dir)))
 		ft_lstadd(&fls, ent, name, flags);
 	closedir(dir);
+	ft_putendl("HERE!?"); // TESTING
 	return (fls);
 }
 
@@ -90,7 +91,6 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	{
 		if (tmp->next)
 			tmp->next->prev = tmp;
-		tmp->fields = get_file_info(tmp);
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
 		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1)
 			tmp->subdir = handle_dirs(tmp->path, flags);

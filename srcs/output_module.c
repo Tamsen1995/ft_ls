@@ -19,7 +19,7 @@ void			print_dir(t_stack *files, char *flags)
 	tmp = files;
 	while (tmp)
 	{
-		if (!is_hidden_file(tmp))
+		if (!is_hidden_file(tmp) && tmp->fields)
 		{
 			print_flags(tmp, flags);
 			ft_putendl_col(tmp);

@@ -1,4 +1,4 @@
 git add -A
-git commit -m "[FIX] There is weird error which occurs in which a directory with no permissions is accessed even though it shouldn't be.
-There error is most likely to be found in alloc_list.c somewhere"
+git commit -m "[FIX] Need to figure out how to print PERMISSION DENIED on the 
+recursive flags for directories for whcih I do not have access"
 git push origin master
