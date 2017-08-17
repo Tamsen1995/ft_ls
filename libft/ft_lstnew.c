@@ -92,11 +92,11 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	if (alist->type == SYMLINK)
 		system_link_module(alist, flags);
 	ft_putendl(alist->path); // TESTING
-	if (lstat(alist->path, &(alist->stats)) < 0 && errno == EACCES)
+	alist->next = NULL;
+	alist->prev = NULL;
+	if (path_no_access(alist))
 		alist->fields = NULL;
 	else
 		alist->fields = get_file_info(alist);
-	alist->next = NULL;
-	alist->prev = NULL;
 	return (alist);
 }

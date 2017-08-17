@@ -24,7 +24,7 @@ void			print_dir(t_stack *files, char *flags)
 			print_flags(tmp, flags);
 			ft_putendl_col(tmp);
 		}
-		if (is_hidden_file(tmp) && flags[f_hidden])
+		if (is_hidden_file(tmp) && flags[f_hidden] && tmp->fields)
 		{
 			print_flags(tmp, flags);
 			ft_putendl_col(tmp);
@@ -39,7 +39,7 @@ void			print_dir_path_recur(t_stack *file, char *flags)
 	ft_putendl("");
 	ft_putstr(file->path);
 	ft_putendl(":");
-	if (flags[f_list])
+	if (flags[f_list]) // TODO implement the permission denied thingy
 		print_total_blocks(file, flags);
 }
 

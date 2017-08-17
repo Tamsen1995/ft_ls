@@ -40,7 +40,6 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	while (flags[f_nosort] == 1 && (ent = readdir(dir)))
 		ft_lstadd(&fls, ent, name, flags);
 	closedir(dir);
-	ft_putendl("HERE!?"); // TESTING
 	return (fls);
 }
 

@@ -17,6 +17,7 @@ SRC = srcs/main.c \
 	srcs/free_list.c \
 	srcs/alloc_fields.c \
 	srcs/directory_no_access.c \
+	srcs/path_no_access.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 

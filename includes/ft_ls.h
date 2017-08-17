@@ -23,6 +23,7 @@
 # include <sys/types.h>
 # include <errno.h>
 
+T_BOOL              path_no_access(t_stack *alist);
 void				free_list(t_stack *list, char *flags);
 T_BOOL				directory_no_access(t_stack *elem);
 t_fields			*alloc_fields(void);
