@@ -6,7 +6,7 @@
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/15 21:33:36 by tbui              #+#    #+#             */
-/*   Updated: 2017/08/15 21:33:39 by tbui             ###   ########.fr       */
+/*   Updated: 2017/08/17 23:55:23 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <sys/types.h>
 # include <errno.h>
 
-void			print_total_blocks_cur(t_stack *file, char *flags);
-T_BOOL              path_no_access(t_stack *alist);
+void				print_total_blocks_cur(t_stack *file, char *flags);
+T_BOOL				path_no_access(t_stack *alist);
 void				free_list(t_stack *list, char *flags);
 T_BOOL				directory_no_access(t_stack *elem);
 t_fields			*alloc_fields(void);
