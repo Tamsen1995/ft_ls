@@ -67,7 +67,7 @@ void			print_total_blocks_cur(t_stack *file, char *flags)
 ** respective buffers in the process
 */
 
-void			print_total_blocks(t_stack *dir_elem, char *flags)
+void			print_total_blocks(t_stack *dir_elem)
 {
 	DIR				*dir;
 	struct dirent	*ent;
@@ -83,7 +83,6 @@ void			print_total_blocks(t_stack *dir_elem, char *flags)
 		file_path = make_path_dir(dir_elem->path, ent->d_name);
 		lstat(file_path, &fstat);
 		total_blk_size = total_blk_size + fstat.st_blocks;
-
 	}
 	ft_putstr("total ");
 	ft_putnbr((int)total_blk_size);

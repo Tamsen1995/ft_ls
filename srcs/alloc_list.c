@@ -86,10 +86,9 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	if (!(fls = register_fls_in_dir(dir_path, flags)))
 		error_msg("Error: (handle_dirs)");
 	tmp = fls;
-
-
+	while (tmp->next && is_hidden_file(tmp) && !flags[f_hidden])
+			tmp = tmp->next;
 	print_dir(tmp, flags); // TESTING
-
 	while (tmp)
 	{
 		if (tmp->next)

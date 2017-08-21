@@ -1,4 +1,4 @@
 git add -A
 git commit -m "Slowly merging the output and the allocation. 
-Had to modify the showing of the total bocks for the individual folders."
+There was a problem with the hidden files but I managed to fix it. "
 git push origin restructure
