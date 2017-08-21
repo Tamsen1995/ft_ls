@@ -60,6 +60,13 @@ void			print_total_blocks_cur(t_stack *file, char *flags)
 	ft_putendl("");
 }
 
+/*
+** This function takes in the path of a directory
+** and then iterates over all its contents,
+** adding the the block sizes from the
+** respective buffers in the process
+*/
+
 void			print_total_blocks(t_stack *dir_elem, char *flags)
 {
 	DIR				*dir;
