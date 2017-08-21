@@ -31,6 +31,8 @@ char			*make_path_dir(char *name, char *cathis)
 
 t_filetype		get_file_type(struct dirent *ent)
 {
+		ft_putendl(ent->d_name);
+
 	if (ent->d_type == DT_REG)
 		return (REG);
 	if (ent->d_type == DT_BLK)
@@ -85,13 +87,15 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 		return (NULL);
 	alist->filename = ft_strdup(ent->d_name);
 	alist->path = make_path_dir(path, alist->filename);
-	alist->type = INVALID;
+	alist->type = INVALID;	
 	alist->type = get_file_type(ent);
 	if (alist->type == SYMLINK)
 		system_link_module(alist, flags);
 	alist->next = NULL;
 	alist->prev = NULL;
 	lstat(ft_strjoin(alist->path, "/."), &(alist->stats));
+	if (S_ISDIR(alist->stats.st_mode))
+		alist->type = DIRECTORY;
 	alist->fields = get_file_info(alist);
 	return (alist);
 }

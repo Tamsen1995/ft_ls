@@ -20,7 +20,7 @@ void			free_list(t_stack *list, char *flags)
 	if (!list)
 		error_msg("Error in the freeing of the list");
 	tmp = list;
-	while (list)
+	while (list->next)
 	{
 		tmp = list;
 		list = list->next;

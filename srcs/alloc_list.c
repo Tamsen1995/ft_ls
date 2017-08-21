@@ -36,9 +36,15 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	if (!(fls = ft_lstnew(ent, name, flags)))
 		error_msg("Err: lstnew (register_fls_in_dir)");
 	while (flags[f_nosort] == 0 && (ent = readdir(dir)))
-		ft_list_push_back(&fls, ent, name, flags);
+	{
+		if (ft_strncmp(ent->d_name, ".", 1) != 0 || flags[f_hidden])
+			ft_list_push_back(&fls, ent, name, flags);
+	}
 	while (flags[f_nosort] == 1 && (ent = readdir(dir)))
-		ft_lstadd(&fls, ent, name, flags);
+	{
+		if (ft_strncmp(ent->d_name, ".", 1) != 0 || flags[f_hidden])
+			ft_lstadd(&fls, ent, name, flags);
+	}
 	closedir(dir);
 	return (fls);
 }
@@ -84,15 +90,13 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	if (!(fls = register_fls_in_dir(dir_path, flags)))
 		error_msg("Error: (handle_dirs)");
 	tmp = fls;
-	while (tmp->next && is_hidden_file(tmp) && !flags[f_hidden])
-			tmp = tmp->next;
-	print_dir(tmp, flags); // TESTING
+	print_dir(tmp, flags);
 	while (tmp)
 	{
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
-		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1)
+		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1 )
 		{
 			print_dir_path_recur(tmp, flags);
 			tmp->subdir = handle_dirs(tmp->path, flags);
