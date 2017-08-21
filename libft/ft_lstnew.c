@@ -31,8 +31,6 @@ char			*make_path_dir(char *name, char *cathis)
 
 t_filetype		get_file_type(struct dirent *ent)
 {
-		ft_putendl(ent->d_name);
-
 	if (ent->d_type == DT_REG)
 		return (REG);
 	if (ent->d_type == DT_BLK)
