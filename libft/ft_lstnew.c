@@ -91,7 +91,6 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 		system_link_module(alist, flags);
 	alist->next = NULL;
 	alist->prev = NULL;
-
 	lstat(ft_strjoin(alist->path, "/."), &(alist->stats));
 	alist->fields = get_file_info(alist);
 	return (alist);

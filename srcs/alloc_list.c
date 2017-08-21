@@ -86,13 +86,20 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	if (!(fls = register_fls_in_dir(dir_path, flags)))
 		error_msg("Error: (handle_dirs)");
 	tmp = fls;
+
+
+	print_dir(tmp, flags); // TESTING
+
 	while (tmp)
 	{
 		if (tmp->next)
 			tmp->next->prev = tmp;
 		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
 		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1)
+		{
+			print_dir_path_recur(tmp, flags);
 			tmp->subdir = handle_dirs(tmp->path, flags);
+		}
 		tmp = tmp->next;
 	}
 	return (fls);

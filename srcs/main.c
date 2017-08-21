@@ -87,8 +87,8 @@ char			*ls_loop(int ac, char **av_tmp, char *flags)
 	{
 		dir_path = ft_strdup(av_tmp[i]);
 		files = alloc_list(dir_path, flags);
-		print_dir_name(dir_path, av_tmp);
-		output_module(files, flags);
+	//	print_dir_name(dir_path, av_tmp);
+	//	output_module(files, flags);
 		free(av_tmp[i]);
 		free_list(files, flags);
 		free(dir_path);
@@ -122,7 +122,7 @@ int				main(int ac, char **av)
 	if (dir_path == NULL)
 	{
 		files = alloc_list(".", flags);
-		output_module(files, flags);
+	//	output_module(files, flags);
 		free_list(files, flags);
 	}
 	free(av_tmp);

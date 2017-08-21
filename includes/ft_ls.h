@@ -23,6 +23,8 @@
 # include <sys/types.h>
 # include <errno.h>
 
+
+void		    	print_dir_path_recur(t_stack *file, char *flags);
 void				print_total_blocks_cur(t_stack *file, char *flags);
 T_BOOL				path_no_access(t_stack *alist);
 void				free_list(t_stack *list, char *flags);

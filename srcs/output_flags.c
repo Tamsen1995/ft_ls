@@ -60,12 +60,39 @@ void			print_total_blocks_cur(t_stack *file, char *flags)
 	ft_putendl("");
 }
 
-void			print_total_blocks(t_stack *file, char *flags)
+void			print_total_blocks(t_stack *dir_elem, char *flags)
 {
-	t_stack			*tmp;
+	DIR				*dir;
+	struct dirent	*ent;
+	char			*file_path;
+	struct stat 	fstat;
 	long long int	total_blk_size;
 
+
+
+	char *tmp;
+	tmp = flags;// TESTING
+
+
 	total_blk_size = 0;
+	if (!(dir = opendir(dir_elem->path)))
+		error_msg("Could not open directory (print_total_blocks)");
+	while ((ent = readdir(dir)))
+	{
+		file_path = make_path_dir(dir_elem->path, ent->d_name);
+		lstat(file_path, &fstat);
+		total_blk_size = total_blk_size + fstat.st_blocks;
+
+	}
+	ft_putstr("total ");
+	ft_putnbr((int)total_blk_size);
+	ft_putendl("");
+	closedir(dir);
+/*
+
+	t_stack			*tmp;
+
+
 	tmp = file->subdir;
 	if (!flags[f_recur])
 		tmp = file;
@@ -75,9 +102,9 @@ void			print_total_blocks(t_stack *file, char *flags)
 			total_blk_size = total_blk_size + tmp->fields->st_blocks;
 		tmp = tmp->next;
 	}
-	ft_putstr("total ");
-	ft_putnbr((int)total_blk_size);
-	ft_putendl("");
+
+
+	*/
 }
 
 void			print_flags(t_stack *file, char *flags)
