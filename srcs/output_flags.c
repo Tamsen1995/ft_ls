@@ -68,12 +68,6 @@ void			print_total_blocks(t_stack *dir_elem, char *flags)
 	struct stat 	fstat;
 	long long int	total_blk_size;
 
-
-
-	char *tmp;
-	tmp = flags;// TESTING
-
-
 	total_blk_size = 0;
 	if (!(dir = opendir(dir_elem->path)))
 		error_msg("Could not open directory (print_total_blocks)");
@@ -88,23 +82,6 @@ void			print_total_blocks(t_stack *dir_elem, char *flags)
 	ft_putnbr((int)total_blk_size);
 	ft_putendl("");
 	closedir(dir);
-/*
-
-	t_stack			*tmp;
-
-
-	tmp = file->subdir;
-	if (!flags[f_recur])
-		tmp = file;
-	while (tmp)
-	{
-		if ((!is_hidden_file(tmp) || flags[f_hidden]) && tmp->fields)
-			total_blk_size = total_blk_size + tmp->fields->st_blocks;
-		tmp = tmp->next;
-	}
-
-
-	*/
 }
 
 void			print_flags(t_stack *file, char *flags)
