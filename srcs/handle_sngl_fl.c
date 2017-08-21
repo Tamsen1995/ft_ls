@@ -101,7 +101,10 @@ t_stack				*handle_single_fl(char *fl_path, char *flags)
 	}
 	ret_sing_ent(&fls, fl_path, "./", flags);
 	fls->fields = get_file_info(fls);
-	print_dir(fls, flags);
+	if (path_no_access(fls))
+		perm_denied(fls);
+	else 
+		print_dir(fls, flags);
 	free(fl_path);
 	return (fls);
 }

@@ -102,17 +102,14 @@ char			**check_args_for_dirs(char **av_tmp, int i, int ac)
 		error_msg("ERROR: (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
-		if (is_valid_folder(av_tmp[i]))
-		{
-			dir_arr[k] = ft_strdup(av_tmp[i]);
-			k++;
-		}
+		dir_arr[k] = ft_strdup(av_tmp[i]);
+		k++;
 		i++;
 		j++;
 	}
 	i = i - j;
 	if (inv_fls_present(av_tmp, i, ac) && k <= 0)
-		error_msg("Error in (check_args_for_dir)");
+		error_msg("");
 	dir_arr[k] = NULL;
 	free(av_tmp);
 	return (dir_arr);
