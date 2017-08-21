@@ -81,8 +81,6 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	t_stack *fls;
 	t_stack *tmp;
 
-	fls = NULL;
-	tmp = NULL;
 	if (!(fls = register_fls_in_dir(dir_path, flags)))
 		error_msg("Error: (handle_dirs)");
 	tmp = fls;
@@ -120,6 +118,8 @@ t_stack			*alloc_list(char *dir_path, char *flags)
 		fls = handle_single_fl(make_dir_path(dir_path), flags);
 	else
 	{
+		if (flags[f_list])
+			print_total_blocks(dir_path, flags);
 		fls = handle_dirs(dir_path, flags);
 		closedir(test);
 	}

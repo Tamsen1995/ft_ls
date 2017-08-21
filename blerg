@@ -1,4 +1,6 @@
 git add -A
 git commit -m "Slowly merging the output and the allocation. 
-There was a problem with the hidden files but I managed to fix it. "
+Turns out you're not supposed to add the hidden files into the total block size
+if the hidden flag isn't activated. So I had to make some modifications to the show total blocks function.
+Also there is now and error in the freeling of the list I need to take care of."
 git push origin restructure

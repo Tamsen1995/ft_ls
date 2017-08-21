@@ -60,7 +60,7 @@ void			print_dir_path_recur(t_stack *file, char *flags)
 	ft_putstr(file->path);
 	ft_putendl(":");
 	if (flags[f_list] && path_no_access(file) == FALSE)
-		print_total_blocks(file);
+		print_total_blocks(file->path, flags);
 	if (path_no_access(file) == TRUE)
 		perm_denied(file);
 }
@@ -103,7 +103,7 @@ void			output_module(t_stack *files, char *flags)
 	else
 	{
 		if (flags[f_list] && files->type == DIRECTORY)
-			print_total_blocks(files);
+			print_total_blocks(files->path, flags);
 		print_dir(files, flags);
 	}
 }

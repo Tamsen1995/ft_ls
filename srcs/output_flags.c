@@ -67,7 +67,7 @@ void			print_total_blocks_cur(t_stack *file, char *flags)
 ** respective buffers in the process
 */
 
-void			print_total_blocks(t_stack *dir_elem)
+void			print_total_blocks(char *dir_path, char *flags)
 {
 	DIR				*dir;
 	struct dirent	*ent;
@@ -76,13 +76,14 @@ void			print_total_blocks(t_stack *dir_elem)
 	long long int	total_blk_size;
 
 	total_blk_size = 0;
-	if (!(dir = opendir(dir_elem->path)))
+	if (!(dir = opendir(dir_path)))
 		error_msg("Could not open directory (print_total_blocks)");
 	while ((ent = readdir(dir)))
 	{
-		file_path = make_path_dir(dir_elem->path, ent->d_name);
+		file_path = make_path_dir(dir_path, ent->d_name);
 		lstat(file_path, &fstat);
-		total_blk_size = total_blk_size + fstat.st_blocks;
+		if (ft_strncmp(ent->d_name, ".", 1) != 0 || flags[f_hidden])
+			total_blk_size = total_blk_size + fstat.st_blocks;
 	}
 	ft_putstr("total ");
 	ft_putnbr((int)total_blk_size);

@@ -41,7 +41,7 @@ char				**copy_args(int ac, char **av);
 void				free_twod_arr(char **arr);
 t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
-void				print_total_blocks(t_stack *file);
+void				print_total_blocks(char *dir_path, char *flags);
 T_BOOL				is_hidden_file(t_stack *file);
 void				print_list(t_stack *file);
 void				print_flags(t_stack *file, char *flags);
