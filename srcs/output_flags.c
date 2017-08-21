@@ -6,7 +6,7 @@
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/10 18:21:21 by tbui              #+#    #+#             */
-/*   Updated: 2017/08/17 23:52:28 by tbui             ###   ########.fr       */
+/*   Updated: 2017/08/21 21:52:57 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			print_total_blocks(char *dir_path, char *flags)
 	DIR				*dir;
 	struct dirent	*ent;
 	char			*file_path;
-	struct stat 	fstat;
+	struct stat		fstat;
 	long long int	total_blk_size;
 
 	total_blk_size = 0;

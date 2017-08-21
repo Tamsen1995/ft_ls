@@ -17,6 +17,9 @@ void			print_dir(t_stack *files, char *flags)
 	t_stack *tmp;
 
 	tmp = files;
+
+	if (path_no_access(tmp))
+		return(perm_denied(tmp));
 	while (tmp)
 	{
 		if (!is_hidden_file(tmp))

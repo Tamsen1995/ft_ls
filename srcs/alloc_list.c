@@ -6,7 +6,7 @@
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 20:58:30 by tbui              #+#    #+#             */
-/*   Updated: 2017/06/17 20:58:37 by tbui             ###   ########.fr       */
+/*   Updated: 2017/08/21 21:51:24 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack			*register_fls_in_dir(char *name, char *flags)
 	fls = NULL;
 	ent = NULL;
 	if (!(dir = opendir(name)))
-		error_msg("Could not open directory (register_fls_in_dir)");
+		return (fls);
 	if (!(ent = readdir(dir)))
 		error_msg("Err: readdir (register_fls_in_dir)");
 	if (!(fls = ft_lstnew(ent, name, flags)))
@@ -87,16 +87,17 @@ t_stack			*handle_dirs(char *dir_path, char *flags)
 	t_stack *fls;
 	t_stack *tmp;
 
+	fls = NULL;
 	if (!(fls = register_fls_in_dir(dir_path, flags)))
-		error_msg("Error: (handle_dirs)");
+		return (fls);
 	tmp = fls;
 	print_dir(tmp, flags);
 	while (tmp)
 	{
 		if (tmp->next)
 			tmp->next->prev = tmp;
-		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY \
-		&& directory_no_access(tmp) == FALSE && flags[f_recur] == 1 )
+		if (not_curr_and_prev(tmp) == TRUE && tmp->type == DIRECTORY  \
+		&& flags[f_recur] == 1)
 		{
 			print_dir_path_recur(tmp, flags);
 			tmp->subdir = handle_dirs(tmp->path, flags);

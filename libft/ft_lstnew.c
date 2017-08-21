@@ -85,7 +85,7 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 		return (NULL);
 	alist->filename = ft_strdup(ent->d_name);
 	alist->path = make_path_dir(path, alist->filename);
-	alist->type = INVALID;	
+	alist->type = INVALID;
 	alist->type = get_file_type(ent);
 	if (alist->type == SYMLINK)
 		system_link_module(alist, flags);
