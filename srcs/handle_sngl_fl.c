@@ -64,6 +64,7 @@ char *dir_path, char *flags)
 		ent_path = ft_strjoin(dir_path, ent->d_name);
 		if (ft_strcmp(ent_path, fl_path) == 0)
 		{
+
 			free(ent_path);
 			(*fls) = ft_lstnew(ent, dir_path, flags);
 			free((*fls)->filename);
@@ -93,6 +94,8 @@ t_stack				*handle_single_fl(char *fl_path, char *flags)
 	}
 	ret_sing_ent(&fls, fl_path, "./", flags);
 	fls->fields = get_file_info(fls);
+	print_dir(fls, flags);
+
 	free(fl_path);
 	return (fls);
 }

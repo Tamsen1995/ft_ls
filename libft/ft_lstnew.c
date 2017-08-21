@@ -23,7 +23,8 @@ char			*make_path_dir(char *name, char *cathis)
 	if (!(nw_path = (char *)malloc(sizeof(char) * l + 1)))
 		error_msg("Error: (make_path_dir)");
 	nw_path = ft_strcpy(nw_path, name);
-	nw_path = ft_strcat(nw_path, "/");
+	if (ft_strcmp(name, "/") != 0)
+		nw_path = ft_strcat(nw_path, "/");
 	nw_path = ft_strcat(nw_path, cathis);
 	return (nw_path);
 }
@@ -84,13 +85,15 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 		return (NULL);
 	alist->filename = ft_strdup(ent->d_name);
 	alist->path = make_path_dir(path, alist->filename);
-	alist->type = INVALID;
+	alist->type = INVALID;	
 	alist->type = get_file_type(ent);
 	if (alist->type == SYMLINK)
 		system_link_module(alist, flags);
 	alist->next = NULL;
 	alist->prev = NULL;
 	lstat(ft_strjoin(alist->path, "/."), &(alist->stats));
+	if (S_ISDIR(alist->stats.st_mode))
+		alist->type = DIRECTORY;
 	alist->fields = get_file_info(alist);
 	return (alist);
 }

@@ -60,24 +60,35 @@ void			print_total_blocks_cur(t_stack *file, char *flags)
 	ft_putendl("");
 }
 
-void			print_total_blocks(t_stack *file, char *flags)
+/*
+** This function takes in the path of a directory
+** and then iterates over all its contents,
+** adding the the block sizes from the
+** respective buffers in the process
+*/
+
+void			print_total_blocks(char *dir_path, char *flags)
 {
-	t_stack			*tmp;
+	DIR				*dir;
+	struct dirent	*ent;
+	char			*file_path;
+	struct stat 	fstat;
 	long long int	total_blk_size;
 
 	total_blk_size = 0;
-	tmp = file->subdir;
-	if (!flags[f_recur])
-		tmp = file;
-	while (tmp)
+	if (!(dir = opendir(dir_path)))
+		error_msg("Could not open directory (print_total_blocks)");
+	while ((ent = readdir(dir)))
 	{
-		if ((!is_hidden_file(tmp) || flags[f_hidden]) && tmp->fields)
-			total_blk_size = total_blk_size + tmp->fields->st_blocks;
-		tmp = tmp->next;
+		file_path = make_path_dir(dir_path, ent->d_name);
+		lstat(file_path, &fstat);
+		if (ft_strncmp(ent->d_name, ".", 1) != 0 || flags[f_hidden])
+			total_blk_size = total_blk_size + fstat.st_blocks;
 	}
 	ft_putstr("total ");
 	ft_putnbr((int)total_blk_size);
 	ft_putendl("");
+	closedir(dir);
 }
 
 void			print_flags(t_stack *file, char *flags)

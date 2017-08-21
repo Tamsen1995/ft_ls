@@ -18,6 +18,6 @@ t_fields		*alloc_fields(void)
 
 	fields = NULL;
 	if (!(fields = (t_fields *)malloc(sizeof(t_fields))))
-		exit(-1);
+		error_msg("Error in alloc_fields");
 	return (fields);
 }

@@ -15,11 +15,9 @@
 char			*extract_owner(struct stat buf)
 {
 	struct passwd		*pwd;
-	uid_t				uid;
 
-	uid = buf.st_uid;
-	pwd = getpwuid(uid);
-	if (pwd)
+	pwd = getpwuid(buf.st_uid);
+	if (pwd && pwd->pw_name)
 		return (pwd->pw_name);
 	return (NULL);
 }
@@ -27,11 +25,9 @@ char			*extract_owner(struct stat buf)
 char			*extract_group(struct stat buf)
 {
 	struct group	*grp;
-	gid_t			gid;
 
-	gid = buf.st_gid;
-	grp = getgrgid(gid);
-	if (grp)
+	grp = getgrgid(buf.st_gid);
+	if (grp && grp->gr_name)
 		return (grp->gr_name);
 	return (NULL);
 }

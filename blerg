@@ -1,3 +1,4 @@
 git add -A
-git commit -m "[NORM]"
-git push origin master
+git commit -m "[UPD]  flags are now re-implemented. Paths for recursion implemented.
+Next up is cleaning up the functions we don't need"
+git push origin restructure

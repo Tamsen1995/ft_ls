@@ -112,7 +112,7 @@ char			**check_args_for_dirs(char **av_tmp, int i, int ac)
 	}
 	i = i - j;
 	if (inv_fls_present(av_tmp, i, ac) && k <= 0)
-		exit(-1);
+		error_msg("Error in (check_args_for_dir)");
 	dir_arr[k] = NULL;
 	free(av_tmp);
 	return (dir_arr);
