@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] The file the link links to is missing when I try to output it as a single file"
-git push origin fix/single_link
+git commit -m "[UPD] Fixed most minor bugs. Push into master and then re-test"
+git push origin fix/hidden_files_logic

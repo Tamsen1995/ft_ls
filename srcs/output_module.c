@@ -55,12 +55,17 @@ void			perm_denied(t_stack *file)
 
 void			print_dir_path_recur(t_stack *file, char *flags)
 {
+	DIR *dir;
+
+	dir = NULL;
 	ft_putendl("");
 	ft_putendl("");
 	ft_putstr(file->path);
 	ft_putendl(":");
 	if (flags[f_list] && path_no_access(file) == FALSE)
 		print_total_blocks(file->path, flags);
-	if (path_no_access(file) == TRUE)
+	if (path_no_access(file) == TRUE || !(dir = opendir(file->path)))
 		perm_denied(file);
+	if (dir)
+		closedir(dir);
 }

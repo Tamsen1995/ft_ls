@@ -77,7 +77,7 @@ void			print_total_blocks(char *dir_path, char *flags)
 
 	total_blk_size = 0;
 	if (!(dir = opendir(dir_path)))
-		error_msg("Could not open directory (print_total_blocks)");
+		return ;
 	while ((ent = readdir(dir)))
 	{
 		file_path = make_path_dir(dir_path, ent->d_name);
