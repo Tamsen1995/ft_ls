@@ -122,7 +122,7 @@ int				main(int ac, char **av)
 	av_tmp = check_args_for_dirs(av_tmp, i, ac);
 	av_tmp = sort_args(av_tmp);
 	dir_path = ls_loop(ac, av_tmp, flags);
-	if (dir_path == NULL)
+	if (dir_path == NULL && ac - i <= 0)
 	{
 		files = alloc_list(".", flags);
 		free_list(files, flags);
