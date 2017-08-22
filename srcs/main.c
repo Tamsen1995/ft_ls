@@ -85,12 +85,16 @@ char			*ls_loop(int ac, char **av_tmp, char *flags)
 	files = NULL;
 	while (i < ac && av_tmp[i])
 	{
-		dir_path = ft_strdup(av_tmp[i]);
-		print_dir_name(dir_path, av_tmp);
-		files = alloc_list(dir_path, flags);
-		free(av_tmp[i]);
-		free_list(files, flags);
-		free(dir_path);
+		if (is_valid_folder(av_tmp[i]))
+		{
+			dir_path = ft_strdup(av_tmp[i]);
+			print_dir_name(dir_path, av_tmp);
+			files = alloc_list(dir_path, flags);
+			ft_putendl("");
+			free(av_tmp[i]);
+			free_list(files, flags);
+			free(dir_path);
+		}
 		i++;
 	}
 	return (dir_path);

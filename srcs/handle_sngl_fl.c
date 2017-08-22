@@ -12,12 +12,23 @@
 
 #include "../includes/ft_ls.h"
 
+/*
+** checks a directory's name to make
+** sure it's neither the current or
+** previous directory
+*/
+
 T_BOOL				not_curr_and_prev_ch(char *dir_name)
 {
 	if (ft_strcmp(dir_name, ".") != 0 && ft_strcmp(dir_name, "..") != 0)
 		return (TRUE);
 	return (FALSE);
 }
+
+
+/*
+** helper function
+*/
 
 char				*expend_root(char *fl_path)
 {
@@ -66,9 +77,6 @@ char *dir_path, char *flags)
 		{
 			free(ent_path);
 			(*fls) = ft_lstnew(ent, dir_path, flags);
-			free((*fls)->filename);
-			fl_path = expend_root(fl_path);
-			(*fls)->filename = ft_strdup(fl_path);
 			closedir(dir);
 			return ;
 		}
@@ -93,7 +101,10 @@ t_stack				*handle_single_fl(char *fl_path, char *flags)
 	}
 	ret_sing_ent(&fls, fl_path, "./", flags);
 	fls->fields = get_file_info(fls);
-	print_dir(fls, flags);
+	if (path_no_access(fls))
+		perm_denied(fls);
+	else 
+		print_dir(fls, flags);
 	free(fl_path);
 	return (fls);
 }
