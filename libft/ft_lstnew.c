@@ -94,6 +94,9 @@ t_stack			*ft_lstnew(struct dirent *ent, char *path, char *flags)
 	lstat(alist->path, &(alist->stats));
 	if (S_ISDIR(alist->stats.st_mode))
 		alist->type = DIRECTORY;
+	
+
+	//ft_putendl(alist->filename); // TESTING
 	alist->fields = get_file_info(alist);
 	return (alist);
 }

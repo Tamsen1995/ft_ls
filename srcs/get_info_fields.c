@@ -58,6 +58,7 @@ t_fields		*get_file_info(t_stack *file)
 	struct stat		buf;
 
 	tmp = file;
+	tmp->fields = NULL;
 	tmp->fields = alloc_fields();
 	lstat(tmp->path, &buf);
 	extract_permissions_mode(buf, tmp);
