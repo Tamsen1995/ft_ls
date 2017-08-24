@@ -1,0 +1,9 @@
+> Redo the sorting of arguments using linked list
+    Since the sorting of directories is 
+    also affected by the various flags
+    I now need to put this into consideration
+- In the sort_args function we make a linked list
+out of the 2d array
+- declare such an arguments list in the header
+- sort the list dynamically using the array
+- do so using the same or similar logic as in the lstadd_sort

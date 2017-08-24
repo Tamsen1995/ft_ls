@@ -89,6 +89,15 @@ T_BOOL			inv_fls_present(char **av_tmp, int i, int ac)
 	return (flag);
 }
 
+
+/*
+** Makes a copy of all the potential directories
+** in the arguments array and copies it into
+** a directory array
+** Also outputs an error message in case an invalid directory
+** was inputted
+*/
+
 char			**check_args_for_dirs(char **av_tmp, int i, int ac)
 {
 	char		**dir_arr;
@@ -102,8 +111,11 @@ char			**check_args_for_dirs(char **av_tmp, int i, int ac)
 		error_msg("ERROR: (check_args_for_dir)");
 	while (i < ac && av_tmp[i])
 	{
-		dir_arr[k] = ft_strdup(av_tmp[i]);
-		k++;
+		if (is_valid_folder(av_tmp[i]) == TRUE)
+		{
+			dir_arr[k] = ft_strdup(av_tmp[i]);
+			k++;
+		}
 		i++;
 		j++;
 	}
