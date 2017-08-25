@@ -1,3 +1,3 @@
 git add -A
-git commit -m "[FIX] Need to re-do the entire sort_args module"
+git commit -m "[UPD] re-did the entire sort_args module"
 git push origin fix/t_r_sorting

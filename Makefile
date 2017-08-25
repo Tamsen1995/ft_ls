@@ -18,6 +18,7 @@ SRC = srcs/main.c \
 	srcs/alloc_fields.c \
 	srcs/directory_no_access.c \
 	srcs/path_no_access.c \
+	srcs/ft_args_push_back.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 

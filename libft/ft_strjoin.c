@@ -12,16 +12,13 @@
 
 #include "../includes/libft.h"
 
-static int	my_strlen(const char *str)
+int			my_strlen(const char *str)
 {
 	int		i;
 
 	i = 0;
-	while (*str != '\0')
-	{
+	while (str[i] != '\0')
 		i++;
-		str++;
-	}
 	return (i);
 }
 

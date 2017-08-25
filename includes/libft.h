@@ -87,6 +87,8 @@ typedef enum	e_filetype
 typedef struct		s_args
 {
 	char			*path;
+	char			*name;
+	struct stat		stats;
 	struct s_args	*next;
 	struct s_args	*prev;
 	t_filetype		type;
