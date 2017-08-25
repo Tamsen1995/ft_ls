@@ -75,6 +75,25 @@ typedef enum	e_filetype
 	INVALID
 }				t_filetype;
 
+
+/*
+** A linked list structure
+** made solely for the sorting
+** of the initial arguments
+** After sorting it will be converted
+** back into an arguments array
+*/
+
+typedef struct		s_args
+{
+	char			*path;
+	char			*name;
+	struct stat		stats;
+	struct s_args	*next;
+	struct s_args	*prev;
+	t_filetype		type;
+}					t_args;
+
 typedef struct		s_fields
 {
 	char			mode[11];

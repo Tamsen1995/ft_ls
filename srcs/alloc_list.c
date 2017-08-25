@@ -72,7 +72,8 @@ T_BOOL			not_curr_and_prev(t_stack *entry)
 char			*make_dir_path(char *dir_path)
 {
 	if (ft_strncmp("/", dir_path, 1) != 0 && \
-	ft_strncmp("./", dir_path, 2) != 0)
+	ft_strncmp("./", dir_path, 2) != 0 && \
+	ft_strncmp("~", dir_path, 1) != 0)
 		dir_path = ft_strjoin("./", dir_path);
 	return (dir_path);
 }

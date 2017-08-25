@@ -23,6 +23,9 @@
 # include <sys/types.h>
 # include <errno.h>
 
+t_args			    *ft_new_arg(char *name);
+int                 args_sorting(t_args *s1, t_args *s2, char *flags);
+void                ft_args_push_back(t_args **begin, char *name, char *flags);
 void	    		perm_denied(t_stack *file);
 void				print_dir_path_recur(t_stack *file, char *flags);
 void				print_total_blocks_cur(t_stack *file, char *flags);
@@ -34,7 +37,7 @@ void				ret_sing_ent(t_stack **fls, char *fl_path, \
 char *dir_path, char *flags);
 void				free_list_elem(t_stack *tmp);
 char				*make_dir_path(char *dir_path);
-char				**sort_args(char **av_tmp);
+char				**sort_args(char **av_tmp, char *flags);
 char				**check_args_for_dirs(char **av_tmp, int i, int ac);
 T_BOOL				is_valid_folder(char *path);
 char				**copy_args(int ac, char **av);
