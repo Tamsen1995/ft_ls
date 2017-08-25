@@ -27,8 +27,11 @@ void		init_flags(char *flags)
 	int		i;
 
 	i = 0;
-	while (i++ <= NB_FLAGS)
+	while (i <= NB_FLAGS)
+	{
 		flags[i] = 0;
+		i++;
+	}
 }
 
 int			flag_index(char c)

@@ -9,7 +9,6 @@ SRC = srcs/main.c \
 	srcs/extract_date_time.c \
 	srcs/output_module.c \
 	srcs/output_flags.c \
-	srcs/error_message.c \
 	srcs/handle_sngl_fl.c \
 	srcs/parse_args.c \
 	srcs/sort_args.c \

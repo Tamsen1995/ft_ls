@@ -60,7 +60,6 @@ void				extract_permissions_mode(struct stat file_stat,\
 t_stack *file);
 t_fields			*alloc_fields(void);
 t_fields			*get_file_info(t_stack *file);
-void				error_msg(char *message);
 void				print_dir_path(t_stack *file, char *flags);
 char				*make_path_dir(char *name, char *cathis);
 t_stack				*register_fls_in_dir(char *name, char *flags);

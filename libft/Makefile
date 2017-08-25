@@ -59,6 +59,8 @@ SRC = ft_atoi.c \
 	ft_toupper.c \
 	ft_putendl_col.c \
 	ft_putstr_col.c \
+	ft_alloc_twod_arr.c \
+	error_message.c \
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 
