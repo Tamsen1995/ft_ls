@@ -40,6 +40,9 @@ t_args			*ft_new_arg(char *name)
 	argu = NULL;
 	if (!(argu = (t_args *)malloc(sizeof(t_args) * 1)))
 		error_msg("Malloc fail in (ft_new_arg)");
+
+
+	
 	argu->name = ft_strdup(name);
 	argu->path = ft_strdup(make_dir_path(argu->name));
 	argu->type = get_type_from_path(argu->path);
@@ -64,8 +67,9 @@ char			**sort_args(char **av_tmp, char *flags)
 	i = 0;
 	sorted = NULL;
 	tmp = NULL;
+
 	if (!av_tmp[i])
-		error_msg("Error in (sort_args)");
+		return (av_tmp);
 	begin = ft_new_arg(av_tmp[i]);
 	i = 1;
 	while (av_tmp[i])
@@ -73,8 +77,7 @@ char			**sort_args(char **av_tmp, char *flags)
 		ft_args_push_back(&begin, av_tmp[i], flags);
 		i++;
 	}
-	if (!(sorted = (char **)malloc(sizeof(char *) * i + 1)))
-		error_msg("could not malloc (sort_args)");
+	sorted = ft_alloc_twod_arr(i);
 	i = 0;
 	tmp = begin;
 	while (tmp)

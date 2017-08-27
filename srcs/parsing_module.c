@@ -27,8 +27,11 @@ void		init_flags(char *flags)
 	int		i;
 
 	i = 0;
-	while (i++ <= NB_FLAGS)
+	while (i <= NB_FLAGS)
+	{
 		flags[i] = 0;
+		i++;
+	}
 }
 
 int			flag_index(char c)
@@ -62,6 +65,8 @@ void		check_flag_overlaps(char *flags)
 		flags[f_time] = 0;
 		flags[f_rev] = 0;
 	}
+	if (flags[f_group] == 1)
+		flags[f_list] = 1;
 }
 
 int			parse_flags(int ac, char **av, char *flags)

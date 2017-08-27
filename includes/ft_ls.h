@@ -46,7 +46,7 @@ t_stack				*extr_sought_fl(t_stack *fls, char *fl_path);
 t_stack				*handle_single_fl(char *fl_path, char *flags);
 void				print_total_blocks(char *dir_path, char *flags);
 T_BOOL				is_hidden_file(t_stack *file);
-void				print_list(t_stack *file);
+void				print_list(t_stack *file, char *flags);
 void				print_flags(t_stack *file, char *flags);
 void				print_dir(t_stack *files, char *flags);
 void				output_module(t_stack *files, char *flags);
@@ -60,7 +60,6 @@ void				extract_permissions_mode(struct stat file_stat,\
 t_stack *file);
 t_fields			*alloc_fields(void);
 t_fields			*get_file_info(t_stack *file);
-void				error_msg(char *message);
 void				print_dir_path(t_stack *file, char *flags);
 char				*make_path_dir(char *name, char *cathis);
 t_stack				*register_fls_in_dir(char *name, char *flags);
