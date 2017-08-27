@@ -65,6 +65,8 @@ void		check_flag_overlaps(char *flags)
 		flags[f_time] = 0;
 		flags[f_rev] = 0;
 	}
+	if (flags[f_nogroup] == 1)
+		flags[f_list] = 1;
 }
 
 int			parse_flags(int ac, char **av, char *flags)
