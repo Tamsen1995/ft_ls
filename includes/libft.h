@@ -59,7 +59,7 @@ typedef enum		e_flgs
 	f_list = 2,
 	f_rev = 3,
 	f_time = 4,
-	f_nogroup = 5,
+	f_group = 5,
 	f_nosort = 6
 }					t_flags;
 

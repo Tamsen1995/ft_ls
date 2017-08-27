@@ -65,7 +65,7 @@ void		check_flag_overlaps(char *flags)
 		flags[f_time] = 0;
 		flags[f_rev] = 0;
 	}
-	if (flags[f_nogroup] == 1)
+	if (flags[f_group] == 1)
 		flags[f_list] = 1;
 }
 
