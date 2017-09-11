@@ -1,2 +1,5 @@
 > Re-test everything !
     re-do correction with folder in the root (~,  /, ~/)
+
+> there is a segfault when using the command
+    ./ft_ls / libft srcs auteur
