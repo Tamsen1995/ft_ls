@@ -6,7 +6,7 @@
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/15 21:33:36 by tbui              #+#    #+#             */
-/*   Updated: 2017/08/21 21:55:22 by tbui             ###   ########.fr       */
+/*   Updated: 2017/09/11 21:57:42 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include <sys/types.h>
 # include <errno.h>
 
-t_args			    *ft_new_arg(char *name);
-int                 args_sorting(t_args *s1, t_args *s2, char *flags);
-void                ft_args_push_back(t_args **begin, char *name, char *flags);
-void	    		perm_denied(t_stack *file);
+t_args				*ft_new_arg(char *name);
+int					args_sorting(t_args *s1, t_args *s2, char *flags);
+void				ft_args_push_back(t_args **begin, char *name, char *flags);
+void				perm_denied(t_stack *file);
 void				print_dir_path_recur(t_stack *file, char *flags);
 void				print_total_blocks_cur(t_stack *file, char *flags);
 T_BOOL				path_no_access(t_stack *alist);

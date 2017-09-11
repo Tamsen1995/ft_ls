@@ -6,7 +6,7 @@
 /*   By: tbui <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 06:25:27 by tbui              #+#    #+#             */
-/*   Updated: 2017/08/15 21:48:52 by tbui             ###   ########.fr       */
+/*   Updated: 2017/09/11 21:59:13 by tbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ typedef enum	e_filetype
 	INVALID
 }				t_filetype;
 
-
 /*
 ** A linked list structure
 ** made solely for the sorting
@@ -118,7 +117,7 @@ typedef struct		s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-char 				**ft_alloc_twod_arr(int nbr);
+char				**ft_alloc_twod_arr(int nbr);
 void				error_msg(char *message);
 void				ft_putstr_col(t_stack *file);
 void				ft_putendl_col(t_stack *file);
