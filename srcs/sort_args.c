@@ -50,6 +50,28 @@ t_args			*ft_new_arg(char *name)
 }
 
 /*
+** allocates and makes an array with sorted
+** arguments to be returned
+*/
+
+char			**make_sorted_arr(t_args *tmp)
+{
+	int		i;
+	char	**sorted;
+
+	i = 0;
+	sorted = ft_alloc_twod_arr(i);
+	while (tmp)
+	{
+		sorted[i] = ft_strdup(tmp->name);
+		tmp = tmp->next;
+		i++;
+	}
+	sorted[i] = NULL;
+	return (sorted);
+}
+
+/*
 ** sorts the arguments with
 ** the help of linked lists
 */
@@ -73,15 +95,7 @@ char			**sort_args(char **av_tmp, char *flags)
 		ft_args_push_back(&begin, av_tmp[i], flags);
 		i++;
 	}
-	sorted = ft_alloc_twod_arr(i);
-	i = 0;
 	tmp = begin;
-	while (tmp)
-	{
-		sorted[i] = ft_strdup(tmp->name);
-		tmp = tmp->next;
-		i++;
-	}
-	sorted[i] = NULL;
+	sorted = make_sorted_arr(tmp);
 	return (sorted);
 }
