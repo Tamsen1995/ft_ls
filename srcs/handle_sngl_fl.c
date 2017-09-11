@@ -25,7 +25,6 @@ T_BOOL				not_curr_and_prev_ch(char *dir_name)
 	return (FALSE);
 }
 
-
 /*
 ** helper function
 */
@@ -103,7 +102,7 @@ t_stack				*handle_single_fl(char *fl_path, char *flags)
 	fls->fields = get_file_info(fls);
 	if (path_no_access(fls))
 		perm_denied(fls);
-	else 
+	else
 		print_dir(fls, flags);
 	free(fl_path);
 	return (fls);

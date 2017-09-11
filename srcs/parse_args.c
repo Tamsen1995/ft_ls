@@ -89,7 +89,6 @@ T_BOOL			inv_fls_present(char **av_tmp, int i, int ac)
 	return (flag);
 }
 
-
 /*
 ** Makes a copy of all the potential directories
 ** in the arguments array and copies it into

@@ -28,7 +28,7 @@ void			print_list(t_stack *file, char *flags)
 	ft_putstr(file->fields->links);
 	ft_putstr("\t");
 	if (flags[f_group] == 0)
-	{	
+	{
 		ft_putstr(file->fields->owner);
 		ft_putstr("\t");
 	}
