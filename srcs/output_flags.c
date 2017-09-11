@@ -21,14 +21,17 @@ T_BOOL			is_hidden_file(t_stack *file)
 	return (FALSE);
 }
 
-void			print_list(t_stack *file)
+void			print_list(t_stack *file, char *flags)
 {
 	ft_putstr(file->fields->mode);
 	ft_putstr("\t");
 	ft_putstr(file->fields->links);
 	ft_putstr("\t");
-	ft_putstr(file->fields->owner);
-	ft_putstr("\t");
+	if (flags[f_group] == 0)
+	{	
+		ft_putstr(file->fields->owner);
+		ft_putstr("\t");
+	}
 	ft_putstr(file->fields->group);
 	ft_putstr("\t");
 	ft_putstr(file->fields->size);
@@ -100,5 +103,5 @@ void			print_flags(t_stack *file, char *flags)
 		error_msg("A file is missing in (print_flags)");
 	tmp = file;
 	if (flags[f_list] && tmp->fields)
-		print_list(tmp);
+		print_list(tmp, flags);
 }

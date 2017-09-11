@@ -26,7 +26,7 @@
 # define TRUE 1
 # define FALSE 0
 
-# define VALID_FLAGS	"Ralrt1f"
+# define VALID_FLAGS	"Ralrtgf"
 # define NB_FLAGS		7
 # define STOP "\033[0;0m"
 # define EOC "\033[39m"
@@ -59,7 +59,7 @@ typedef enum		e_flgs
 	f_list = 2,
 	f_rev = 3,
 	f_time = 4,
-	f_main = 5,
+	f_group = 5,
 	f_nosort = 6
 }					t_flags;
 
@@ -118,13 +118,14 @@ typedef struct		s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
+char 				**ft_alloc_twod_arr(int nbr);
+void				error_msg(char *message);
 void				ft_putstr_col(t_stack *file);
 void				ft_putendl_col(t_stack *file);
 t_filetype			get_file_type(struct dirent *ent);
 size_t				ft_strlen(char const *s);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
 void				ft_exit(char *s);
-void				ft_init_tab(char **tab);
 void				ft_memdel(void **ap);
 void				ft_striter(char *s, void (*f)(char *));
 void				ft_striteri(char *s, void (*f) (unsigned int, char *));
