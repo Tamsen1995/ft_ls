@@ -99,7 +99,6 @@ t_stack				*handle_single_fl(char *fl_path, char *flags)
 		error_msg("This is not an actual file! (handle_single_fl)");
 	}
 	ret_sing_ent(&fls, fl_path, "./", flags);
-	fls->fields = get_file_info(fls);
 	if (path_no_access(fls))
 		perm_denied(fls);
 	else

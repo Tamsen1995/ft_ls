@@ -54,13 +54,13 @@ t_args			*ft_new_arg(char *name)
 ** arguments to be returned
 */
 
-char			**make_sorted_arr(t_args *tmp)
+char			**make_sorted_arr(t_args *tmp, int arr_size)
 {
 	int		i;
 	char	**sorted;
 
 	i = 0;
-	sorted = ft_alloc_twod_arr(i);
+	sorted = ft_alloc_twod_arr(arr_size);
 	while (tmp)
 	{
 		sorted[i] = ft_strdup(tmp->name);
@@ -96,6 +96,6 @@ char			**sort_args(char **av_tmp, char *flags)
 		i++;
 	}
 	tmp = begin;
-	sorted = make_sorted_arr(tmp);
+	sorted = make_sorted_arr(tmp, i);
 	return (sorted);
 }
