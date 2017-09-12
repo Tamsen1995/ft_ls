@@ -2,3 +2,5 @@
     re-do correction with folder in the root (~,  /, ~/)
 
 > The f flag also cancels out the sorting of the parameters/arguments
+
+    ( ./ft_ls -Rtlrf TODO auteur srcs includes libft )
